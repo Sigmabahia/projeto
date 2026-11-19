@@ -12,8 +12,8 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #f3efe6;
-    color: #0b1f3b;
+    background: #faf8f5;
+    color: #000000;
 }
 
 a {
@@ -27,11 +27,11 @@ a {
 .header {
     min-height: 90px;
     padding: 15px 5%;
-    background: #f3efe6;
+    background: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f3efe6;
+    border-bottom: 1px solid #eee7e1;
 }
 
 .logo {
@@ -44,18 +44,18 @@ a {
     font-size: 36px;
     font-weight: 700;
     letter-spacing: 4px;
-    color: #0b1f3b;
+    color: #000000;
 }
 
 .logo span,
 .footer-logo span {
-    color: #d4af37;
+    color: #a8896c;
 }
 
 .logo small {
     font-size: 9px;
     letter-spacing: 2px;
-    color: #0b1f3b;
+    color: #000000;
 }
 
 .menu {
@@ -67,13 +67,13 @@ a {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 1px;
-    color: #0b1f3b;
+    color: #000000;
     transition: .3s;
 }
 
 .menu a:hover,
 .menu a.ativo {
-    color: #d4af37;
+    color: #a8896c;
 }
 
 .acoes {
@@ -85,11 +85,11 @@ a {
 .carrinho {
     font-size: 13px;
     font-weight: 500;
-    color: #0b1f3b;
+    color: #000000;
 }
 
 .entrar {
-    background: #0b1f3b;
+    background: #000000;
     color: white;
     padding: 14px 23px;
     font-size: 12px;
@@ -98,7 +98,7 @@ a {
 }
 
 .entrar:hover {
-    background: #d4af37;
+    background: #a8896c;
 }
 
 /* VOLTAR */
@@ -111,45 +111,37 @@ a {
 
 .voltar-container a {
     font-size: 10px;
-    color: #0f4c81;
+    color: #766d66;
     transition: .3s;
 }
 
 .voltar-container a:hover {
-    color: #d4af37;
+    color: #a8896c;
 }
 
 
 /* BANNER */
 
 .banner {
-    min-height: 470px;
-
-    background:
-        linear-gradient(
-            rgba(25,20,17,.58),
-            rgba(25,20,17,.58)
-        ),
-        url("image_ny_sdP.png");
-
-    background-size: cover;
-    background-position: center;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-    padding: 50px 20px;
-    color: white;
+  min-height: 470px;
+  background: #0b1f3b url("image_ny_sdP.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 50px 20px;
+  color: white;
 }
+
 
 .banner-conteudo {
     max-width: 650px;
 }
 
 .subtitulo {
-    color: #d4af37;
+    color: #e0c8ae;
     font-size: 9px;
     letter-spacing: 5px;
     margin-bottom: 20px;
@@ -162,27 +154,27 @@ a {
 }
 
 .banner h1 span {
-    color: #d4af37;
+    color: #e0c8ae;
     font-style: italic;
 }
 
 .linha {
     width: 50px;
     height: 1px;
-    background: #d4af37;
+    background: #e0c8ae;
     margin: 22px auto;
 }
 
 .banner .descricao {
     font-size: 11px;
     line-height: 1.9;
-    color: #f3efe6;
+    color: #e5dfda;
     margin-bottom: 30px;
 }
 
 .banner-btn {
     display: inline-block;
-    background: #d4af37;
+    background: #a8896c;
     color: white;
     padding: 16px 28px;
     font-size: 9px;
@@ -192,7 +184,7 @@ a {
 
 .banner-btn:hover {
     background: white;
-    color: #0b1f3b;
+    color: #292522;
 }
 
 
@@ -204,7 +196,7 @@ a {
 }
 
 .apresentacao > p:first-child {
-    color: #d4af37;
+    color: #a8896c;
     font-size: 9px;
     letter-spacing: 4px;
     margin-bottom: 15px;
@@ -218,13 +210,13 @@ a {
 }
 
 .apresentacao h2 span {
-    color: #d4af37;
+    color: #a8896c;
     font-style: italic;
 }
 
 .apresentacao > p:last-child {
     font-size: 10px;
-    color: #0f4c81;
+    color: #8b8179;
     line-height: 1.8;
 }
 
@@ -240,20 +232,20 @@ a {
 
 .filtro {
     background: transparent;
-    border: 1px solid #d4af37;
+    border: 1px solid #d9cec3;
     padding: 12px 25px;
     font-size: 9px;
     letter-spacing: 1px;
     cursor: pointer;
-    color: #0f4c81;
+    color: #6e6259;
     transition: .3s;
 }
 
 .filtro:hover,
 .filtro.ativo {
-    background: #0b1f3b;
+    background: #292522;
     color: white;
-    border-color: #0b1f3b;
+    border-color: #292522;
 }
 
 
@@ -268,178 +260,112 @@ a {
 .produtos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 30px;
 }
-
-
-/* CARD */
 
 .produto-card {
     background: white;
-    transition: 0.4s;
+    border: 1px solid #eee7e1;
+    transition: .3s;
 }
 
 .produto-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(45,35,25,0.08);
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
 }
 
-
-/* IMAGEM */
-
 .produto-imagem {
-    height: 470px;
+    height: 370px;
     position: relative;
     overflow: hidden;
-    background: #f3efe6;
+    background: #eee8e3;
 }
 
 .produto-imagem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: 0.6s;
+    transition: .5s;
 }
 
 .produto-card:hover .produto-imagem img {
     transform: scale(1.04);
 }
 
-
-/* TAG */
-
-.tag {
+.etiqueta {
     position: absolute;
-    z-index: 5;
     top: 15px;
     left: 15px;
-    padding: 7px 10px;
-    background: #0b1f3b;
+    background: #a8896c;
     color: white;
+    padding: 9px 12px;
     font-size: 8px;
     letter-spacing: 1px;
 }
 
-.tag.novidade {
-    background: #d4af37;
+.imagem-reserva {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #302a25;
+    color: #d7b99b;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    letter-spacing: 4px;
 }
-
-
-/* FAVORITO */
-
-.favorito {
-    position: absolute;
-    z-index: 5;
-    right: 15px;
-    top: 15px;
-    width: 38px;
-    height: 38px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.favorito:hover,
-.favorito.ativo {
-    background: #0b1f3b;
-    color: white;
-}
-
-
-/* HOVER */
-
-.produto-hover {
-    position: absolute;
-    z-index: 4;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px;
-    transform: translateY(100%);
-    transition: 0.4s;
-}
-
-.produto-card:hover .produto-hover {
-    transform: translateY(0);
-}
-
-.produto-hover button {
-    width: 100%;
-    padding: 15px;
-    background: #0b1f3b;
-    border: none;
-    color: white;
-    font-size: 9px;
-    letter-spacing: 2px;
-    cursor: pointer;
-}
-
-
-/* INFORMAÇÕES */
 
 .produto-info {
-    padding: 23px 20px;
+    padding: 22px;
 }
 
-.categoria-produto {
-    color: #d4af37;
+.categoria {
+    color: #a8896c;
     font-size: 8px;
     letter-spacing: 2px;
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 }
 
 .produto-info h3 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 27px;
-    font-weight: 600;
-    margin-bottom: 0;
+    font-size: 25px;
+    margin-bottom: 8px;
 }
 
-.descricao {
+.descricao-produto {
     font-size: 10px;
+    color: #8b8179;
     line-height: 1.7;
-    color: #0f4c81;
-    margin: 10px 0 18px;
+    min-height: 35px;
+    margin-bottom: 15px;
 }
 
-.produto-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid #f3efe6;
-    padding-top: 15px;
-}
-
-.preco {
+.produto-info strong {
+    display: block;
     font-size: 15px;
-    font-weight: 600;
-    color: #0b1f3b;
-    margin: 0;
+    margin-bottom: 18px;
 }
 
 .comprar-btn {
-    background: none;
+    width: 100%;
+    padding: 15px;
+    background: #292522;
+    color: white;
     border: none;
-    color: #d4af37;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 1px;
     cursor: pointer;
-    padding: 0;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    transition: .3s;
 }
 
 .comprar-btn:hover {
-    color: #0b1f3b;
+    background: #a8896c;
 }
 
 
 /* RODAPÉ */
 
 footer {
-    background: #0b1f3b;
+    background: #292522;
     color: white;
     text-align: center;
     padding: 55px 20px 20px;
@@ -453,7 +379,7 @@ footer {
 }
 
 footer > p {
-    color: #2f86c7;
+    color: #b7aea7;
     font-size: 10px;
     margin: 12px 0 25px;
 }
@@ -466,18 +392,18 @@ footer > p {
 }
 
 .footer-links a {
-    color: #2f86c7;
+    color: #d0c7c0;
     font-size: 9px;
 }
 
 .footer-links a:hover {
-    color: #d4af37;
+    color: #e0c8ae;
 }
 
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,.1);
     padding-top: 20px;
-    color: #0f4c81;
+    color: #827a74;
     font-size: 8px;
 }
 
