@@ -12,8 +12,8 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: #faf8f5;
-    color: #000000;
+    background: #f3efe6;
+    color: #0b1f3b;
 }
 
 a {
@@ -27,11 +27,11 @@ a {
 .header {
     min-height: 90px;
     padding: 15px 5%;
-    background: white;
+    background: #f3efe6;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee7e1;
+    border-bottom: 1px solid #f3efe6;
 }
 
 .logo {
@@ -44,18 +44,18 @@ a {
     font-size: 36px;
     font-weight: 700;
     letter-spacing: 4px;
-    color: #000000;
+    color: #0b1f3b;
 }
 
 .logo span,
 .footer-logo span {
-    color: #a8896c;
+    color: #d4af37;
 }
 
 .logo small {
     font-size: 9px;
     letter-spacing: 2px;
-    color: #000000;
+    color: #0b1f3b;
 }
 
 .menu {
@@ -67,13 +67,13 @@ a {
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 1px;
-    color: #000000;
+    color: #0b1f3b;
     transition: .3s;
 }
 
 .menu a:hover,
 .menu a.ativo {
-    color: #a8896c;
+    color: #d4af37;
 }
 
 .acoes {
@@ -85,11 +85,11 @@ a {
 .carrinho {
     font-size: 13px;
     font-weight: 500;
-    color: #000000;
+    color: #0b1f3b;
 }
 
 .entrar {
-    background: #000000;
+    background: #0b1f3b;
     color: white;
     padding: 14px 23px;
     font-size: 12px;
@@ -98,7 +98,7 @@ a {
 }
 
 .entrar:hover {
-    background: #a8896c;
+    background: #d4af37;
 }
 
 /* VOLTAR */
@@ -111,12 +111,12 @@ a {
 
 .voltar-container a {
     font-size: 10px;
-    color: #766d66;
+    color: #0f4c81;
     transition: .3s;
 }
 
 .voltar-container a:hover {
-    color: #a8896c;
+    color: #d4af37;
 }
 
 
@@ -127,8 +127,8 @@ a {
 
     background:
         linear-gradient(
-            rgba(25, 21, 18, .65),
-            rgba(25, 21, 18, .65)
+            rgba(25,20,17,.58),
+            rgba(25,20,17,.58)
         ),
         url("image_ny_sdP.png");
 
@@ -149,7 +149,7 @@ a {
 }
 
 .subtitulo {
-    color: #e0c8ae;
+    color: #d4af37;
     font-size: 9px;
     letter-spacing: 5px;
     margin-bottom: 20px;
@@ -162,27 +162,27 @@ a {
 }
 
 .banner h1 span {
-    color: #e0c8ae;
+    color: #d4af37;
     font-style: italic;
 }
 
 .linha {
     width: 50px;
     height: 1px;
-    background: #e0c8ae;
+    background: #d4af37;
     margin: 22px auto;
 }
 
 .banner .descricao {
     font-size: 11px;
     line-height: 1.9;
-    color: #e5dfda;
+    color: #f3efe6;
     margin-bottom: 30px;
 }
 
 .banner-btn {
     display: inline-block;
-    background: #a8896c;
+    background: #d4af37;
     color: white;
     padding: 16px 28px;
     font-size: 9px;
@@ -192,7 +192,7 @@ a {
 
 .banner-btn:hover {
     background: white;
-    color: #292522;
+    color: #0b1f3b;
 }
 
 
@@ -204,7 +204,7 @@ a {
 }
 
 .apresentacao > p:first-child {
-    color: #a8896c;
+    color: #d4af37;
     font-size: 9px;
     letter-spacing: 4px;
     margin-bottom: 15px;
@@ -218,13 +218,13 @@ a {
 }
 
 .apresentacao h2 span {
-    color: #a8896c;
+    color: #d4af37;
     font-style: italic;
 }
 
 .apresentacao > p:last-child {
     font-size: 10px;
-    color: #8b8179;
+    color: #0f4c81;
     line-height: 1.8;
 }
 
@@ -240,20 +240,20 @@ a {
 
 .filtro {
     background: transparent;
-    border: 1px solid #d9cec3;
+    border: 1px solid #d4af37;
     padding: 12px 25px;
     font-size: 9px;
     letter-spacing: 1px;
     cursor: pointer;
-    color: #6e6259;
+    color: #0f4c81;
     transition: .3s;
 }
 
 .filtro:hover,
 .filtro.ativo {
-    background: #292522;
+    background: #0b1f3b;
     color: white;
-    border-color: #292522;
+    border-color: #0b1f3b;
 }
 
 
@@ -273,7 +273,7 @@ a {
 
 .produto-card {
     background: white;
-    border: 1px solid #eee7e1;
+    border: 1px solid #f3efe6;
     transition: .3s;
 }
 
@@ -286,7 +286,7 @@ a {
     height: 370px;
     position: relative;
     overflow: hidden;
-    background: #eee8e3;
+    background: #f3efe6;
 }
 
 .produto-imagem img {
@@ -304,7 +304,7 @@ a {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #a8896c;
+    background: #d4af37;
     color: white;
     padding: 9px 12px;
     font-size: 8px;
@@ -315,8 +315,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #302a25;
-    color: #d7b99b;
+    background: #0b1f3b;
+    color: #d4af37;
     font-family: 'Cormorant Garamond', serif;
     font-size: 30px;
     letter-spacing: 4px;
@@ -327,7 +327,7 @@ a {
 }
 
 .categoria {
-    color: #a8896c;
+    color: #d4af37;
     font-size: 8px;
     letter-spacing: 2px;
     margin-bottom: 9px;
@@ -341,7 +341,7 @@ a {
 
 .descricao-produto {
     font-size: 10px;
-    color: #8b8179;
+    color: #0f4c81;
     line-height: 1.7;
     min-height: 35px;
     margin-bottom: 15px;
@@ -356,7 +356,7 @@ a {
 .comprar-btn {
     width: 100%;
     padding: 15px;
-    background: #292522;
+    background: #0b1f3b;
     color: white;
     border: none;
     cursor: pointer;
@@ -366,14 +366,14 @@ a {
 }
 
 .comprar-btn:hover {
-    background: #a8896c;
+    background: #d4af37;
 }
 
 
 /* RODAPÉ */
 
 footer {
-    background: #292522;
+    background: #0b1f3b;
     color: white;
     text-align: center;
     padding: 55px 20px 20px;
@@ -387,7 +387,7 @@ footer {
 }
 
 footer > p {
-    color: #b7aea7;
+    color: #2f86c7;
     font-size: 10px;
     margin: 12px 0 25px;
 }
@@ -400,18 +400,18 @@ footer > p {
 }
 
 .footer-links a {
-    color: #d0c7c0;
+    color: #2f86c7;
     font-size: 9px;
 }
 
 .footer-links a:hover {
-    color: #e0c8ae;
+    color: #d4af37;
 }
 
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,.1);
     padding-top: 20px;
-    color: #827a74;
+    color: #0f4c81;
     font-size: 8px;
 }
 

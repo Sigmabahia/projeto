@@ -14,23 +14,23 @@
 
 <style>
 /* CHATBOT ROYAL SUITS */
-#rs-chat-button{position:fixed;right:25px;bottom:25px;z-index:9998;width:64px;height:64px;border:0;border-radius:50%;background:#171717;color:#d8bd83;font-size:27px;cursor:pointer;box-shadow:0 5px 22px #0004;transition:.2s}
-#rs-chat-button:hover{transform:scale(1.06);background:#29231a}
-#rs-chat-window{position:fixed;right:25px;bottom:102px;z-index:9999;width:min(370px,calc(100vw - 30px));height:500px;max-height:calc(100vh - 130px);background:#fff;border:1px solid #d8bd83;border-radius:16px;box-shadow:0 12px 40px #0003;display:none;overflow:hidden;font-family:Montserrat,Arial,sans-serif}
+#rs-chat-button{position:fixed;right:25px;bottom:25px;z-index:9998;width:64px;height:64px;border:0;border-radius:50%;background:#0b1f3b;color:#d4af37;font-size:27px;cursor:pointer;box-shadow:0 5px 22px #0004;transition:.2s}
+#rs-chat-button:hover{transform:scale(1.06);background:#0f4c81}
+#rs-chat-window{position:fixed;right:25px;bottom:102px;z-index:9999;width:min(370px,calc(100vw - 30px));height:500px;max-height:calc(100vh - 130px);background:#fff;border:1px solid #d4af37;border-radius:16px;box-shadow:0 12px 40px #0003;display:none;overflow:hidden;font-family:Montserrat,Arial,sans-serif}
 #rs-chat-window.rs-open{display:flex;flex-direction:column}
-.rs-chat-head{background:#171717;color:#fff;padding:17px 18px;display:flex;align-items:center;justify-content:space-between}
+.rs-chat-head{background:#0b1f3b;color:#fff;padding:17px 18px;display:flex;align-items:center;justify-content:space-between}
 .rs-chat-brand{font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:1px}
-.rs-chat-brand span{color:#d8bd83}
-.rs-chat-status{font-size:11px;color:#d8bd83;margin-top:3px}
+.rs-chat-brand span{color:#d4af37}
+.rs-chat-status{font-size:11px;color:#d4af37;margin-top:3px}
 #rs-chat-close{background:none;border:0;color:#fff;font-size:25px;cursor:pointer}
-#rs-chat-messages{padding:16px;flex:1;overflow-y:auto;background:#faf9f6;display:flex;flex-direction:column;gap:11px}
+#rs-chat-messages{padding:16px;flex:1;overflow-y:auto;background:#f3efe6;display:flex;flex-direction:column;gap:11px}
 .rs-chat-msg{max-width:85%;padding:11px 13px;border-radius:13px;font-size:13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
-.rs-chat-msg.bot{align-self:flex-start;background:#eeeae2;color:#24211c;border-bottom-left-radius:3px}
-.rs-chat-msg.user{align-self:flex-end;background:#24211c;color:#fff;border-bottom-right-radius:3px}
-.rs-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid #eee;background:#fff}
-#rs-chat-input{min-width:0;flex:1;border:1px solid #ddd;border-radius:22px;padding:12px 14px;font:13px Montserrat,Arial,sans-serif;outline:none}
-#rs-chat-input:focus{border-color:#b69a60}
-#rs-chat-send{border:0;border-radius:22px;background:#171717;color:#d8bd83;padding:0 17px;font-weight:600;cursor:pointer}
+.rs-chat-msg.bot{align-self:flex-start;background:#f3efe6;color:#0b1f3b;border-bottom-left-radius:3px}
+.rs-chat-msg.user{align-self:flex-end;background:#0b1f3b;color:#fff;border-bottom-right-radius:3px}
+.rs-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid #f3efe6;background:#fff}
+#rs-chat-input{min-width:0;flex:1;border:1px solid #f3efe6;border-radius:22px;padding:12px 14px;font:13px Montserrat,Arial,sans-serif;outline:none}
+#rs-chat-input:focus{border-color:#d4af37}
+#rs-chat-send{border:0;border-radius:22px;background:#0b1f3b;color:#d4af37;padding:0 17px;font-weight:600;cursor:pointer}
 #rs-chat-send:disabled{opacity:.5;cursor:wait}
 @media(max-width:480px){#rs-chat-button{right:16px;bottom:16px}#rs-chat-window{right:10px;bottom:90px;width:calc(100vw - 20px);height:min(500px,calc(100vh - 110px))}}
 </style>
