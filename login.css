@@ -1,0 +1,596 @@
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: 'Montserrat', sans-serif;
+
+    background: #f3efe6;
+
+    color: #0b1f3b;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    width: 100%;
+
+    min-height: 90px;
+
+    padding: 15px 5%;
+
+    background: #f3efe6;
+
+    border-bottom: 1px solid #f3efe6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.logo a {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 31px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    color: #0b1f3b;
+}
+
+.logo a span {
+    color: #d4af37;
+}
+
+.logo small {
+    font-size: 7px;
+
+    letter-spacing: 2.5px;
+
+    color: #2f86c7;
+}
+
+
+/* VOLTAR */
+
+.voltar {
+    color: #0b1f3b;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+}
+
+.voltar:hover {
+    color: #d4af37;
+
+    transform: translateX(-3px);
+}
+
+
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+
+.login-container {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 60px 20px;
+}
+
+
+/* CAIXA */
+
+.login-box {
+    width: 100%;
+
+    max-width: 1000px;
+
+    min-height: 600px;
+
+    background: #f3efe6;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    box-shadow:
+        0 20px 60px rgba(11, 31, 59, 0.10);
+}
+
+
+/* =========================================================
+   LADO ESQUERDO
+========================================================= */
+
+.login-apresentacao {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            rgba(11, 31, 59, 0.75),
+            rgba(11, 31, 59, 0.75)
+        ),
+        url("image_ny_sdP.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    color: #f3efe6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px;
+}
+
+
+/* DETALHE */
+
+.login-apresentacao::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border: 1px solid rgba(212, 175, 55, 0.45);
+
+    pointer-events: none;
+}
+
+
+/* CONTEÚDO */
+
+.apresentacao-content {
+    max-width: 380px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.mini-titulo {
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #d4af37;
+
+    margin-bottom: 15px;
+}
+
+.apresentacao-content h1 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 55px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+}
+
+.apresentacao-content h1 span {
+    color: #d4af37;
+}
+
+.linha {
+    width: 45px;
+
+    height: 1px;
+
+    background: #d4af37;
+
+    margin: 20px auto;
+}
+
+.apresentacao-content > p:last-child {
+    color: #f3efe6;
+
+    font-size: 11px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.login-formulario {
+    padding: 65px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* CABEÇALHO */
+
+.form-header {
+    margin-bottom: 35px;
+}
+
+.form-header p {
+    color: #d4af37;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+.form-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+
+    font-size: 38px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+.form-header span {
+    font-size: 10px;
+
+    color: #0f4c81;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.campo {
+    margin-bottom: 22px;
+}
+
+.campo label {
+    display: block;
+
+    color: #0f4c81;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.campo input {
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #2f86c7;
+
+    background: #f3efe6;
+
+    padding: 0 14px;
+
+    outline: none;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 11px;
+
+    color: #0b1f3b;
+
+    transition: 0.3s;
+}
+
+.campo input:focus {
+    border-color: #d4af37;
+
+    box-shadow:
+        0 0 0 3px rgba(212, 175, 55, 0.08);
+}
+
+.campo input::placeholder {
+    color: #2f86c7;
+}
+
+
+/* SENHA */
+
+.senha-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.senha-header a {
+    font-size: 9px;
+
+    color: #d4af37;
+
+    transition: 0.3s;
+}
+
+.senha-header a:hover {
+    color: #0b1f3b;
+}
+
+
+/* =========================================================
+   LEMBRAR
+========================================================= */
+
+.lembrar {
+    margin: -5px 0 25px;
+}
+
+.lembrar label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+}
+
+.lembrar input {
+    accent-color: #d4af37;
+
+    cursor: pointer;
+}
+
+.lembrar span {
+    color: #0f4c81;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   BOTÃO ENTRAR
+========================================================= */
+
+.entrar-btn {
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    background: #0b1f3b;
+
+    color: #f3efe6;
+
+    cursor: pointer;
+
+    font-size: 9px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    transition: 0.3s;
+}
+
+.entrar-btn:hover {
+    background: #d4af37;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(11, 31, 59, 0.15);
+}
+
+
+/* =========================================================
+   DIVISÓRIA
+========================================================= */
+
+.ou {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 28px 0;
+}
+
+.ou span {
+    height: 1px;
+
+    flex: 1;
+
+    background: #f3efe6;
+}
+
+.ou p {
+    font-size: 9px;
+
+    color: #2f86c7;
+}
+
+
+/* =========================================================
+   CRIAR CONTA
+========================================================= */
+
+.criar-conta {
+    text-align: center;
+}
+
+.criar-conta p {
+    font-size: 10px;
+
+    color: #0f4c81;
+
+    margin-bottom: 10px;
+}
+
+.criar-conta a {
+    font-size: 9px;
+
+    color: #d4af37;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    transition: 0.3s;
+}
+
+.criar-conta a:hover {
+    color: #0b1f3b;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #0b1f3b;
+
+    color: #0f4c81;
+}
+
+footer p {
+    font-size: 8px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .login-box {
+        grid-template-columns: 1fr;
+
+        max-width: 520px;
+    }
+
+    .login-apresentacao {
+        min-height: 300px;
+
+        padding: 40px;
+    }
+
+    .login-apresentacao::before {
+        inset: 15px;
+    }
+
+    .apresentacao-content h1 {
+        font-size: 45px;
+    }
+
+    .login-formulario {
+        padding: 50px 40px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .header {
+        min-height: 75px;
+
+        padding: 12px 20px;
+    }
+
+    .logo a {
+        font-size: 24px;
+    }
+
+    .logo small {
+        display: none;
+    }
+
+    .voltar {
+        font-size: 9px;
+    }
+
+    .login-container {
+        padding: 30px 15px;
+    }
+
+    .login-apresentacao {
+        min-height: 250px;
+
+        padding: 30px;
+    }
+
+    .apresentacao-content h1 {
+        font-size: 38px;
+    }
+
+    .login-formulario {
+        padding: 40px 25px;
+    }
+
+    .form-header h2 {
+        font-size: 32px;
+    }
+
+}

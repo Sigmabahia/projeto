@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROYAL SUITS | Carrinho</title>
+
+    <link rel="stylesheet" href="carrinho.css">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+            <a href="paginainicial.html">
+                ROYAL <span>SUITS</span>
+            </a>
+
+            <small>
+                FORMATURAS • CASAMENTOS • TRAJES DE GALA
+            </small>
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="paginanicial.html">
+                Início
+            </a>
+
+            <a href="formaturas.html">
+                Formaturas
+            </a>
+
+            <a href="casamentos.html">
+                Casamentos
+            </a>
+
+            <a href="paginanicial.html#modelos">
+                Modelos
+            </a>
+
+        </nav>
+
+
+        <div class="header-actions">
+
+            
+            <a href="#" class="icon-btn">
+                ♡
+            </a>
+
+            <a href="carrinho.html" class="cart-btn">
+                🛒
+                <span>Carrinho</span>
+                <strong id="contador-carrinho">0</strong>
+            </a>
+
+            <a href="#" class="login-btn">
+                👤 Entrar
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= TÍTULO ================= -->
+
+    <section class="titulo-pagina">
+
+        <p>ROYAL SUITS</p>
+
+        <h1>
+            Seu <span>carrinho</span>
+        </h1>
+
+        <div class="linha"></div>
+
+        
+
+    </section>
+
+
+    <!-- ================= CARRINHO ================= -->
+
+    <main class="carrinho-container">
+
+
+        <!-- PRODUTOS -->
+
+        <section class="carrinho-produtos">
+
+            <div class="carrinho-header">
+
+                <h2>
+                    Produtos selecionados
+                </h2>
+
+                <span id="quantidade-produtos">
+                    0 itens
+                </span>
+
+            </div>
+
+
+            <!-- CARRINHO VAZIO -->
+
+            <div class="carrinho-vazio" id="carrinho-vazio">
+
+                <div class="carrinho-vazio-icon">
+                    🛍
+                </div>
+
+                <h3>
+                    Seu carrinho está vazio
+                </h3>
+
+                <p>
+                    Você ainda não adicionou nenhum produto.
+                </p>
+
+                <a href="paginanicial.html">
+                    EXPLORAR MODELOS
+                </a>
+
+            </div>
+
+
+            <!--
+                PRODUTOS SERÃO INSERIDOS AQUI
+                PELO JAVASCRIPT
+            -->
+
+            <div
+                class="lista-produtos"
+                id="lista-produtos">
+            </div>
+
+        </section>
+
+
+        <!-- ================= RESUMO ================= -->
+
+        <aside class="resumo">
+
+            <h2>
+                Resumo do pedido
+            </h2>
+
+
+            <div class="resumo-linha">
+
+                <span>
+                    Subtotal
+                </span>
+
+                <strong id="subtotal">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <div class="resumo-linha">
+
+                <span>
+                    Frete
+                </span>
+
+                <strong id="frete">
+                    A calcular
+                </strong>
+
+            </div>
+
+
+            <div class="separador"></div>
+
+
+            <div class="resumo-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="total">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <button
+                class="finalizar-btn"
+                id="finalizar-btn"
+                disabled>
+
+                FINALIZAR COMPRA
+
+            </button>
+
+
+            <div class="seguranca">
+
+                <span>🔒</span>
+
+                <p>
+                    Compra segura e protegida
+                </p>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- ================= BENEFÍCIOS ================= -->
+
+    <section class="beneficios">
+
+        <div class="beneficio">
+
+            <span>✦</span>
+
+            <div>
+
+                <h3>
+                    Qualidade
+                </h3>
+
+                <p>
+                    Peças selecionadas com cuidado.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="beneficio">
+
+            <span>✓</span>
+
+            <div>
+
+                <h3>
+                    Compra segura
+                </h3>
+
+                <p>
+                    Seus dados protegidos.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="beneficio">
+
+            <span>♡</span>
+
+            <div>
+
+                <h3>
+                    Atendimento
+                </h3>
+
+                <p>
+                    Estamos aqui para ajudar.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <h2>
+                    ROYAL <span>SUITS</span>
+                </h2>
+
+                <p>
+                    Elegância para os momentos
+                    que merecem ser lembrados.
+                </p>
+
+            </div>
+
+
+         
+
+            <div class="footer-column">
+
+                <h3>
+                    ATENDIMENTO
+                </h3>
+
+                <a href="#">
+                    Fale conosco
+                </a>
+
+                <a href="#">
+                    Trocas e devoluções
+                </a>
+
+                <a href="#">
+                    Dúvidas frequentes
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    REDES SOCIAIS
+                </h3>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+                <a href="#">
+                    WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 ROYAL SUITS. Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
+```

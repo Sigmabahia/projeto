@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROYAL SUITS | Coleção Formaturas</title>
+
+    <link rel="stylesheet" href="formaturas.css">
+
+  
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+    <a href="paginainicial.html">ROYAL SUITS</a>
+        <small>FORMATURES • CASAMENTOS</small>
+        </div>
+
+        <nav class="menu">
+            <a href="paginanicial.html">Início</a>
+            <a href="formaturas.html" class="ativo">Formaturas</a>
+            <a href="casamentos.html">Casamentos</a>
+            <a href="paginainicial.html#modelos">Modelos</a>
+        </nav>
+
+        <div class="acoes">
+
+            <a href="carrinho.html" class="carrinho">
+                🛒 Carrinho
+            </a>
+
+            <a href="login.html" class="entrar">
+                Entrar
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- BANNER PRINCIPAL -->
+
+    <section class="banner">
+
+        <div class="banner-conteudo">
+
+            <p class="subtitulo">ROYAL SUITS COLLECTION</p>
+
+            <h1>
+                Coleção <span>Formaturas</span>
+            </h1>
+
+            <div class="linha"></div>
+
+            <p class="descricao">
+                Uma noite especial merece um visual inesquecível.
+                Descubra modelos exclusivos para celebrar suas conquistas
+                com elegância e sofisticação.
+            </p>
+
+            <a href="#colecao" class="banner-btn">
+                CONHECER COLEÇÃO
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- APRESENTAÇÃO -->
+
+    <section class="apresentacao" id="colecao">
+
+        <p>ENCONTRE SEU ESTILO</p>
+
+        <h2>
+            Elegância para uma noite <span>inesquecível</span>
+        </h2>
+
+        <p>
+            Selecionamos modelos especiais para transformar
+            sua formatura em um momento ainda mais marcante.
+        </p>
+
+    </section>
+
+
+    <!-- FILTROS -->
+
+    <section class="filtros">
+
+        <button class="filtro ativo" data-filtro="todos">
+            Todos
+        </button>
+
+        <button class="filtro" data-filtro="vestidos">
+            Vestidos
+        </button>
+
+        <button class="filtro" data-filtro="ternos">
+            Ternos
+        </button>
+
+    </section>
+
+
+    <!-- PRODUTOS -->
+
+    <main class="produtos-container">
+
+        <div class="produtos-grid">
+
+            <!-- PRODUTO 1 -->
+
+            <article class="produto-card" data-categoria="vestidos">
+
+                <div class="produto-imagem">
+                    <img src="image_ny_sdP.png" alt="Vestido Carmélia Marsala">
+                    <span class="etiqueta">DESTAQUE</span>
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria">VESTIDO DE FESTA</p>
+
+                    <h3>Vestido Carmélia</h3>
+
+                    <p class="descricao-produto">
+                        Vestido longo marsala com brilho e detalhes sofisticados.
+                    </p>
+
+                    <strong>R$ 899,00</strong>
+
+                    <button class="comprar-btn"
+                        onclick="adicionarCarrinho('Vestido Carmélia', 899, 'image_ny_sdP.png')">
+                        ADICIONAR AO CARRINHO
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUTO 2 -->
+
+            <article class="produto-card" data-categoria="vestidos">
+
+                <div class="produto-imagem">
+                    <img src="imagens/WhatsApp Image 2026-08-12 at 16.07.48.jpeg"
+                         alt="Vestido de formatura">
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria">VESTIDO DE FESTA</p>
+
+                    <h3>Vestido Elegance</h3>
+
+                    <p class="descricao-produto">
+                        Um modelo sofisticado para ocasiões especiais.
+                    </p>
+
+                    <strong>R$ 750,00</strong>
+
+                    <button class="comprar-btn"
+                        onclick="alert('Entre em contato para consultar este modelo.')">
+                        CONSULTAR MODELO
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUTO 3 -->
+
+            <article class="produto-card" data-categoria="ternos">
+
+                <div class="produto-imagem imagem-reserva">
+                    <span>ROYAL SUITS</span>
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria">TRAJE SOCIAL</p>
+
+                    <h3>Terno Clássico</h3>
+
+                    <p class="descricao-produto">
+                        Elegância e sofisticação para sua grande noite.
+                    </p>
+
+                    <strong>Em breve</strong>
+
+                    <button class="comprar-btn"
+                        onclick="alert('Modelo disponível em breve.')">
+                        EM BREVE
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <div class="footer-logo">
+            ROYAL <span>SUITS</span>
+        </div>
+
+        <p>
+            Elegância para os momentos que merecem ser lembrados.
+        </p>
+
+       
+        <div class="footer-bottom">
+            © 2026 ROYAL SUITS. Todos os direitos reservados.
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="formaturas.js"></script>
+
+</body>
+</html>

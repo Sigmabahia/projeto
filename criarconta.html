@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ROYAL SUITS | Criar Conta</title>
+
+    <link rel="stylesheet" href="criarconta.css">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <a href="paginainicial.html">
+                ROYAL <span>SUITS</span>
+            </a>
+
+            <small>
+                FORMATURAS • CASAMENTOS • TRAJES DE GALA
+            </small>
+
+        </div>
+
+
+        <a href="paginanicial.html" class="voltar">
+            ← Voltar para a loja
+        </a>
+
+    </header>
+
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <main class="cadastro-container">
+
+        <div class="cadastro-box">
+
+
+            <!-- LADO ESQUERDO -->
+
+            <section class="cadastro-apresentacao">
+
+                <div class="apresentacao-content">
+
+                    <p>
+                        FAÇA PARTE DA
+                    </p>
+
+                    <h1>
+                        ROYAL <span>SUITS</span>
+                    </h1>
+
+                    <div class="linha"></div>
+
+                    <h2>
+                        Seu estilo.<br>
+                        Sua ocasião.<br>
+                        Sua história.
+                    </h2>
+
+                    <p class="descricao-apresentacao">
+                        Crie sua conta e tenha uma experiência
+                        exclusiva para encontrar o look perfeito
+                        para seus momentos especiais.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- LADO DIREITO -->
+
+            <section class="cadastro-formulario">
+
+                <div class="form-header">
+
+                    <p>
+                        NOVO CLIENTE
+                    </p>
+
+                    <h2>
+                        Criar minha conta
+                    </h2>
+
+                    <span>
+                        Preencha seus dados para começar.
+                    </span>
+
+                </div>
+
+
+                <form id="form-cadastro">
+
+
+                    <!-- NOME -->
+
+                    <div class="campo">
+
+                        <label for="nome">
+                            Nome completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Digite seu nome completo"
+                            required>
+
+                    </div>
+
+
+                    <!-- E-MAIL -->
+
+                    <div class="campo">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Digite seu e-mail"
+                            required>
+
+                    </div>
+
+
+                    <!-- TELEFONE -->
+
+                    <div class="campo">
+
+                        <label for="telefone">
+                            Telefone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            name="telefone"
+                            placeholder="(00) 00000-0000"
+                            maxlength="15"
+                            required>
+
+                    </div>
+
+
+                    <!-- SENHAS -->
+
+                    <div class="campos-senha">
+
+                        <div class="campo">
+
+                            <label for="senha">
+                                Senha
+                            </label>
+
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Crie uma senha"
+                                required>
+
+                        </div>
+
+
+                        <div class="campo">
+
+                            <label for="confirmar-senha">
+                                Confirmar senha
+                            </label>
+
+                            <input
+                                type="password"
+                                id="confirmar-senha"
+                                name="confirmar-senha"
+                                placeholder="Repita sua senha"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMOS -->
+
+                    <div class="termos">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="termos"
+                                required>
+
+                            <span>
+                                Li e concordo com os
+                                <a href="#">Termos de Uso</a>
+                                e a
+                                <a href="#">Política de Privacidade</a>.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- BOTÃO -->
+
+                    <button
+                        type="submit"
+                        class="criar-btn">
+
+                        CRIAR MINHA CONTA
+
+                    </button>
+
+
+                    <!-- LOGIN -->
+
+                    <div class="ja-conta">
+
+                        <p>
+                            Já possui uma conta?
+                        </p>
+
+                        <a href="entrar.html">
+                            ENTRAR NA MINHA CONTA
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 ROYAL SUITS. Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* ============================
+           MÁSCARA DO TELEFONE
+        ============================ */
+
+        const telefone =
+            document.getElementById("telefone");
+
+        telefone.addEventListener("input", function () {
+
+            let valor = this.value.replace(/\D/g, "");
+
+            if (valor.length > 11) {
+                valor = valor.substring(0, 11);
+            }
+
+            if (valor.length > 6) {
+
+                valor =
+                    valor.replace(
+                        /^(\d{2})(\d{5})(\d{0,4}).*/,
+                        "($1) $2-$3"
+                    );
+
+            } else if (valor.length > 2) {
+
+                valor =
+                    valor.replace(
+                        /^(\d{2})(\d{0,5}).*/,
+                        "($1) $2"
+                    );
+
+            } else if (valor.length > 0) {
+
+                valor =
+                    valor.replace(
+                        /^(\d*)/,
+                        "($1"
+                    );
+
+            }
+
+            this.value = valor;
+
+        });
+
+
+        /* ============================
+           VALIDAÇÃO DO CADASTRO
+        ============================ */
+
+        const formulario =
+            document.getElementById("form-cadastro");
+
+
+        formulario.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            const senha =
+                document.getElementById("senha").value;
+
+            const confirmar =
+                document.getElementById("confirmar-senha").value;
+
+
+            if (senha !== confirmar) {
+
+                alert("As senhas não são iguais.");
+
+                return;
+
+            }
+
+
+            if (senha.length < 6) {
+
+                alert(
+                    "A senha precisa ter pelo menos 6 caracteres."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "Conta criada com sucesso! Bem-vindo à ROYAL SUITS."
+            );
+
+
+            window.location.href = "entrar.html";
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Coleção Casamentos | ROYAL SUITS</title>
+
+    <link rel="stylesheet" href="casamentos.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+          <div class="logo">
+    <a href="paginainicial.html">ROYAL SUITS</a>
+        <small>FORMATURES • CASAMENTOS</small>
+        </div>
+
+
+        <nav class="menu">
+            <a href="paginanicial.html">Início</a>
+            <a href="formaturas.html">Formaturas</a>
+            <a href="casamentos.html" class="ativo">Casamentos</a>
+            <a href="#colecao">Modelos</a>
+        </nav>
+
+        <div class="acoes">
+            <a href="carrinho.html" class="carrinho">Carrinho</a>
+            <a href="login.html" class="entrar">Entrar</a>
+        </div>
+
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner-casamentos">
+
+        <div class="banner-conteudo">
+
+            <span>ROYAL SUITS COLLECTION</span>
+
+            <h1>Coleção Casamentos</h1>
+
+            <p>
+                Elegância e sofisticação para celebrar o amor
+                e tornar cada momento inesquecível.
+            </p>
+
+            <a href="#colecao" class="banner-btn">
+                EXPLORAR COLEÇÃO
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="apresentacao">
+
+        <span>PARA MOMENTOS INESQUECÍVEIS</span>
+
+        <h2>O encanto de estar elegante</h2>
+
+        <p>
+            Descubra nossa seleção de vestidos e ternos
+            desenvolvidos para cerimônias, festas e celebrações especiais.
+            Encontre o modelo ideal para fazer parte desse momento.
+        </p>
+
+    </section>
+
+    <!-- COLEÇÃO -->
+    <section class="colecao" id="colecao">
+
+        <div class="colecao-titulo">
+
+            <span>NOSSOS MODELOS</span>
+
+            <h2>Explore a coleção</h2>
+
+        </div>
+
+        <!-- FILTROS -->
+        <div class="filtros">
+
+            <button class="filtro ativo" data-filtro="todos">
+                Todos
+            </button>
+
+            <button class="filtro" data-filtro="vestidos">
+                Vestidos
+            </button>
+
+            <button class="filtro" data-filtro="ternos">
+                Ternos
+            </button>
+
+        </div>
+
+        <!-- PRODUTOS -->
+        <div class="produtos-grid">
+
+            <!-- VESTIDO 1 -->
+            <div class="produto-card" data-categoria="vestidos">
+
+                <div class="produto-imagem">
+                    <img src="image_ny_sdP.png" alt="Vestido Elegance">
+                </div>
+
+                <div class="produto-info">
+
+                    <span class="produto-categoria">VESTIDOS</span>
+
+                    <h3>Vestido Elegance</h3>
+
+                    <p class="produto-descricao">
+                        Sofisticação e delicadeza para uma ocasião especial.
+                    </p>
+
+                    <p class="produto-preco">Preço a definir</p>
+
+                    <button class="produto-btn"
+                        onclick="consultarProduto('Vestido Elegance')">
+                        CONSULTAR PRODUTO
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- VESTIDO 2 -->
+            <div class="produto-card" data-categoria="vestidos">
+
+                <div class="produto-imagem">
+                    <img src="imagens/WhatsApp Image 2026-08-12 at 16.07.48.jpeg"
+                         alt="Vestido Clássico">
+                </div>
+
+                <div class="produto-info">
+
+                    <span class="produto-categoria">VESTIDOS</span>
+
+                    <h3>Vestido Clássico</h3>
+
+                    <p class="produto-descricao">
+                        Um visual elegante para celebrar momentos únicos.
+                    </p>
+
+                    <p class="produto-preco">Preço a definir</p>
+
+                    <button class="produto-btn"
+                        onclick="consultarProduto('Vestido Clássico')">
+                        CONSULTAR PRODUTO
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- TERNO 1 -->
+            <div class="produto-card" data-categoria="ternos">
+
+                <div class="produto-imagem terno-placeholder">
+                    <span>ROYAL SUITS</span>
+                </div>
+
+                <div class="produto-info">
+
+                    <span class="produto-categoria">TERNOS</span>
+
+                    <h3>Terno Slim Elegance</h3>
+
+                    <p class="produto-descricao">
+                        Corte sofisticado para cerimônias e celebrações.
+                    </p>
+
+                    <p class="produto-preco">Em breve</p>
+
+                    <button class="produto-btn" disabled>
+                        EM BREVE
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- TERNO 2 -->
+            <div class="produto-card" data-categoria="ternos">
+
+                <div class="produto-imagem terno-placeholder">
+                    <span>ROYAL SUITS</span>
+                </div>
+
+                <div class="produto-info">
+
+                    <span class="produto-categoria">TERNOS</span>
+
+                    <h3>Terno Clássico</h3>
+
+                    <p class="produto-descricao">
+                        Elegância atemporal para ocasiões especiais.
+                    </p>
+
+                    <p class="produto-preco">Em breve</p>
+
+                    <button class="produto-btn" disabled>
+                        EM BREVE
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+
+        <h2>ROYAL SUITS</h2>
+
+        <p>Elegância em cada detalhe.</p>
+
+        <span>© 2026 ROYAL SUITS. Todos os direitos reservados.</span>
+
+    </footer>
+
+    <script src="casamentos.js"></script>
+
+</body>
+</html>
