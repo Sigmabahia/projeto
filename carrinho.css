@@ -44,7 +44,7 @@ button {
 
     padding: 15px 5%;
 
-    border-bottom: 1px solid #dce2e8;
+    border-bottom: 1px solid #f3efe6;
 
     position: relative;
     z-index: 10;
@@ -171,7 +171,7 @@ button {
 
     font-size: 11px;
 
-    border-left: 1px solid #dce2e8;
+    border-left: 1px solid #f3efe6;
 }
 
 .cart-btn strong {
@@ -221,7 +221,7 @@ button {
 
     background: #f3efe6;
 
-    border-bottom: 1px solid #dce2e8;
+    border-bottom: 1px solid #f3efe6;
 }
 
 .titulo-pagina p {
@@ -301,13 +301,13 @@ button {
 .carrinho-produtos {
     background: #f3efe6;
 
-    border: 1px solid #dce2e8;
+    border: 1px solid #f3efe6;
 }
 
 .carrinho-header {
     padding: 25px;
 
-    border-bottom: 1px solid #dce2e8;
+    border-bottom: 1px solid #f3efe6;
 
     display: flex;
 
@@ -414,7 +414,7 @@ button {
 
     align-items: center;
 
-    border-bottom: 1px solid #dce2e8;
+    border-bottom: 1px solid #f3efe6;
 }
 
 .item-imagem {
@@ -424,7 +424,7 @@ button {
 
     overflow: hidden;
 
-    background: #e5e9ed;
+    background: #f3efe6;
 }
 
 .item-imagem img {
@@ -495,7 +495,7 @@ button {
     width: 25px;
     height: 25px;
 
-    border: 1px solid #dce2e8;
+    border: 1px solid #f3efe6;
 
     background: #f3efe6;
 
@@ -514,7 +514,7 @@ button {
 .resumo {
     background: #f3efe6;
 
-    border: 1px solid #dce2e8;
+    border: 1px solid #f3efe6;
 
     padding: 30px;
 
@@ -558,7 +558,7 @@ button {
 .separador {
     height: 1px;
 
-    background: #dce2e8;
+    background: #f3efe6;
 
     margin: 22px 0;
 }
@@ -613,7 +613,7 @@ button {
 }
 
 .finalizar-btn:disabled {
-    background: #aab6c2;
+    background: #0f4c81;
 
     cursor: not-allowed;
 }
@@ -626,7 +626,7 @@ button {
 
     padding-top: 18px;
 
-    border-top: 1px solid #dce2e8;
+    border-top: 1px solid #f3efe6;
 
     display: flex;
 
@@ -651,9 +651,9 @@ button {
 ========================================================= */
 
 .beneficios {
-    border-top: 1px solid #dce2e8;
+    border-top: 1px solid #f3efe6;
 
-    border-bottom: 1px solid #dce2e8;
+    border-bottom: 1px solid #f3efe6;
 
     max-width: 1200px;
 
@@ -735,7 +735,7 @@ footer {
 }
 
 .footer-brand p {
-    color: #a9c0d5;
+    color: #2f86c7;
 
     font-size: 10px;
 
@@ -765,7 +765,7 @@ footer {
 }
 
 .footer-column a {
-    color: #a9c0d5;
+    color: #2f86c7;
 
     font-size: 9px;
 
@@ -785,7 +785,7 @@ footer {
 }
 
 .footer-bottom p {
-    color: #7f9bb6;
+    color: #0f4c81;
 
     font-size: 8px;
 }
