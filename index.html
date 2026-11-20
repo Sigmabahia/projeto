@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trajes e vestidos de gala para formaturas e casamentos. Elegância, qualidade e atendimento personalizado para os momentos mais importantes da sua vida.">
+    <title>Royal Suits | Formaturas e Casamentos</title>
+
+    <link rel="stylesheet" href="paginainicial.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="extras.css">
+
+<style>
+/* CHATBOT ROYAL SUITS */
+#rs-chat-button{position:fixed;right:25px;bottom:25px;z-index:9998;width:64px;height:64px;border:0;border-radius:50%;background:#0b1f3b;color:#d4af37;font-size:27px;cursor:pointer;box-shadow:0 5px 22px #0004;transition:.2s}
+#rs-chat-button:hover{transform:scale(1.06);background:#0f4c81}
+#rs-chat-window{position:fixed;right:25px;bottom:102px;z-index:9999;width:min(370px,calc(100vw - 30px));height:500px;max-height:calc(100vh - 130px);background:#fff;border:1px solid #d4af37;border-radius:16px;box-shadow:0 12px 40px #0003;display:none;overflow:hidden;font-family:Montserrat,Arial,sans-serif}
+#rs-chat-window.rs-open{display:flex;flex-direction:column}
+.rs-chat-head{background:#0b1f3b;color:#fff;padding:17px 18px;display:flex;align-items:center;justify-content:space-between}
+.rs-chat-brand{font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:1px}
+.rs-chat-brand span{color:#d4af37}
+.rs-chat-status{font-size:11px;color:#d4af37;margin-top:3px}
+#rs-chat-close{background:none;border:0;color:#fff;font-size:25px;cursor:pointer}
+#rs-chat-messages{padding:16px;flex:1;overflow-y:auto;background:#f3efe6;display:flex;flex-direction:column;gap:11px}
+.rs-chat-msg{max-width:85%;padding:11px 13px;border-radius:13px;font-size:13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.rs-chat-msg.bot{align-self:flex-start;background:#f3efe6;color:#0b1f3b;border-bottom-left-radius:3px}
+.rs-chat-msg.user{align-self:flex-end;background:#0b1f3b;color:#fff;border-bottom-right-radius:3px}
+.rs-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid #f3efe6;background:#fff}
+#rs-chat-input{min-width:0;flex:1;border:1px solid #f3efe6;border-radius:22px;padding:12px 14px;font:13px Montserrat,Arial,sans-serif;outline:none}
+#rs-chat-input:focus{border-color:#d4af37}
+#rs-chat-send{border:0;border-radius:22px;background:#0b1f3b;color:#d4af37;padding:0 17px;font-weight:600;cursor:pointer}
+#rs-chat-send:disabled{opacity:.5;cursor:wait}
+@media(max-width:480px){#rs-chat-button{right:16px;bottom:16px}#rs-chat-window{right:10px;bottom:90px;width:calc(100vw - 20px);height:min(500px,calc(100vh - 110px))}}
+</style>
+
+    <meta name="theme-color" content="#0b1f3b">
+        <link rel="icon" type="image/svg+xml" href="favicon.svg">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Royal Suits">
+        <meta property="og:locale" content="pt_BR">
+        <meta property="og:title" content="Royal Suits | Formaturas e Casamentos">
+        <meta property="og:description" content="Trajes e vestidos de gala para formaturas e casamentos. Elegância, qualidade e atendimento personalizado para os momentos mais importantes da sua vida.">
+        <meta property="og:image" content="imagens/produtos/hero-gala.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="author" content="Royal Suits">
+
+    <!-- Dados estruturados para o Google (SEO local) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "Royal Suits",
+      "description": "Trajes e vestidos de gala para formaturas, casamentos e eventos especiais.",
+      "image": "imagens/produtos/hero-gala.jpg",
+      "url": "https://royalsuits.com.br/",
+      "telephone": "+55-11-91234-5678",
+      "email": "contato@royalsuits.com.br",
+      "priceRange": "R$$",
+      "currenciesAccepted": "BRL",
+      "paymentAccepted": "PIX, Cartão de Crédito, Boleto",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Paulista, 1000",
+        "addressLocality": "São Paulo",
+        "addressRegion": "SP",
+        "postalCode": "01310-100",
+        "addressCountry": "BR"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/royalsuits",
+        "https://www.facebook.com/royalsuits"
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        <a href="index.html">ROYAL <span>SUITS</span></a>
+        <small>FORMATURES • CASAMENTOS</small>
+    </div>
+
+    <nav class="menu">
+        <a href="#inicio">Início</a>
+        <a href="formaturas.html">Formaturas</a>
+        <a href="casamentos.html">Casamentos</a>
+        <a href="#modelos">Modelos</a>
+    </nav>
+
+    <div class="header-actions">
+
+        <a href="favoritos.html" class="icon-btn" title="Favoritos">♡</a>
+
+        <a href="carrinho.html" class="cart-btn">
+            🛒
+            <span>Carrinho</span>
+            <strong id="contador-carrinho">0</strong>
+        </a>
+
+        <a href="login.html" class="login-btn">👤 Entrar</a>
+
+    </div>
+
+</header>
+
+<!-- HERO / CARROSSEL -->
+
+<section class="carrossel" id="inicio">
+
+    <div class="slides">
+
+        <div class="slide active">
+            <img src="imagens/produtos/hero-gala.jpg" alt="Coleção de roupas de gala">
+
+            <div class="hero-content">
+                <p class="hero-subtitle">COLEÇÃO EXCLUSIVA</p>
+
+                <h1>
+                    Momentos que<br>
+                    <span>merecem ser inesquecíveis.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Encontre o look perfeito para celebrar
+                    os momentos mais importantes da sua vida.
+                </p>
+
+                <a href="#modelos" class="hero-btn">CONHEÇA NOSSA COLEÇÃO</a>
+            </div>
+        </div>
+
+        <div class="slide">
+
+            <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido Carmélia Marsala">
+
+            <div class="hero-content">
+                <p class="hero-subtitle">DESTAQUE DA COLEÇÃO</p>
+
+                <h1>
+                    Elegância em<br>
+                    <span>cada detalhe.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Vestidos cuidadosamente selecionados
+                    para tornar sua noite ainda mais especial.
+                </p>
+
+                <a href="#modelos" class="hero-btn">VER MODELOS</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="carousel-btn prev" onclick="mudarSlide(-1)">❮</button>
+    <button class="carousel-btn next" onclick="mudarSlide(1)">❯</button>
+
+    <div class="indicadores">
+        <span class="ponto active" onclick="irParaSlide(0)"></span>
+        <span class="ponto" onclick="irParaSlide(1)"></span>
+    </div>
+
+</section>
+
+<!-- BENEFÍCIOS -->
+
+<section class="beneficios">
+
+    <div class="beneficio">
+        <div class="beneficio-icon">✦</div>
+        <div>
+            <h3>Elegância</h3>
+            <p>Peças selecionadas para ocasiões especiais.</p>
+        </div>
+    </div>
+
+    <div class="beneficio">
+        <div class="beneficio-icon">♡</div>
+        <div>
+            <h3>Qualidade</h3>
+            <p>Materiais e acabamentos cuidadosamente escolhidos.</p>
+        </div>
+    </div>
+
+    <div class="beneficio">
+        <div class="beneficio-icon">✓</div>
+        <div>
+            <h3>Atendimento</h3>
+            <p>Estamos aqui para ajudar você a encontrar o look ideal.</p>
+        </div>
+    </div>
+
+    <div class="beneficio">
+        <div class="beneficio-icon">✧</div>
+        <div>
+            <h3>Momentos únicos</h3>
+            <p>Looks pensados para fazer você brilhar.</p>
+        </div>
+    </div>
+
+</section>
+
+<main>
+
+    <!-- CATEGORIAS -->
+
+    <section class="categorias">
+
+        <div class="section-title">
+            <p>ENCONTRE SEU ESTILO</p>
+
+            <h2>
+                Para cada ocasião,<br>
+                <span>uma escolha especial.</span>
+            </h2>
+        </div>
+
+        <div class="categorias-grid">
+
+            <a href="formaturas.html" class="categoria">
+                <div class="categoria-overlay"></div>
+                <img src="imagens/produtos/vestido-carmelia.jpg" alt="Moda para formaturas">
+
+                <div class="categoria-content">
+                    <p>COLEÇÃO</p>
+                    <h3>Formaturas</h3>
+                    <span>Explorar coleção →</span>
+                </div>
+            </a>
+
+            <a href="casamentos.html" class="categoria">
+                <div class="categoria-overlay"></div>
+                <img src="imagens/produtos/vestido-elegance.jpg" alt="Moda para casamentos">
+
+                <div class="categoria-content">
+                    <p>COLEÇÃO</p>
+                    <h3>Casamentos</h3>
+                    <span>Explorar coleção →</span>
+                </div>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- PRODUTOS -->
+
+    <section class="produtos-section" id="modelos">
+
+        <div class="section-title centralizado">
+
+            <p>SELEÇÃO ESPECIAL</p>
+
+            <h2>
+                Nossos <span>modelos</span>
+            </h2>
+
+            <div class="linha"></div>
+
+            <p class="section-description">
+                Descubra peças selecionadas para transformar
+                momentos especiais em memórias inesquecíveis.
+            </p>
+
+        </div>
+
+        <div class="filtros">
+
+            <button class="filtro ativo">Todos</button>
+            <button class="filtro">Vestidos</button>
+            <button class="filtro">Formatura</button>
+            <button class="filtro">Casamento</button>
+            <button class="filtro">Masculino</button>
+
+        </div>
+
+        <div class="produtos-grid">
+
+            <!-- PRODUTO 1 -->
+
+            <div class="produto-card">
+
+                <div class="produto-imagem">
+
+                    <span class="tag">DESTAQUE</span>
+
+                    <button class="favorito">♡</button>
+
+                    <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido Carmélia Marsala">
+
+                    <div class="produto-hover">
+                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
+                            ADICIONAR AO CARRINHO
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria-produto">VESTIDO • FORMATURA</p>
+
+                    <h3>Vestido Carmélia</h3>
+
+                    <p class="descricao">
+                        Vestido longo na cor marsala, com brilho,
+                        corpete estruturado, pedrarias, alças médias
+                        e elegante fenda lateral.
+                    </p>
+
+                    <div class="produto-bottom">
+
+                        <p class="preco">R$ 899,00</p>
+
+                        <button class="comprar-btn"
+                            onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUTO 2 -->
+
+            <div class="produto-card">
+
+                <div class="produto-imagem">
+
+                    <span class="tag novidade">NOVO</span>
+
+                    <button class="favorito">♡</button>
+
+                    <img src="imagens/produtos/vestido-elegance.jpg" alt="Modelo de gala">
+
+                    <div class="produto-hover">
+                        <button onclick="adicionarCarrinho('Elegance Collection', 1099, 'imagens/produtos/vestido-elegance.jpg')">
+                            ADICIONAR AO CARRINHO
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria-produto">GALA • CASAMENTO</p>
+
+                    <h3>Elegance Collection</h3>
+
+                    <p class="descricao">
+                        Um modelo sofisticado desenvolvido para
+                        ocasiões em que cada detalhe faz diferença.
+                    </p>
+
+                    <div class="produto-bottom">
+
+                        <p class="preco">R$ 1.099,00</p>
+
+                        <button class="comprar-btn"
+                            onclick="adicionarCarrinho('Elegance Collection', 1099, 'imagens/produtos/vestido-elegance.jpg')">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- PRODUTO 3 -->
+
+            <div class="produto-card">
+
+                <div class="produto-imagem">
+
+                    <button class="favorito">♡</button>
+
+                    <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido de festa">
+
+                    <div class="produto-hover">
+                        <button onclick="adicionarCarrinho('Maison Classic', 949, 'imagens/produtos/vestido-carmelia.jpg')">
+                            ADICIONAR AO CARRINHO
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="produto-info">
+
+                    <p class="categoria-produto">VESTIDO • FESTA</p>
+
+                    <h3>Maison Classic</h3>
+
+                    <p class="descricao">
+                        Design clássico e sofisticado para quem
+                        procura elegância sem abrir mão da personalidade.
+                    </p>
+
+                    <div class="produto-bottom">
+
+                        <p class="preco">R$ 949,00</p>
+
+                        <button class="comprar-btn"
+                            onclick="adicionarCarrinho('Maison Classic', 949, 'imagens/produtos/vestido-carmelia.jpg')">
+                            Comprar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ver-todos">
+            <button onclick="window.location.href='formaturas.html'">
+                VER TODOS OS MODELOS <span>→</span>
+            </button>
+        </div>
+
+    </section>
+
+    <!-- BANNER -->
+
+    <section class="banner">
+
+        <img src="imagens/produtos/vestido-carmelia.jpg" alt="Coleção Maison Gala">
+
+        <div class="banner-content">
+
+            <p>MAISON GALA</p>
+
+            <h2>
+                Seu grande dia<br>
+                merece um <span>grande look.</span>
+            </h2>
+
+            <p class="banner-text">
+                Encontre o modelo perfeito para celebrar
+                seus momentos mais importantes.
+            </p>
+
+            <a href="#modelos">EXPLORAR COLEÇÃO</a>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- NEWSLETTER -->
+
+<section class="newsletter">
+
+    <div>
+        <p>FIQUE POR DENTRO</p>
+        <h2>Novidades diretamente para você.</h2>
+    </div>
+
+    <form>
+        <input type="email" placeholder="Seu melhor e-mail" required>
+        <button type="submit">INSCREVER</button>
+    </form>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>ROYAL <span>SUITS</span></h2>
+            <p>
+                Elegância para os momentos
+                que merecem ser lembrados.
+            </p>
+        </div>
+
+    
+
+        <div class="footer-column">
+            <h3>Atendimento</h3>
+            <a href="contato.html">Fale conosco</a>
+            <a href="trocas-e-devolucoes.html">Trocas e devoluções</a>
+            <a href="contato.html#faq">Dúvidas frequentes</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Redes sociais</h3>
+            <a href="https://www.instagram.com/royalsuits" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.facebook.com/royalsuits" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://wa.me/5511912345678" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Royal Suits. Todos os direitos reservados.</p>
+    </div>
+
+</footer>
+
+<script src="paginainicial.js"></script>
+
+
+
+
+
+
+
+
+<!-- ASSISTENTE VIRTUAL ROYAL SUITS -->
+<button id="rs-chat-button" type="button" aria-label="Abrir atendimento virtual" title="Atendimento virtual">✦</button>
+<section id="rs-chat-window" aria-label="Chat de atendimento">
+  <header class="rs-chat-head">
+    <div>
+      <div class="rs-chat-brand">ROYAL <span>SUITS</span></div>
+      <div class="rs-chat-status">● Assistente virtual • Atendimento online</div>
+    </div>
+    <button id="rs-chat-close" type="button" aria-label="Fechar chat">×</button>
+  </header>
+  <div id="rs-chat-messages" aria-live="polite">
+    <div class="rs-chat-msg bot">Olá! Seja bem-vindo(a) à Royal Suits! ✨\nPosso ajudar você a encontrar roupas para formaturas e casamentos, consultar modelos e tirar dúvidas. O que procura?</div>
+  </div>
+  <form class="rs-chat-form" id="rs-chat-form">
+    <input id="rs-chat-input" type="text" placeholder="Digite sua mensagem..." autocomplete="off" aria-label="Sua mensagem" required>
+    <button id="rs-chat-send" type="submit">Enviar</button>
+  </form>
+</section>
+<script>
+(() => {
+  const openBtn = document.getElementById('rs-chat-button');
+  const closeBtn = document.getElementById('rs-chat-close');
+  const windowChat = document.getElementById('rs-chat-window');
+  const form = document.getElementById('rs-chat-form');
+  const input = document.getElementById('rs-chat-input');
+  const messages = document.getElementById('rs-chat-messages');
+  const sendBtn = document.getElementById('rs-chat-send');
+  const historico = [];
+
+  openBtn.addEventListener('click', () => {
+    windowChat.classList.add('rs-open');
+    input.focus();
+  });
+  closeBtn.addEventListener('click', () => windowChat.classList.remove('rs-open'));
+
+  function addMessage(text, type) {
+    const item = document.createElement('div');
+    item.className = 'rs-chat-msg ' + type;
+    item.textContent = text;
+    messages.appendChild(item);
+    messages.scrollTop = messages.scrollHeight;
+    return item;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const mensagem = input.value.trim();
+    if (!mensagem) return;
+
+    addMessage(mensagem, 'user');
+    historico.push({ role: 'user', content: mensagem });
+    input.value = '';
+    input.disabled = true;
+    sendBtn.disabled = true;
+    sendBtn.textContent = '...';
+    const loading = addMessage('Estou pensando...', 'bot');
+
+    try {
+      const resposta = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensagem, historico: historico.slice(-10, -1) })
+      });
+      const dados = await resposta.json();
+      if (!resposta.ok) throw new Error(dados.erro || dados.error || 'Não foi possível obter uma resposta.');
+      const texto = dados.resposta || dados.reply || 'Desculpe, não consegui responder agora.';
+      loading.textContent = texto;
+      historico.push({ role: 'assistant', content: texto });
+    } catch (erro) {
+      loading.innerHTML = 'Nosso assistente est\u00e1 offline agora, mas voc\u00ea pode falar com a equipe pelo <a href="https://wa.me/5511912345678" target="_blank" rel="noopener" style="color:#0f4c81;text-decoration:underline">WhatsApp</a> \u2014 respondemos em poucos minutos.';
+      console.error('Erro no chatbot:', erro);
+    } finally {
+      input.disabled = false;
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Enviar';
+      input.focus();
+    }
+  });
+})();
+</script>
+
+    <script src="extras.js"></script>
+</body>
+</html>
