@@ -100,7 +100,7 @@
             var botao = evento.target.closest("[data-acao]");
             if (!botao) return;
 
-            var pedido = L.obterPedidos()[Number(botao.dataset.indice)];
+            var pedido = pedidos[Number(botao.dataset.indice)];
             if (!pedido) return;
 
             if (botao.dataset.acao === "pix") {

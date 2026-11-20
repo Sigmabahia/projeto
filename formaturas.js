@@ -85,6 +85,10 @@ function alternarFavorito(botao) {
     }
 
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
+
+    if (window.rsSyncFavorito) {
+        window.rsSyncFavorito(nome, !existe);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

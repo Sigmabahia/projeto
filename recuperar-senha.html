@@ -58,22 +58,9 @@
     </p>
 </footer>
 
+<script src="js/rs-api.js"></script>
+<script src="js/rs-recuperar.js"></script>
 <script src="extras.js"></script>
-<script>
-document.getElementById("form-recuperar").addEventListener("submit", function (evento) {
-    evento.preventDefault();
-
-    var email = document.getElementById("email-recuperar").value.trim();
-    var msg = document.getElementById("msg-recuperar");
-
-    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
-        if (window.rsToast) window.rsToast("Informe um e-mail válido.");
-        return;
-    }
-
-    msg.classList.add("mostrar");
-    this.reset();
-});
-</script>
+<!-- O envio é tratado por js/rs-recuperar.js (API). -->
 </body>
 </html>

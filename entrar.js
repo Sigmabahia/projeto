@@ -1,5 +1,5 @@
 /* =================================
-   LOGIN - ROYAL SUITS
+   LOGIN - ROYAL SUITS (API)
 ================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -8,7 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!formulario) return;
 
-    formulario.addEventListener("submit", function (event) {
+    const botao = formulario.querySelector('button[type="submit"]');
+
+    function aviso(mensagem) {
+        if (window.rsToast) return window.rsToast(mensagem);
+        alert(mensagem);
+    }
+
+    formulario.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
@@ -16,22 +23,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const senha = document.getElementById("senha").value;
 
         if (!email || !senha) {
-
-            alert("Preencha e-mail e senha para entrar.");
+            aviso("Preencha e-mail e senha para entrar.");
             return;
-
         }
 
         if (senha.length < 6) {
-
-            alert("A senha precisa ter pelo menos 6 caracteres.");
+            aviso("A senha precisa ter pelo menos 6 caracteres.");
             return;
-
         }
 
-        localStorage.setItem("usuarioLogado", email);
+        const textoOriginal = botao ? botao.textContent : "";
+        if (botao) {
+            botao.disabled = true;
+            botao.textContent = "ENTRANDO...";
+        }
 
-        window.location.href = "paginainicial.html";
+        try {
+            await window.RS.login(email, senha);
+            window.location.href = "paginainicial.html";
+        } catch (erro) {
+            aviso(erro.message || "Não foi possível entrar. Tente novamente.");
+            if (botao) {
+                botao.disabled = false;
+                botao.textContent = textoOriginal;
+            }
+        }
 
     });
 

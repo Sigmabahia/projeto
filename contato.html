@@ -70,6 +70,50 @@
         </div>
     </div>
 
+    <h2>Envie uma mensagem</h2>
+    <p class="legal-atualizado">Preencha o formulário e nossa equipe responde em até 1 dia útil.</p>
+
+    <form id="form-contato" class="rs-contato-form" novalidate>
+        <div class="rs-linha">
+            <input type="text" id="contato-nome" name="nome" placeholder="Seu nome" required>
+            <input type="email" id="contato-email" name="email" placeholder="Seu e-mail" required>
+        </div>
+        <div class="rs-linha">
+            <input type="tel" id="contato-telefone" name="telefone" placeholder="WhatsApp (opcional)">
+            <select id="contato-assunto" name="assunto">
+                <option value="Dúvida sobre um modelo">Dúvida sobre um modelo</option>
+                <option value="Orçamento para formatura">Orçamento para formatura</option>
+                <option value="Pedido em grupo">Pedido em grupo</option>
+                <option value="Trocas e devoluções">Trocas e devoluções</option>
+                <option value="Outro assunto">Outro assunto</option>
+            </select>
+        </div>
+        <textarea id="contato-mensagem" name="mensagem" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+        <button type="submit">ENVIAR MENSAGEM</button>
+        <p class="rs-contato-msg" id="contato-msg"></p>
+    </form>
+
+    <style>
+        .rs-contato-form{max-width:640px;margin:22px 0 44px}
+        .rs-linha{display:flex;gap:12px;flex-wrap:wrap}
+        .rs-contato-form input,.rs-contato-form select,.rs-contato-form textarea{
+            flex:1 1 220px;width:100%;padding:13px 14px;margin-bottom:12px;
+            border:1px solid #dcd6c8;background:#fff;font-family:inherit;font-size:14px;color:#0b1f3b;
+            border-radius:2px;outline:none;box-sizing:border-box
+        }
+        .rs-contato-form input:focus,.rs-contato-form select:focus,.rs-contato-form textarea:focus{
+            border-color:#d4af37
+        }
+        .rs-contato-form textarea{resize:vertical;min-height:120px}
+        .rs-contato-form button{
+            padding:14px 30px;background:#0b1f3b;color:#fff;border:0;letter-spacing:.14em;
+            font-size:12px;font-weight:600;cursor:pointer;transition:.25s
+        }
+        .rs-contato-form button:hover{background:#d4af37;color:#0b1f3b}
+        .rs-contato-form button:disabled{opacity:.6;cursor:wait}
+        .rs-contato-msg{font-size:13px;margin-top:12px;color:#1a7a3c;display:none}
+    </style>
+
     <h2 id="faq">Dúvidas frequentes</h2>
 
     <div class="faq">
@@ -119,6 +163,8 @@
     </p>
 </footer>
 
+<script src="js/rs-api.js"></script>
+<script src="js/rs-contato.js"></script>
 <script src="extras.js"></script>
 </body>
 </html>
