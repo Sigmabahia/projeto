@@ -9,7 +9,8 @@
     <title>ROYAL SUITS | Coleção Formaturas</title>
 
     <link rel="stylesheet" href="formaturas.css">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
 
   
     <meta name="theme-color" content="#0b1f3b">
@@ -19,7 +20,7 @@
         <meta property="og:locale" content="pt_BR">
         <meta property="og:title" content="Formaturas | Royal Suits">
         <meta property="og:description" content="Coleção de trajes e vestidos para formatura. Encontre o look perfeito para celebrar sua conquista com elegância.">
-        <meta property="og:image" content="imagens/produtos/hero-gala.jpg">
+        <meta property="og:image" content="imagens/produtos/hero.webp">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Royal Suits">
 </head>
@@ -136,12 +137,12 @@
                     <span class="tag">DESTAQUE</span>
 
                     
-                    <button class="favorito" data-nome="Vestido Carmélia" data-imagem="imagens/produtos/vestido-carmelia.jpg" data-preco="899">&#9825;</button>
+                    <button class="favorito" data-nome="Vestido Carmélia" data-imagem="imagens/produtos/prod-carmelia.webp" data-preco="899">&#9825;</button>
 
-                    <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido Carmélia">
+                    <img src="imagens/produtos/prod-carmelia.webp" alt="Vestido Carmélia" width="700" height="933" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
+                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/prod-carmelia.webp')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -162,7 +163,7 @@
 
                         <p class="preco">R$ 899,00</p>
 
-                        <button class="comprar-btn" onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
+                        <button class="comprar-btn" onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/prod-carmelia.webp')">
                             Comprar
                         </button>
 
@@ -179,12 +180,12 @@
                     <span class="tag novidade">NOVO</span>
 
                     
-                    <button class="favorito" data-nome="Vestido Elegance" data-imagem="imagens/produtos/vestido-elegance.jpg" data-preco="750">&#9825;</button>
+                    <button class="favorito" data-nome="Vestido Elegance" data-imagem="imagens/produtos/prod-elegance.webp" data-preco="750">&#9825;</button>
 
-                    <img src="imagens/produtos/vestido-elegance.jpg" alt="Vestido Elegance">
+                    <img src="imagens/produtos/prod-elegance.webp" alt="Vestido Elegance" width="700" height="1049" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/vestido-elegance.jpg')">
+                        <button onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/prod-elegance.webp')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -205,7 +206,7 @@
 
                         <p class="preco">R$ 750,00</p>
 
-                        <button class="comprar-btn" onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/vestido-elegance.jpg')">
+                        <button class="comprar-btn" onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/prod-elegance.webp')">
                             Comprar
                         </button>
 
@@ -220,9 +221,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Azul Clássico" data-imagem="imagens/ternos/terno-azul-01.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Azul Clássico" data-imagem="imagens/ternos/terno-azul-01.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-01.png" alt="Terno Azul Clássico">
+                    <img src="imagens/ternos/terno-azul-01.webp" alt="Terno Azul Clássico" width="562" height="853" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -261,9 +262,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Azul Slim" data-imagem="imagens/ternos/terno-azul-02.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Azul Slim" data-imagem="imagens/ternos/terno-azul-02.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-02.png" alt="Terno Azul Slim">
+                    <img src="imagens/ternos/terno-azul-02.webp" alt="Terno Azul Slim" width="561" height="842" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -302,9 +303,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Azul Premium" data-imagem="imagens/ternos/terno-azul-03.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Azul Premium" data-imagem="imagens/ternos/terno-azul-03.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-03.png" alt="Terno Azul Premium">
+                    <img src="imagens/ternos/terno-azul-03.webp" alt="Terno Azul Premium" width="551" height="852" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -343,9 +344,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Azul Moderno" data-imagem="imagens/ternos/terno-azul-04.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Azul Moderno" data-imagem="imagens/ternos/terno-azul-04.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-04.png" alt="Terno Azul Moderno">
+                    <img src="imagens/ternos/terno-azul-04.webp" alt="Terno Azul Moderno" width="543" height="841" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -384,9 +385,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Marinho Clássico" data-imagem="imagens/ternos/terno-azul-marinho-01.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Marinho Clássico" data-imagem="imagens/ternos/terno-azul-marinho-01.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-marinho-01.png" alt="Terno Marinho Clássico">
+                    <img src="imagens/ternos/terno-azul-marinho-01.webp" alt="Terno Marinho Clássico" width="542" height="841" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -425,9 +426,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Marinho Slim" data-imagem="imagens/ternos/terno-azul-marinho-02.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Marinho Slim" data-imagem="imagens/ternos/terno-azul-marinho-02.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-marinho-02.png" alt="Terno Marinho Slim">
+                    <img src="imagens/ternos/terno-azul-marinho-02.webp" alt="Terno Marinho Slim" width="537" height="831" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -466,9 +467,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Marinho Elegance" data-imagem="imagens/ternos/terno-azul-marinho-03.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Marinho Elegance" data-imagem="imagens/ternos/terno-azul-marinho-03.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-marinho-03.png" alt="Terno Marinho Elegance">
+                    <img src="imagens/ternos/terno-azul-marinho-03.webp" alt="Terno Marinho Elegance" width="550" height="833" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -507,9 +508,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Marinho Premium" data-imagem="imagens/ternos/terno-azul-marinho-04.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Marinho Premium" data-imagem="imagens/ternos/terno-azul-marinho-04.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-azul-marinho-04.png" alt="Terno Marinho Premium">
+                    <img src="imagens/ternos/terno-azul-marinho-04.webp" alt="Terno Marinho Premium" width="551" height="847" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -570,8 +571,8 @@
 
     <!-- JAVASCRIPT -->
 
-    <script src="formaturas.js"></script>
+    <script src="formaturas.js" defer></script>
 
-    <script src="extras.js"></script>
+    <script src="extras.js" defer></script>
 </body>
 </html>

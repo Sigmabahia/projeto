@@ -70,7 +70,7 @@ function renderizarFavoritos() {
         const card = document.createElement("div");
         card.className = "produto-favorito";
 
-        const imagem = produto.imagem || "imagens/ternos/terno-azul-01.png";
+        const imagem = produto.imagem || "imagens/ternos/terno-azul-01.webp";
         const preco = Number(produto.preco) > 0
             ? "R$ " + Number(produto.preco).toFixed(2).replace(".", ",")
             : "Sob consulta";

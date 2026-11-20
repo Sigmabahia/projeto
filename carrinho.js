@@ -64,7 +64,7 @@
 
             item.innerHTML = '' +
                 '<div class="item-imagem">' +
-                    '<img src="' + L.escaparHtml(produto.imagem || "imagens/ternos/terno-azul-01.png") + '" alt="' + L.escaparHtml(produto.nome) + '">' +
+                    '<img src="' + L.escaparHtml(produto.imagem || "imagens/ternos/terno-azul-01.webp") + '" alt="' + L.escaparHtml(produto.nome) + '">' +
                 '</div>' +
                 '<div class="item-info">' +
                     '<h3>' + L.escaparHtml(produto.nome) + '</h3>' +

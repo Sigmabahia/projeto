@@ -137,7 +137,7 @@
             carrinho.push({
                 nome: nome,
                 preco: Number(preco) || 0,
-                imagem: imagem || "imagens/ternos/terno-azul-01.png",
+                imagem: imagem || "imagens/ternos/terno-azul-01.webp",
                 quantidade: qtd
             });
         }

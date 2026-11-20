@@ -11,8 +11,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"></noscript>
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
     <meta name="theme-color" content="#0b1f3b">
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
         <meta property="og:type" content="website">
@@ -20,7 +23,7 @@
         <meta property="og:locale" content="pt_BR">
         <meta property="og:title" content="Meus Favoritos | Royal Suits">
         <meta property="og:description" content="Veja os modelos que você favoritou e adicione ao carrinho quando quiser.">
-        <meta property="og:image" content="imagens/produtos/hero-gala.jpg">
+        <meta property="og:image" content="imagens/produtos/hero.webp">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Royal Suits">
 </head>
@@ -87,8 +90,8 @@
         <small>© 2026 ROYAL SUITS. Todos os direitos reservados.</small>
     </footer>
 
-    <script src="favoritos.js"></script>
+    <script src="favoritos.js" defer></script>
 
-    <script src="extras.js"></script>
+    <script src="extras.js" defer></script>
 </body>
 </html>

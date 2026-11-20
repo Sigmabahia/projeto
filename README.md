@@ -107,3 +107,22 @@ O site é 100% estático, então roda em qualquer hospedagem:
 Busca de produtos no cabeçalho (com `Ctrl + K`), botão flutuante de WhatsApp, animações de entrada,
 cabeçalho fixo ao rolar, dados estruturados JSON-LD (`ClothingStore`), máscaras de formulário,
 estados de carregamento, breadcrumbs, página 404, `robots.txt` e `sitemap.xml`.
+
+---
+
+## Performance (PageSpeed)
+
+O site foi otimizado para carregar rápido, principalmente no celular:
+
+- **Imagens em WebP** — todas as fotos foram convertidas. As imagens dos ternos caíram de 5,9 MB para 0,33 MB (−94%)
+  e a pasta `imagens/` inteira de 6,3 MB para 1,2 MB. Nenhuma imagem depende de servidor externo (Pinterest, Bisutti etc.),
+  então o visual do site não quebra se um link de fora sair do ar.
+- **Lazy loading** — imagens abaixo da dobra usam `loading="lazy"`; a imagem principal usa `fetchpriority="high"` + `<link rel="preload">`.
+- **`width` e `height` em todas as imagens** — evita o "pulo" de layout (CLS) enquanto carregam.
+- **Fontes sem bloquear a renderização** — o CSS do Google Fonts é carregado com `preload` + `media="print"` e trocado
+  para `all` quando chega, com fallback em `<noscript>`.
+- **Scripts com `defer`** — nenhum JavaScript bloqueia o HTML.
+- **Cache** — `_headers` (Netlify / Cloudflare Pages) e `.htaccess` (Apache / cPanel) já configurados:
+  imagens com 1 ano de cache `immutable`, CSS/JS com 1 semana, HTML sempre revalidado.
+
+Se trocar uma imagem, mantenha o mesmo nome de arquivo para aproveitar o cache — ou renomeie para forçar a atualização.

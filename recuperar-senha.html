@@ -9,9 +9,14 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
     <link rel="stylesheet" href="legal.css">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
     <style>
         .recuperar-form{background:#fff;border:1px solid #e6dfd1;border-radius:10px;padding:30px 28px;max-width:460px}
         .recuperar-form label{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#6b6558;margin-bottom:8px}
@@ -58,7 +63,7 @@
     </p>
 </footer>
 
-<script src="extras.js"></script>
+<script src="extras.js" defer></script>
 <script>
 document.getElementById("form-recuperar").addEventListener("submit", function (evento) {
     evento.preventDefault();

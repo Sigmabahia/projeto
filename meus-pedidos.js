@@ -46,7 +46,7 @@
                 var qtd = Number(item.quantidade) || 1;
                 return '' +
                     '<div class="ck-item">' +
-                        '<div class="ck-item-img"><img src="' + L.escaparHtml(item.imagem || "imagens/ternos/terno-azul-01.png") + '" alt="' + L.escaparHtml(item.nome) + '"></div>' +
+                        '<div class="ck-item-img"><img src="' + L.escaparHtml(item.imagem || "imagens/ternos/terno-azul-01.webp") + '" alt="' + L.escaparHtml(item.nome) + '"></div>' +
                         '<div class="ck-item-info">' +
                             '<strong>' + L.escaparHtml(item.nome) + '</strong>' +
                             '<small>Qtd. ' + qtd + ' • ' + (Number(item.preco) > 0 ? L.formatarPreco(item.preco) : "Sob consulta") + '</small>' +

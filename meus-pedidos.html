@@ -9,11 +9,16 @@
     <title>Meus pedidos | Royal Suits</title>
 
     <link rel="stylesheet" href="checkout.css">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
 
     <meta name="theme-color" content="#0b1f3b">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -221,9 +226,9 @@
     </footer>
 
 
-    <script src="loja.js"></script>
-    <script src="meus-pedidos.js"></script>
-    <script src="extras.js"></script>
+    <script src="loja.js" defer></script>
+    <script src="meus-pedidos.js" defer></script>
+    <script src="extras.js" defer></script>
 
 </body>
 

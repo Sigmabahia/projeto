@@ -7,12 +7,18 @@
     <meta name="description" content="Trajes e vestidos de gala para formaturas e casamentos. Elegância, qualidade e atendimento personalizado para os momentos mais importantes da sua vida.">
     <title>Royal Suits | Formaturas e Casamentos</title>
 
+    <link rel="preload" as="image" href="imagens/produtos/hero.webp" fetchpriority="high">
     <link rel="stylesheet" href="paginainicial.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
 
 <style>
 /* CHATBOT ROYAL SUITS */
@@ -44,7 +50,7 @@
         <meta property="og:locale" content="pt_BR">
         <meta property="og:title" content="Royal Suits | Formaturas e Casamentos">
         <meta property="og:description" content="Trajes e vestidos de gala para formaturas e casamentos. Elegância, qualidade e atendimento personalizado para os momentos mais importantes da sua vida.">
-        <meta property="og:image" content="https://bisutti.com.br/wp-content/uploads/2022/09/CHB_CA_22.10.21-@rafaelcruz_fotografia-57-scaled-1.jpeg">
+        <meta property="og:image" content="imagens/produtos/hero.webp">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Royal Suits">
 
@@ -55,7 +61,7 @@
       "@type": "ClothingStore",
       "name": "Royal Suits",
       "description": "Trajes e vestidos de gala para formaturas, casamentos e eventos especiais.",
-      "image": "https://bisutti.com.br/wp-content/uploads/2022/09/CHB_CA_22.10.21-@rafaelcruz_fotografia-57-scaled-1.jpeg",
+      "image": "imagens/produtos/hero.webp",
       "url": "https://royalsuits.com.br/",
       "telephone": "+55-11-91234-5678",
       "email": "contato@royalsuits.com.br",
@@ -123,7 +129,7 @@
     <div class="slides">
 
         <div class="slide active">
-            <img src="https://bisutti.com.br/wp-content/uploads/2022/09/CHB_CA_22.10.21-@rafaelcruz_fotografia-57-scaled-1.jpeg" alt="Coleção de roupas de gala">
+            <img src="imagens/produtos/hero.webp" alt="Coleção de roupas de gala" width="1400" height="933" decoding="async" fetchpriority="high">
 
             <div class="hero-content">
                 <p class="hero-subtitle">COLEÇÃO EXCLUSIVA</p>
@@ -144,7 +150,7 @@
 
         <div class="slide">
 
-            <img src="https://vivaeventos.com.br/mundoformatura/wp-content/uploads/sites/2/2019/09/original-10c58d339908858eee5c493afda7e3f1.jpg" alt="Vestido Carmélia Marsala">
+            <img src="imagens/produtos/slide-carmelia.webp" alt="Vestido Carmélia Marsala" width="1200" height="800" decoding="async">
 
             <div class="hero-content">
                 <p class="hero-subtitle">DESTAQUE DA COLEÇÃO</p>
@@ -233,7 +239,7 @@
 
             <a href="formaturas.html" class="categoria">
                 <div class="categoria-overlay"></div>
-                <img src="https://i.pinimg.com/1200x/2a/36/ed/2a36ed71b29135011f66acbcebc9e3cc.jpg" alt="Moda para formaturas">
+                <img src="imagens/produtos/cat-formaturas.webp" alt="Moda para formaturas" width="900" height="600" loading="lazy" decoding="async">
 
                 <div class="categoria-content">
                     <p>COLEÇÃO</p>
@@ -244,7 +250,7 @@
 
             <a href="casamentos.html" class="categoria">
                 <div class="categoria-overlay"></div>
-                <img src="https://i.pinimg.com/736x/eb/c5/6b/ebc56ba714e397ee7e45f84fb5ddbec1.jpg" alt="Moda para casamentos">
+                <img src="imagens/produtos/cat-casamentos.webp" alt="Moda para casamentos" width="736" height="1104" loading="lazy" decoding="async">
 
                 <div class="categoria-content">
                     <p>COLEÇÃO</p>
@@ -300,10 +306,10 @@
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg" alt="Vestido Carmélia Marsala">
+                    <img src="imagens/produtos/prod-carmelia.webp" alt="Vestido Carmélia Marsala" width="700" height="933" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg')">
+                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/prod-carmelia.webp')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -327,7 +333,7 @@
                         <p class="preco">R$ 899,00</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Vestido Carmélia', 899, 'https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg')">
+                            onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/prod-carmelia.webp')">
                             Comprar
                         </button>
 
@@ -347,10 +353,10 @@
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg" alt="Modelo de gala">
+                    <img src="imagens/produtos/prod-elegance.webp" alt="Modelo de gala" width="700" height="1049" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Elegance Collection', 1099, 'https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg')">
+                        <button onclick="adicionarCarrinho('Elegance Collection', 1099, 'imagens/produtos/prod-elegance.webp')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -373,7 +379,7 @@
                         <p class="preco">R$ 1.099,00</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Elegance Collection', 1099, 'https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg')">
+                            onclick="adicionarCarrinho('Elegance Collection', 1099, 'imagens/produtos/prod-elegance.webp')">
                             Comprar
                         </button>
 
@@ -391,10 +397,10 @@
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg" alt="Vestido de festa">
+                    <img src="imagens/produtos/prod-maison.webp" alt="Vestido de festa" width="700" height="875" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Maison Classic', 949, 'https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg')">
+                        <button onclick="adicionarCarrinho('Maison Classic', 949, 'imagens/produtos/prod-maison.webp')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -417,7 +423,7 @@
                         <p class="preco">R$ 949,00</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Maison Classic', 949, 'https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg')">
+                            onclick="adicionarCarrinho('Maison Classic', 949, 'imagens/produtos/prod-maison.webp')">
                             Comprar
                         </button>
 
@@ -441,7 +447,7 @@
 
     <section class="banner">
 
-        <img src="https://i.pinimg.com/736x/7a/d1/a2/7ad1a25aab287c4954ac05fb7a9e880a.jpg" alt="Coleção Maison Gala">
+        <img src="imagens/produtos/banner-gala.webp" alt="Coleção Maison Gala" width="736" height="483" loading="lazy" decoding="async">
 
         <div class="banner-content">
 
@@ -519,7 +525,7 @@
 
 </footer>
 
-<script src="paginainicial.js"></script>
+<script src="paginainicial.js" defer></script>
 
 
 
@@ -609,6 +615,6 @@
 })();
 </script>
 
-    <script src="extras.js"></script>
+    <script src="extras.js" defer></script>
 </body>
 </html>

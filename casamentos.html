@@ -13,8 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="extras.css">
+    <link rel="preload" as="style"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="extras.css" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="extras.css"></noscript>
     <meta name="theme-color" content="#0b1f3b">
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
         <meta property="og:type" content="website">
@@ -22,7 +27,7 @@
         <meta property="og:locale" content="pt_BR">
         <meta property="og:title" content="Casamentos | Royal Suits">
         <meta property="og:description" content="Vestidos e ternos para casamentos e eventos especiais. Peças selecionadas para noivos, padrinhos e convidados.">
-        <meta property="og:image" content="imagens/produtos/hero-gala.jpg">
+        <meta property="og:image" content="imagens/produtos/hero.webp">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="author" content="Royal Suits">
 </head>
@@ -127,9 +132,9 @@
                     <span class="tag">DESTAQUE</span>
 
                     
-                    <button class="favorito" data-nome="Vestido Elegance" data-imagem="imagens/produtos/vestido-elegance.jpg" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Vestido Elegance" data-imagem="imagens/produtos/prod-elegance.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/produtos/vestido-elegance.jpg" alt="Vestido Elegance">
+                    <img src="imagens/produtos/prod-elegance.webp" alt="Vestido Elegance" width="700" height="1049" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -170,9 +175,9 @@
                     <span class="tag novidade">NOVO</span>
 
                     
-                    <button class="favorito" data-nome="Vestido Clássico" data-imagem="imagens/produtos/vestido-classico.jpg" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Vestido Clássico" data-imagem="imagens/produtos/prod-maison.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/produtos/vestido-classico.jpg" alt="Vestido Clássico">
+                    <img src="imagens/produtos/prod-maison.webp" alt="Vestido Clássico" width="700" height="875" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -211,9 +216,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Cinza Clássico" data-imagem="imagens/ternos/terno-cinza-01.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Cinza Clássico" data-imagem="imagens/ternos/terno-cinza-01.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-cinza-01.png" alt="Terno Cinza Clássico">
+                    <img src="imagens/ternos/terno-cinza-01.webp" alt="Terno Cinza Clássico" width="547" height="845" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -252,9 +257,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Cinza Slim" data-imagem="imagens/ternos/terno-cinza-02.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Cinza Slim" data-imagem="imagens/ternos/terno-cinza-02.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-cinza-02.png" alt="Terno Cinza Slim">
+                    <img src="imagens/ternos/terno-cinza-02.webp" alt="Terno Cinza Slim" width="553" height="850" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -293,9 +298,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Cinza Elegance" data-imagem="imagens/ternos/terno-cinza-03.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Cinza Elegance" data-imagem="imagens/ternos/terno-cinza-03.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-cinza-03.png" alt="Terno Cinza Elegance">
+                    <img src="imagens/ternos/terno-cinza-03.webp" alt="Terno Cinza Elegance" width="559" height="859" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -334,9 +339,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Cinza Premium" data-imagem="imagens/ternos/terno-cinza-04.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Cinza Premium" data-imagem="imagens/ternos/terno-cinza-04.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-cinza-04.png" alt="Terno Cinza Premium">
+                    <img src="imagens/ternos/terno-cinza-04.webp" alt="Terno Cinza Premium" width="547" height="852" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -375,9 +380,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Cinza Moderno" data-imagem="imagens/ternos/terno-cinza-05.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Cinza Moderno" data-imagem="imagens/ternos/terno-cinza-05.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-cinza-05.png" alt="Terno Cinza Moderno">
+                    <img src="imagens/ternos/terno-cinza-05.webp" alt="Terno Cinza Moderno" width="535" height="826" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -416,9 +421,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Preto Clássico" data-imagem="imagens/ternos/terno-preto-01.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Preto Clássico" data-imagem="imagens/ternos/terno-preto-01.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-preto-01.png" alt="Terno Preto Clássico">
+                    <img src="imagens/ternos/terno-preto-01.webp" alt="Terno Preto Clássico" width="546" height="836" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -457,9 +462,9 @@
                 <div class="produto-imagem">
 
                     
-                    <button class="favorito" data-nome="Terno Preto Slim" data-imagem="imagens/ternos/terno-preto-02.png" data-preco="">&#9825;</button>
+                    <button class="favorito" data-nome="Terno Preto Slim" data-imagem="imagens/ternos/terno-preto-02.webp" data-preco="">&#9825;</button>
 
-                    <img src="imagens/ternos/terno-preto-02.png" alt="Terno Preto Slim">
+                    <img src="imagens/ternos/terno-preto-02.webp" alt="Terno Preto Slim" width="544" height="825" loading="lazy" decoding="async">
 
                     <div class="produto-hover">
                         <button onclick="alert('Entre em contato para consultar este modelo.')">
@@ -508,8 +513,8 @@
 
     </footer>
 
-    <script src="casamentos.js"></script>
+    <script src="casamentos.js" defer></script>
 
-    <script src="extras.js"></script>
+    <script src="extras.js" defer></script>
 </body>
 </html>
