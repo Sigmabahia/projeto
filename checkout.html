@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finalize sua compra na Royal Suits com pagamento por PIX, cartão de crédito ou boleto e frete calculado para todo o Brasil.">
+    <meta name="robots" content="noindex, follow">
+    <title>Checkout | Royal Suits</title>
+
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="extras.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#0b1f3b">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+
+<body>
+
+    <!-- ================= CABEÇALHO ================= -->
+
+    <header class="ck-header">
+
+        <a href="paginainicial.html" class="ck-logo">
+            ROYAL <span>SUITS</span>
+            <small>CHECKOUT SEGURO</small>
+        </a>
+
+        <div class="ck-seguro">
+            <span>🔒</span>
+            <span>Ambiente protegido — <b>dados criptografados</b></span>
+        </div>
+
+        <a href="carrinho.html" class="ck-voltar">← Voltar ao carrinho</a>
+
+    </header>
+
+
+    <!-- ================= ETAPAS ================= -->
+
+    <nav class="ck-stepper" id="ck-stepper" aria-label="Etapas do checkout">
+
+        <div class="ck-etapa ativa" data-etapa="1">
+            <div class="ck-etapa-numero">1</div>
+            <div class="ck-etapa-nome">Seus dados</div>
+        </div>
+
+        <div class="ck-etapa" data-etapa="2">
+            <div class="ck-etapa-numero">2</div>
+            <div class="ck-etapa-nome">Entrega</div>
+        </div>
+
+        <div class="ck-etapa" data-etapa="3">
+            <div class="ck-etapa-numero">3</div>
+            <div class="ck-etapa-nome">Pagamento</div>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <main class="ck-main" id="ck-main">
+
+        <div class="ck-coluna">
+
+            <!-- ---------- ETAPA 1: DADOS ---------- -->
+
+            <section class="ck-card ck-painel ativo" id="painel-1">
+
+                <h2>Quem vai receber o pedido?</h2>
+                <p class="ck-sub">
+                    Usaremos estes dados para enviar a confirmação da compra e o código de rastreio.
+                    Já comprou com a gente? <a href="login.html" style="color:#0f4c81;border-bottom:1px solid #d4af37;">Entre na sua conta</a>.
+                </p>
+
+                <form id="form-dados" novalidate>
+
+                    <div class="ck-linha uma">
+                        <div class="ck-campo">
+                            <label for="nome">Nome completo <span class="obrig">*</span></label>
+                            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como no documento">
+                            <span class="ck-erro">Informe seu nome completo.</span>
+                        </div>
+                    </div>
+
+                    <div class="ck-linha">
+                        <div class="ck-campo">
+                            <label for="email">E-mail <span class="obrig">*</span></label>
+                            <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@email.com">
+                            <span class="ck-erro">Informe um e-mail válido.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="telefone">Celular / WhatsApp <span class="obrig">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(11) 91234-5678" inputmode="numeric">
+                            <span class="ck-erro">Informe um telefone com DDD.</span>
+                        </div>
+                    </div>
+
+                    <div class="ck-linha">
+                        <div class="ck-campo">
+                            <label for="documento">CPF ou CNPJ <span class="obrig">*</span></label>
+                            <input type="text" id="documento" name="documento" placeholder="000.000.000-00" inputmode="numeric">
+                            <span class="ck-erro">Documento inválido. Confira os números.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="nascimento">Data de nascimento</label>
+                            <input type="date" id="nascimento" name="nascimento">
+                            <span class="ck-erro"></span>
+                        </div>
+                    </div>
+
+                    <div class="ck-acoes">
+                        <button type="submit" class="ck-btn">Continuar para entrega →</button>
+                        <span class="ck-dica">Leva menos de 1 minuto.</span>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ---------- ETAPA 2: ENTREGA ---------- -->
+
+            <section class="ck-card ck-painel" id="painel-2">
+
+                <h2>Onde vamos entregar?</h2>
+                <p class="ck-sub">
+                    Digite o CEP para calcularmos o frete e o prazo de entrega. O endereço é preenchido automaticamente.
+                </p>
+
+                <form id="form-entrega" novalidate>
+
+                    <div class="ck-linha">
+                        <div class="ck-campo">
+                            <label for="cep">CEP <span class="obrig">*</span></label>
+                            <div class="ck-cep-grupo">
+                                <input type="text" id="cep" name="cep" placeholder="00000-000" inputmode="numeric" autocomplete="postal-code" maxlength="9">
+                                <button type="button" class="ck-btn-cep" id="btn-buscar-cep">BUSCAR</button>
+                            </div>
+                            <span class="ck-erro">Informe um CEP válido com 8 números.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="bairro">Bairro <span class="obrig">*</span></label>
+                            <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+                            <span class="ck-erro">Informe o bairro.</span>
+                        </div>
+                    </div>
+
+                    <div class="ck-linha tres">
+                        <div class="ck-campo">
+                            <label for="rua">Rua / Avenida <span class="obrig">*</span></label>
+                            <input type="text" id="rua" name="rua" placeholder="Logradouro" autocomplete="address-line1">
+                            <span class="ck-erro">Informe o endereço.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="numero">Número <span class="obrig">*</span></label>
+                            <input type="text" id="numero" name="numero" placeholder="123" inputmode="numeric">
+                            <span class="ck-erro">Informe o número.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="complemento">Complemento</label>
+                            <input type="text" id="complemento" name="complemento" placeholder="Apto / bloco">
+                            <span class="ck-erro"></span>
+                        </div>
+                    </div>
+
+                    <div class="ck-linha">
+                        <div class="ck-campo">
+                            <label for="cidade">Cidade <span class="obrig">*</span></label>
+                            <input type="text" id="cidade" name="cidade" placeholder="Cidade" autocomplete="address-level2">
+                            <span class="ck-erro">Informe a cidade.</span>
+                        </div>
+
+                        <div class="ck-campo">
+                            <label for="uf">Estado <span class="obrig">*</span></label>
+                            <select id="uf" name="uf" autocomplete="address-level1">
+                                <option value="">Selecione</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                            <span class="ck-erro">Selecione o estado.</span>
+                        </div>
+                    </div>
+
+                    <div class="ck-campo" style="margin-top:4px;">
+                        <label>Forma de envio <span class="obrig">*</span></label>
+                        <div class="ck-fretes" id="ck-fretes">
+                            <div class="ck-dica">Digite o CEP acima para ver as opções de frete e prazo.</div>
+                        </div>
+                    </div>
+
+                    <div id="ck-aviso-frete"></div>
+
+                    <div class="ck-acoes">
+                        <button type="button" class="ck-btn secundario" data-voltar="1">← Voltar</button>
+                        <button type="submit" class="ck-btn">Continuar para pagamento →</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ---------- ETAPA 3: PAGAMENTO ---------- -->
+
+            <section class="ck-card ck-painel" id="painel-3">
+
+                <h2>Como você quer pagar?</h2>
+                <p class="ck-sub">
+                    Escolha a forma de pagamento. O pedido só é confirmado após a identificação do pagamento.
+                </p>
+
+                <div class="ck-pag-tabs" role="tablist">
+
+                    <button type="button" class="ck-pag-tab ativo" data-pag="pix" role="tab" aria-selected="true">
+                        <span class="icone">⚡</span>
+                        <span class="nome">PIX</span>
+                        <small id="pix-desconto-label">5% OFF</small>
+                    </button>
+
+                    <button type="button" class="ck-pag-tab" data-pag="cartao" role="tab" aria-selected="false">
+                        <span class="icone">💳</span>
+                        <span class="nome">Cartão</span>
+                        <small>até 12x</small>
+                    </button>
+
+                    <button type="button" class="ck-pag-tab" data-pag="boleto" role="tab" aria-selected="false">
+                        <span class="icone">🧾</span>
+                        <span class="nome">Boleto</span>
+                        <small>à vista</small>
+                    </button>
+
+                </div>
+
+
+                <!-- PIX -->
+
+                <div class="ck-pag-conteudo ativo" id="pag-pix">
+
+                    <div class="ck-pix">
+
+                        <div class="ck-pix-qr" id="pix-qr">
+                            <span class="ck-dica" style="text-align:center;">Gerando QR Code…</span>
+                        </div>
+
+                        <div class="ck-pix-info">
+                            <h3>Pague com PIX e ganhe desconto</h3>
+                            <p>
+                                Abra o app do seu banco, escolha <b>PIX</b> e escaneie o QR Code ao lado.
+                                A confirmação é automática em poucos segundos.
+                            </p>
+                            <p>
+                                Também é possível copiar o código abaixo e colar no seu banco.
+                            </p>
+
+                            <div class="ck-pix-codigo">
+                                <input type="text" id="pix-codigo" readonly aria-label="Código PIX copia e cola">
+                                <button type="button" class="ck-btn-copiar" id="btn-copiar-pix">COPIAR</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARTÃO -->
+
+                <div class="ck-pag-conteudo" id="pag-cartao">
+
+                    <div class="ck-cartao-visual">
+                        <div class="ck-cartao-topo">
+                            <span>ROYAL SUITS</span>
+                            <span class="ck-bandeira" id="cartao-bandeira">••••</span>
+                        </div>
+                        <div class="ck-cartao-numero" id="cartao-preview">•••• •••• •••• ••••</div>
+                        <div class="ck-cartao-rodape">
+                            <span id="cartao-nome-preview">NOME NO CARTÃO</span>
+                            <span id="cartao-validade-preview">MM/AA</span>
+                        </div>
+                    </div>
+
+                    <form id="form-cartao" novalidate>
+
+                        <div class="ck-linha uma">
+                            <div class="ck-campo">
+                                <label for="cartao-numero">Número do cartão <span class="obrig">*</span></label>
+                                <input type="text" id="cartao-numero" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number">
+                                <span class="ck-erro">Número de cartão inválido.</span>
+                            </div>
+                        </div>
+
+                        <div class="ck-linha uma">
+                            <div class="ck-campo">
+                                <label for="cartao-nome">Nome impresso no cartão <span class="obrig">*</span></label>
+                                <input type="text" id="cartao-nome" placeholder="COMO ESTÁ NO CARTÃO" autocomplete="cc-name" style="text-transform:uppercase;">
+                                <span class="ck-erro">Informe o nome do titular.</span>
+                            </div>
+                        </div>
+
+                        <div class="ck-linha tres">
+                            <div class="ck-campo">
+                                <label for="cartao-validade">Validade <span class="obrig">*</span></label>
+                                <input type="text" id="cartao-validade" placeholder="MM/AA" inputmode="numeric" autocomplete="cc-exp" maxlength="5">
+                                <span class="ck-erro">Validade inválida.</span>
+                            </div>
+
+                            <div class="ck-campo">
+                                <label for="cartao-cvv">CVV <span class="obrig">*</span></label>
+                                <input type="text" id="cartao-cvv" placeholder="123" inputmode="numeric" autocomplete="cc-csc" maxlength="4">
+                                <span class="ck-erro">CVV inválido.</span>
+                            </div>
+
+                            <div class="ck-campo">
+                                <label for="cartao-parcelas">Parcelas <span class="obrig">*</span></label>
+                                <select id="cartao-parcelas"></select>
+                                <span class="ck-erro">Escolha o parcelamento.</span>
+                            </div>
+                        </div>
+
+                        <div class="ck-aviso">
+                            🔒 Seus dados são usados apenas para processar o pagamento e não ficam salvos neste site.
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- BOLETO -->
+
+                <div class="ck-pag-conteudo" id="pag-boleto">
+
+                    <div class="ck-boleto">
+                        <div class="ck-boleto-icone">🧾</div>
+                        <div>
+                            <h3>Boleto bancário</h3>
+                            <p>
+                                O boleto é gerado em nome do titular do pedido e pode ser pago em qualquer
+                                banco, lotérica ou pelo app do seu banco até a data de vencimento.
+                            </p>
+                            <p style="margin-top:8px;">
+                                <b>Vencimento:</b> 3 dias úteis &nbsp;•&nbsp;
+                                <b>Compensação:</b> em até 2 dias úteis após o pagamento.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="ck-aviso" style="margin-top:20px;">
+                        O pedido será separado após a confirmação do pagamento. Você receberá o boleto por e-mail.
+                    </div>
+
+                </div>
+
+
+                <div id="ck-aviso-pagamento"></div>
+
+                <div class="ck-acoes">
+                    <button type="button" class="ck-btn secundario" data-voltar="2">← Voltar</button>
+                    <button type="button" class="ck-btn grande" id="btn-finalizar">Finalizar pedido</button>
+                </div>
+
+                <p class="ck-dica" style="margin-top:16px;">
+                    Ao finalizar você concorda com os
+                    <a href="termos-de-uso.html" style="color:#0f4c81;">Termos de Uso</a> e a
+                    <a href="politica-de-privacidade.html" style="color:#0f4c81;">Política de Privacidade</a>.
+                </p>
+
+            </section>
+
+        </div>
+
+
+        <!-- ---------- RESUMO ---------- -->
+
+        <aside class="ck-resumo" id="ck-resumo">
+
+            <div class="ck-resumo-topo">
+                <h2>Seu pedido</h2>
+                <span id="resumo-qtd">0 itens</span>
+            </div>
+
+            <div class="ck-resumo-itens" id="resumo-itens"></div>
+
+            <div class="ck-resumo-totais">
+
+                <div class="ck-total-linha">
+                    <span>Subtotal</span>
+                    <strong id="resumo-subtotal">R$ 0,00</strong>
+                </div>
+
+                <div class="ck-total-linha">
+                    <span>Frete</span>
+                    <strong id="resumo-frete">A calcular</strong>
+                </div>
+
+                <div class="ck-total-linha desconto" id="linha-desconto" style="display:none;">
+                    <span>Desconto PIX</span>
+                    <strong id="resumo-desconto">—</strong>
+                </div>
+
+                <div class="ck-total-final">
+                    <span>Total</span>
+                    <strong id="resumo-total">R$ 0,00</strong>
+                </div>
+
+                <div class="ck-parcelas" id="resumo-parcelas"></div>
+
+            </div>
+
+            <div class="ck-selos">
+                <span class="ck-selo">🔒 Site seguro</span>
+                <span class="ck-selo">PIX</span>
+                <span class="ck-selo">Visa</span>
+                <span class="ck-selo">Master</span>
+                <span class="ck-selo">Elo</span>
+                <span class="ck-selo">Boleto</span>
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- ================= CONFIRMAÇÃO ================= -->
+
+    <section class="ck-confirmacao" id="ck-confirmacao" style="display:none;">
+
+        <div class="icone">✓</div>
+
+        <h1>Pedido confirmado!</h1>
+
+        <div class="pedido-num" id="conf-numero">RS-000000-0000</div>
+
+        <p id="conf-mensagem">
+            Recebemos seu pedido e já enviamos os detalhes para o seu e-mail.
+        </p>
+
+        <div class="ck-card" id="conf-pagamento"></div>
+
+        <div class="ck-card">
+            <h2 style="font-size:22px;">Resumo do pedido</h2>
+            <div id="conf-resumo" style="margin-top:18px;"></div>
+        </div>
+
+        <div class="ck-acoes">
+            <a href="meus-pedidos.html" class="ck-btn">Ver meus pedidos</a>
+            <a href="paginainicial.html" class="ck-btn secundario">Continuar comprando</a>
+        </div>
+
+        <p style="margin-top:26px;font-size:11px;">
+            Precisa de ajuda? Fale com a gente pelo
+            <a href="#" id="conf-whatsapp" style="color:#0f4c81;border-bottom:1px solid #d4af37;">WhatsApp</a>.
+        </p>
+
+    </section>
+
+
+    <!-- ================= RODAPÉ ================= -->
+
+    <footer class="ck-footer">
+        <p>
+            © 2026 ROYAL SUITS — CNPJ 00.000.000/0001-00 &nbsp;•&nbsp;
+            <a href="trocas-e-devolucoes.html">Trocas e devoluções</a> &nbsp;•&nbsp;
+            <a href="politica-de-privacidade.html">Privacidade</a> &nbsp;•&nbsp;
+            <a href="contato.html">Contato</a>
+        </p>
+        <p style="margin-top:6px;">Pagamento processado em ambiente seguro. Royal Suits © todos os direitos reservados.</p>
+    </footer>
+
+
+    <script src="loja.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+    <script src="checkout.js"></script>
+    <script src="extras.js"></script>
+
+</body>
+
+</html>

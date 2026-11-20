@@ -108,6 +108,7 @@
                     '<li><a href="politica-de-privacidade.html">Política de Privacidade</a></li>' +
                     '<li><a href="termos-de-uso.html">Termos de Uso</a></li>' +
                     '<li><a href="trocas-e-devolucoes.html">Trocas e Devoluções</a></li>' +
+                    '<li><a href="meus-pedidos.html">Meus pedidos</a></li>' +
                     '<li><a href="politica-de-privacidade.html#cookies">Política de Cookies</a></li>' +
                 '</ul>' +
             '</div>' +
@@ -284,6 +285,238 @@
     }
 
     /* ------------------------------------------------------
+       BUSCA DE PRODUTOS NO CABEÇALHO
+    ------------------------------------------------------ */
+    function criarBusca() {
+        var acoes = document.querySelector(".header-actions");
+        if (!acoes || document.querySelector(".rs-busca-btn")) return;
+
+        var botao = document.createElement("button");
+        botao.type = "button";
+        botao.className = "rs-busca-btn icon-btn";
+        botao.setAttribute("aria-label", "Buscar produtos");
+        botao.title = "Buscar produtos";
+        botao.innerHTML = "&#128269;";
+        acoes.insertBefore(botao, acoes.firstChild);
+
+        var overlay = document.createElement("div");
+        overlay.className = "rs-busca-overlay";
+        overlay.id = "rs-busca";
+        overlay.setAttribute("role", "dialog");
+        overlay.setAttribute("aria-modal", "true");
+        overlay.setAttribute("aria-label", "Buscar produtos");
+        overlay.innerHTML =
+            '<div class="rs-busca-box">' +
+                '<div class="rs-busca-topo">' +
+                    '<span class="rs-busca-icone">&#128269;</span>' +
+                    '<input type="search" id="rs-busca-input" placeholder="Buscar vestidos, ternos, modelos..." autocomplete="off" aria-label="Termo de busca">' +
+                    '<button type="button" class="rs-busca-fechar" aria-label="Fechar busca">&times;</button>' +
+                '</div>' +
+                '<div class="rs-busca-resultados" id="rs-busca-resultados">' +
+                    '<p class="rs-busca-dica">Digite o nome de um modelo, cor ou categoria.</p>' +
+                '</div>' +
+            '</div>';
+
+        document.body.appendChild(overlay);
+
+        var input = overlay.querySelector("#rs-busca-input");
+        var resultados = overlay.querySelector("#rs-busca-resultados");
+        var indice = null;
+
+        function abrir() {
+            overlay.classList.add("rs-aberto");
+            document.body.style.overflow = "hidden";
+            setTimeout(function () { input.focus(); }, 60);
+            carregarIndice();
+        }
+
+        function fechar() {
+            overlay.classList.remove("rs-aberto");
+            document.body.style.overflow = "";
+        }
+
+        function carregarIndice() {
+            if (indice) return Promise.resolve(indice);
+
+            var cache = null;
+            try {
+                cache = JSON.parse(sessionStorage.getItem("rsIndiceProdutos"));
+            } catch (e) {}
+
+            if (cache && cache.length) {
+                indice = cache;
+                return Promise.resolve(indice);
+            }
+
+            var paginas = [
+                { url: "formaturas.html", nome: "Formaturas" },
+                { url: "casamentos.html", nome: "Casamentos" }
+            ];
+
+            return Promise.all(paginas.map(function (pagina) {
+                return fetch(pagina.url)
+                    .then(function (r) { return r.text(); })
+                    .then(function (html) {
+                        var doc = new DOMParser().parseFromString(html, "text/html");
+                        return Array.prototype.map.call(doc.querySelectorAll(".produto-card"), function (card) {
+                            var nome = card.querySelector(".produto-info h3");
+                            var preco = card.querySelector(".preco");
+                            var img = card.querySelector(".produto-imagem img");
+                            var cat = card.querySelector(".categoria-produto");
+
+                            return {
+                                nome: nome ? nome.textContent.trim() : "",
+                                preco: preco ? preco.textContent.trim() : "",
+                                imagem: img ? img.getAttribute("src") : "",
+                                categoria: cat ? cat.textContent.trim() : pagina.nome,
+                                pagina: pagina.url
+                            };
+                        });
+                    })
+                    .catch(function () { return []; });
+            })).then(function (listas) {
+                indice = listas.reduce(function (todos, lista) { return todos.concat(lista); }, [])
+                    .filter(function (item) { return item.nome; });
+
+                try {
+                    sessionStorage.setItem("rsIndiceProdutos", JSON.stringify(indice));
+                } catch (e) {}
+
+                return indice;
+            });
+        }
+
+        function normalizar(texto) {
+            return String(texto || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+        }
+
+        function buscar(termo) {
+            var t = normalizar(termo).trim();
+
+            if (!t) {
+                resultados.innerHTML = '<p class="rs-busca-dica">Digite o nome de um modelo, cor ou categoria.</p>';
+                return;
+            }
+
+            if (!indice) {
+                resultados.innerHTML = '<p class="rs-busca-dica">Carregando catálogo...</p>';
+                return;
+            }
+
+            var encontrados = indice.filter(function (item) {
+                return normalizar(item.nome + " " + item.categoria + " " + item.preco).indexOf(t) !== -1;
+            }).slice(0, 8);
+
+            if (!encontrados.length) {
+                resultados.innerHTML =
+                    '<p class="rs-busca-dica">Nenhum modelo encontrado para "<b>' +
+                    termo.replace(/[<>&]/g, "") + '</b>".<br>' +
+                    'Fale com a gente no <a href="https://wa.me/' + CONFIG.whatsapp + '" target="_blank" rel="noopener">WhatsApp</a> que buscamos para você.</p>';
+                return;
+            }
+
+            resultados.innerHTML = encontrados.map(function (item) {
+                return '' +
+                    '<a class="rs-busca-item" href="' + item.pagina + '">' +
+                        '<img src="' + item.imagem + '" alt="' + item.nome.replace(/"/g, "") + '" loading="lazy">' +
+                        '<span class="rs-busca-item-info">' +
+                            '<strong>' + item.nome + '</strong>' +
+                            '<small>' + item.categoria + '</small>' +
+                        '</span>' +
+                        '<span class="rs-busca-item-preco">' + item.preco + '</span>' +
+                    '</a>';
+            }).join("") +
+            '<a class="rs-busca-todos" href="formaturas.html">Ver todos os modelos &rarr;</a>';
+        }
+
+        botao.addEventListener("click", abrir);
+        overlay.querySelector(".rs-busca-fechar").addEventListener("click", fechar);
+
+        overlay.addEventListener("click", function (evento) {
+            if (evento.target === overlay) fechar();
+        });
+
+        document.addEventListener("keydown", function (evento) {
+            if (evento.key === "Escape" && overlay.classList.contains("rs-aberto")) fechar();
+            if ((evento.ctrlKey || evento.metaKey) && evento.key.toLowerCase() === "k") {
+                evento.preventDefault();
+                abrir();
+            }
+        });
+
+        input.addEventListener("input", function () {
+            buscar(this.value);
+            carregarIndice().then(function () { buscar(input.value); });
+        });
+    }
+
+    /* ------------------------------------------------------
+       BOTÃO FLUTUANTE DE WHATSAPP
+    ------------------------------------------------------ */
+    function criarWhatsappFlutuante() {
+        if (document.querySelector(".rs-whatsapp")) return;
+
+        var link = document.createElement("a");
+        link.className = "rs-whatsapp";
+        link.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(CONFIG.whatsappTexto);
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.setAttribute("aria-label", "Falar no WhatsApp");
+        link.innerHTML = '<span class="rs-whatsapp-icone">&#9990;</span><span class="rs-whatsapp-texto">Fale conosco</span>';
+
+        document.body.appendChild(link);
+    }
+
+    /* ------------------------------------------------------
+       ANIMAÇÃO DE ENTRADA DOS BLOCOS
+    ------------------------------------------------------ */
+    function ativarRevelacao() {
+        var alvos = document.querySelectorAll(
+            ".produto-card, .categoria-card, .beneficio, .depoimento, .secao-titulo, .card-beneficio"
+        );
+
+        if (!alvos.length) return;
+
+        if (!("IntersectionObserver" in window)) {
+            Array.prototype.forEach.call(alvos, function (alvo) { alvo.classList.add("rs-revelado"); });
+            return;
+        }
+
+        var observador = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (entrada) {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add("rs-revelado");
+                    observador.unobserve(entrada.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        Array.prototype.forEach.call(alvos, function (alvo, i) {
+            alvo.classList.add("rs-revelar");
+            alvo.style.transitionDelay = (i % 4) * 60 + "ms";
+            observador.observe(alvo);
+        });
+    }
+
+    /* ------------------------------------------------------
+       CABEÇALHO COM SOMBRA AO ROLAR
+    ------------------------------------------------------ */
+    function ativarHeaderScroll() {
+        var header = document.querySelector(".header");
+        if (!header) return;
+
+        function atualizar() {
+            header.classList.toggle("rs-header-rolado", window.scrollY > 30);
+        }
+
+        window.addEventListener("scroll", atualizar, { passive: true });
+        atualizar();
+    }
+
+    /* ------------------------------------------------------
        INICIALIZAÇÃO
     ------------------------------------------------------ */
     document.addEventListener("DOMContentLoaded", function () {
@@ -296,5 +529,9 @@
         ativarNewsletter();
         ativarUsuarioLogado();
         atualizarAno();
+        criarBusca();
+        criarWhatsappFlutuante();
+        ativarRevelacao();
+        ativarHeaderScroll();
     });
 })();

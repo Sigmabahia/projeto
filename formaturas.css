@@ -125,7 +125,7 @@ a {
 
 .banner {
   min-height: 470px;
-  background: #0b1f3b url("image_ny_sdP.png") no-repeat;
+  background: #0b1f3b url("imagens/produtos/hero-gala.jpg") no-repeat;
   background-size: cover;
   background-position: center;
   display: flex;
