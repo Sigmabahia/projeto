@@ -558,48 +558,35 @@
 
         var pedido = montarPedido();
 
-        /* Se um gateway estiver configurado, cria a cobrança real. */
-        var gateway = L.CONFIG.pagamento.gatewayUrl;
-
         function concluirLocal() {
             L.salvarPedido(pedido);
             L.salvarCarrinho([]);
             mostrarConfirmacao(pedido);
         }
 
-        if (gateway) {
-            fetch(gateway, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(pedido)
-            })
-                .then(function (r) { return r.json(); })
-                .then(function (dados) {
-                    if (dados && dados.url) {
-                        L.salvarPedido(pedido);
-                        L.salvarCarrinho([]);
-                        window.location.href = dados.url;
-                        return;
-                    }
-                    concluirLocal();
-                })
-                .catch(function (erro) {
-                    console.warn("Gateway indisponível:", erro);
-                    concluirLocal();
-                })
-                .then(function () {
-                    estado.finalizando = false;
-                    botao.classList.remove("loading");
-                    botao.disabled = false;
-                });
-        } else {
-            setTimeout(function () {
-                concluirLocal();
-                estado.finalizando = false;
-                botao.classList.remove("loading");
-                botao.disabled = false;
-            }, 700);
+        function encerrar() {
+            estado.finalizando = false;
+            botao.classList.remove("loading");
+            botao.disabled = false;
         }
+
+        /* Envia o pedido para a API (backend na Netlify).
+           Se a API estiver indisponível, mantém o fluxo local. */
+        (async function () {
+            if (window.RS) {
+                try {
+                    var salvo = await window.RS.criarPedido(pedido);
+                    L.salvarPedido(salvo);
+                    L.salvarCarrinho([]);
+                    mostrarConfirmacao(salvo);
+                    return;
+                } catch (erro) {
+                    console.warn("API de pedidos indisponível:", erro.message);
+                    mostrarToast("Pedido salvo localmente. Nossa equipe confirmará por e-mail.");
+                }
+            }
+            concluirLocal();
+        })().finally(encerrar);
     }
 
     /* ======================================================

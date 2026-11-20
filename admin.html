@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo | Royal Suits</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root{--navy:#0b1f3b;--gold:#d4af37;--bege:#f7f4ec;--cinza:#6b6b6b;--borda:#e5dfd1}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bege);color:var(--navy);min-height:100vh}
+  header{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  header .logo{font-family:Georgia,serif;letter-spacing:.22em;font-size:17px}
+  header .logo span{color:var(--gold)}
+  header button{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;padding:8px 16px;font-size:11px;letter-spacing:.12em;cursor:pointer}
+  header button:hover{border-color:var(--gold);color:var(--gold)}
+  .wrap{max-width:1180px;margin:0 auto;padding:26px 18px 60px}
+  .card{background:#fff;border:1px solid var(--borda);padding:24px;margin-bottom:20px}
+  h1{font-family:Georgia,serif;font-size:24px;margin-bottom:6px}
+  h2{font-family:Georgia,serif;font-size:18px;margin-bottom:16px}
+  p.sub{font-size:13px;color:var(--cinza);margin-bottom:18px}
+  label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);margin-bottom:6px}
+  input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--borda);font-family:inherit;font-size:14px;margin-bottom:14px;background:#fff;color:var(--navy)}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+  .btn{display:inline-block;background:var(--navy);color:#fff;border:0;padding:12px 22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .btn:hover{background:var(--gold);color:var(--navy)}
+  .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--borda)}
+  .btn.small{padding:7px 12px;font-size:10px}
+  .login{max-width:420px;margin:8vh auto}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+  .stat{background:#fff;border:1px solid var(--borda);padding:18px}
+  .stat small{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);margin-bottom:8px}
+  .stat strong{font-family:Georgia,serif;font-size:24px}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .tab{background:#fff;border:1px solid var(--borda);padding:10px 16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+  .tab.ativo{background:var(--navy);color:#fff;border-color:var(--navy)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);border-bottom:1px solid var(--borda);padding:10px 8px}
+  td{padding:12px 8px;border-bottom:1px solid #f1ece0;vertical-align:top}
+  tr:hover td{background:#fbf9f3}
+  .pill{display:inline-block;padding:4px 9px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:#eef2f8;color:var(--navy);border-radius:2px}
+  .pill.pago{background:#e6f4ea;color:#1a7a3c}
+  .pill.cancel{background:#fdecea;color:#b3261e}
+  .msg{font-size:12px;color:var(--cinza);margin-top:6px}
+  .erro{color:#b3261e;font-size:13px;margin-top:10px}
+  .vazio{font-size:13px;color:var(--cinza);padding:18px 0}
+  .linha{display:flex;gap:10px;flex-wrap:wrap}
+  .linha>*{flex:1 1 160px}
+  .oculto{display:none!important}
+  .detalhe{font-size:12px;color:var(--cinza);line-height:1.6}
+  @media(max-width:640px){td,th{font-size:11px}header{padding:14px 16px}}
+</style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">ROYAL <span>SUITS</span> &nbsp;·&nbsp; ADMIN</div>
+  <div>
+    <span id="quem" style="font-size:12px;margin-right:14px;opacity:.8"></span>
+    <button id="sair" class="oculto">SAIR</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- LOGIN -->
+  <section id="tela-login" class="card login">
+    <h1>Acesso administrativo</h1>
+    <p class="sub">Entre com a conta de administrador configurada nas variáveis de ambiente da Netlify.</p>
+    <form id="form-admin">
+      <label for="admin-email">E-mail</label>
+      <input type="email" id="admin-email" autocomplete="username" required>
+      <label for="admin-senha">Senha</label>
+      <input type="password" id="admin-senha" autocomplete="current-password" required>
+      <button type="submit" class="btn" style="width:100%">ENTRAR</button>
+      <p class="erro" id="login-erro"></p>
+    </form>
+  </section>
+
+  <!-- PAINEL -->
+  <section id="tela-painel" class="oculto">
+    <h1>Painel Royal Suits</h1>
+    <p class="sub">Pedidos, atendimento e campanhas em um só lugar.</p>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="tabs">
+      <button class="tab ativo" data-tab="pedidos">Pedidos</button>
+      <button class="tab" data-tab="mensagens">Mensagens</button>
+      <button class="tab" data-tab="newsletter">Newsletter</button>
+      <button class="tab" data-tab="cupons">Cupons</button>
+      <button class="tab" data-tab="produtos">Produtos</button>
+    </div>
+
+    <div class="card" id="tab-pedidos">
+      <h2>Pedidos</h2>
+      <div class="linha" style="margin-bottom:14px">
+        <select id="filtro-status">
+          <option value="">Todos os status</option>
+          <option>Aguardando pagamento PIX</option>
+          <option>Pagamento em análise</option>
+          <option>Aguardando pagamento do boleto</option>
+          <option>Pago</option>
+          <option>Em separação</option>
+          <option>Enviado</option>
+          <option>Entregue</option>
+          <option>Cancelado</option>
+        </select>
+        <button class="btn ghost" id="recarregar-pedidos">ATUALIZAR</button>
+      </div>
+      <div id="lista-pedidos-admin"></div>
+    </div>
+
+    <div class="card oculto" id="tab-mensagens">
+      <h2>Mensagens de contato</h2>
+      <div id="lista-mensagens"></div>
+    </div>
+
+    <div class="card oculto" id="tab-newsletter">
+      <h2>Inscritos na newsletter</h2>
+      <div id="lista-newsletter"></div>
+    </div>
+
+    <div class="card oculto" id="tab-cupons">
+      <h2>Cupons de desconto</h2>
+      <form id="form-cupom" class="linha" style="margin-bottom:18px">
+        <input type="text" id="cupom-codigo" placeholder="CÓDIGO" required>
+        <select id="cupom-tipo">
+          <option value="percentual">% percentual</option>
+          <option value="fixo">R$ valor fixo</option>
+        </select>
+        <input type="number" id="cupom-valor" placeholder="Valor" min="1" step="0.01" required>
+        <input type="number" id="cupom-minimo" placeholder="Mínimo (R$)" min="0" step="0.01">
+        <button type="submit" class="btn">CRIAR</button>
+      </form>
+      <div id="lista-cupons"></div>
+    </div>
+
+    <div class="card oculto" id="tab-produtos">
+      <h2>Produtos</h2>
+      <div id="lista-produtos-admin"></div>
+    </div>
+  </section>
+</div>
+
+<script src="js/rs-api.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var el = function (id) { return document.getElementById(id); };
+  var esc = function (v) {
+    return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  };
+  var brl = function (v) {
+    return "R$ " + Number(v || 0).toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+  var data = function (iso) {
+    try { return new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }); }
+    catch (e) { return ""; }
+  };
+
+  function mostrarPainel(usuario) {
+    el("tela-login").classList.add("oculto");
+    el("tela-painel").classList.remove("oculto");
+    el("sair").classList.remove("oculto");
+    el("quem").textContent = usuario ? usuario.email : "";
+    carregarTudo();
+  }
+
+  async function iniciar() {
+    var usuario = await RS.me();
+    if (usuario && usuario.role === "admin") mostrarPainel(usuario);
+  }
+
+  el("form-admin").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    el("login-erro").textContent = "";
+    try {
+      var dados = await RS.login(el("admin-email").value.trim(), el("admin-senha").value);
+      if (!dados.usuario || dados.usuario.role !== "admin") {
+        el("login-erro").textContent = "Esta conta não tem permissão de administrador.";
+        return;
+      }
+      mostrarPainel(dados.usuario);
+    } catch (erro) {
+      el("login-erro").textContent = erro.message;
+    }
+  });
+
+  el("sair").addEventListener("click", function () { RS.logout(); });
+
+  /* ---------------- TABS ---------------- */
+  document.querySelectorAll(".tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (t) { t.classList.remove("ativo"); });
+      tab.classList.add("ativo");
+      ["pedidos", "mensagens", "newsletter", "cupons", "produtos"].forEach(function (nome) {
+        el("tab-" + nome).classList.toggle("oculto", nome !== tab.dataset.tab);
+      });
+    });
+  });
+
+  /* ---------------- STATS ---------------- */
+  async function carregarStats() {
+    var dados = await RS.api("/admin/stats");
+    var s = dados.stats;
+    el("stats").innerHTML = [
+      ["Receita confirmada", brl(s.receita)],
+      ["Pedidos", s.pedidos],
+      ["Ticket médio", brl(s.ticketMedio)],
+      ["Clientes", s.usuarios],
+      ["Mensagens", s.mensagens],
+      ["Newsletter", s.newsletter]
+    ].map(function (par) {
+      return '<div class="stat"><small>' + par[0] + "</small><strong>" + par[1] + "</strong></div>";
+    }).join("");
+  }
+
+  /* ---------------- PEDIDOS ---------------- */
+  async function carregarPedidos() {
+    var status = el("filtro-status").value;
+    var dados = await RS.api("/admin/orders" + (status ? "?status=" + encodeURIComponent(status) : ""));
+    var lista = el("lista-pedidos-admin");
+
+    if (!dados.pedidos.length) {
+      lista.innerHTML = '<p class="vazio">Nenhum pedido encontrado.</p>';
+      return;
+    }
+
+    lista.innerHTML = "<table><thead><tr><th>Pedido</th><th>Cliente</th><th>Itens</th><th>Total</th><th>Status</th><th>Ação</th></tr></thead><tbody>" +
+      dados.pedidos.map(function (p) {
+        var itens = (p.itens || []).map(function (i) { return i.quantidade + "x " + esc(i.nome); }).join("<br>");
+        var pago = /pago|separa|enviado|entregue/i.test(p.status);
+        var cancelado = /cancel/i.test(p.status);
+        return "<tr>" +
+          "<td><strong>" + esc(p.numero) + "</strong><div class=\"msg\">" + data(p.createdAt) + "</div></td>" +
+          "<td>" + esc(p.cliente.nome) + "<div class=\"msg\">" + esc(p.cliente.email) + "<br>" + esc(p.cliente.telefone) + "</div></td>" +
+          "<td>" + itens + "</td>" +
+          "<td><strong>" + brl(p.totais.total) + "</strong><div class=\"msg\">" + esc(p.pagamento.tipo.toUpperCase()) + "</div></td>" +
+          "<td><span class=\"pill " + (cancelado ? "cancel" : pago ? "pago" : "") + "\">" + esc(p.status) + "</span></td>" +
+          "<td><select data-numero=\"" + esc(p.numero) + "\" class=\"mudar-status\">" +
+            ["Aguardando pagamento PIX", "Pagamento em análise", "Aguardando pagamento do boleto", "Pago", "Em separação", "Enviado", "Entregue", "Cancelado"]
+              .map(function (s) { return '<option' + (s === p.status ? " selected" : "") + ">" + s + "</option>"; }).join("") +
+          "</select></td>" +
+        "</tr>";
+      }).join("") + "</tbody></table>";
+
+    lista.querySelectorAll(".mudar-status").forEach(function (select) {
+      select.addEventListener("change", async function () {
+        try {
+          await RS.api("/admin/orders/" + encodeURIComponent(select.dataset.numero) + "/status", {
+            method: "PATCH",
+            body: { status: select.value }
+          });
+          carregarStats();
+          carregarPedidos();
+        } catch (erro) {
+          alert(erro.message);
+        }
+      });
+    });
+  }
+
+  /* ---------------- MENSAGENS ---------------- */
+  async function carregarMensagens() {
+    var dados = await RS.api("/admin/messages");
+    var lista = el("lista-mensagens");
+    if (!dados.mensagens.length) {
+      lista.innerHTML = '<p class="vazio">Nenhuma mensagem recebida.</p>';
+      return;
+    }
+    lista.innerHTML = dados.mensagens.map(function (m) {
+      return '<div style="border-bottom:1px solid #f1ece0;padding:14px 0">' +
+        "<strong>" + esc(m.nome) + "</strong> · <span class=\"msg\">" + esc(m.email) + " " + esc(m.telefone || "") + "</span>" +
+        '<div class="msg">' + data(m.createdAt) + " · " + esc(m.assunto) + "</div>" +
+        "<p style=\"margin-top:8px;font-size:13px;line-height:1.6\">" + esc(m.mensagem) + "</p>" +
+        '<a class="btn small ghost" style="margin-top:10px;text-decoration:none" href="mailto:' + esc(m.email) + '?subject=Re: ' + encodeURIComponent(m.assunto) + '">RESPONDER</a>' +
+      "</div>";
+    }).join("");
+  }
+
+  /* ---------------- NEWSLETTER ---------------- */
+  async function carregarNewsletter() {
+    var dados = await RS.api("/admin/newsletter");
+    var lista = el("lista-newsletter");
+    if (!dados.inscritos.length) {
+      lista.innerHTML = '<p class="vazio">Nenhum inscrito ainda.</p>';
+      return;
+    }
+    lista.innerHTML = "<table><thead><tr><th>E-mail</th><th>Origem</th><th>Data</th></tr></thead><tbody>" +
+      dados.inscritos.map(function (n) {
+        return "<tr><td>" + esc(n.email) + "</td><td>" + esc(n.origem) + "</td><td>" + data(n.createdAt) + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  /* ---------------- CUPONS ---------------- */
+  async function carregarCupons() {
+    var dados = await RS.api("/admin/coupons");
+    var lista = el("lista-cupons");
+    if (!dados.cupons.length) {
+      lista.innerHTML = '<p class="vazio">Nenhum cupom cadastrado.</p>';
+      return;
+    }
+    lista.innerHTML = "<table><thead><tr><th>Código</th><th>Desconto</th><th>Mínimo</th><th>Usos</th><th></th></tr></thead><tbody>" +
+      dados.cupons.map(function (c) {
+        return "<tr><td><strong>" + esc(c.codigo) + "</strong></td><td>" +
+          (c.tipo === "fixo" ? brl(c.valor) : c.valor + "%") + "</td><td>" + (c.minimo ? brl(c.minimo) : "—") +
+          "</td><td>" + (c.usos || 0) + "</td><td><button class=\"btn small ghost\" data-cupom=\"" + esc(c.codigo) + "\">REMOVER</button></td></tr>";
+      }).join("") + "</tbody></table>";
+
+    lista.querySelectorAll("[data-cupom]").forEach(function (botao) {
+      botao.addEventListener("click", async function () {
+        if (!confirm("Remover o cupom " + botao.dataset.cupom + "?")) return;
+        await RS.api("/admin/coupons/" + encodeURIComponent(botao.dataset.cupom), { method: "DELETE" });
+        carregarCupons();
+      });
+    });
+  }
+
+  el("form-cupom").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    try {
+      await RS.api("/admin/coupons", {
+        method: "POST",
+        body: {
+          codigo: el("cupom-codigo").value.trim().toUpperCase(),
+          tipo: el("cupom-tipo").value,
+          valor: Number(el("cupom-valor").value),
+          minimo: Number(el("cupom-minimo").value || 0)
+        }
+      });
+      el("form-cupom").reset();
+      carregarCupons();
+    } catch (erro) {
+      alert(erro.message);
+    }
+  });
+
+  /* ---------------- PRODUTOS ---------------- */
+  async function carregarProdutos() {
+    var dados = await RS.api("/products?limit=200");
+    el("lista-produtos-admin").innerHTML = "<table><thead><tr><th>Produto</th><th>Coleção</th><th>Tipo</th><th>Preço</th><th>Status</th></tr></thead><tbody>" +
+      dados.produtos.map(function (p) {
+        return "<tr><td><strong>" + esc(p.nome) + "</strong><div class=\"msg\">" + esc(p.slug) + "</div></td><td>" +
+          esc(p.colecao) + "</td><td>" + esc(p.tipo) + "</td><td>" +
+          (p.preco > 0 ? brl(p.preco) : "Sob consulta") + "</td><td>" +
+          (p.ativo === false ? "Inativo" : "Ativo") + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  async function carregarTudo() {
+    try {
+      await Promise.all([carregarStats(), carregarPedidos(), carregarMensagens(), carregarNewsletter(), carregarCupons(), carregarProdutos()]);
+    } catch (erro) {
+      if (erro.status === 401 || erro.status === 403) {
+        el("tela-painel").classList.add("oculto");
+        el("tela-login").classList.remove("oculto");
+        el("login-erro").textContent = "Sessão expirada. Entre novamente.";
+      } else {
+        console.error(erro);
+      }
+    }
+  }
+
+  el("recarregar-pedidos").addEventListener("click", carregarPedidos);
+  el("filtro-status").addEventListener("change", carregarPedidos);
+
+  iniciar();
+})();
+</script>
+</body>
+</html>

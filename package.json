@@ -1,0 +1,21 @@
+{
+  "name": "royal-suits",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Royal Suits - loja de trajes de gala com backend serverless (Netlify Functions + Netlify Blobs)",
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "netlify dev",
+    "seed": "node scripts/seed-local.mjs",
+    "test": "node scripts/test-api.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

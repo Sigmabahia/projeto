@@ -327,58 +327,13 @@
         });
 
 
-        /* ============================
-           VALIDAÇÃO DO CADASTRO
-        ============================ */
-
-        const formulario =
-            document.getElementById("form-cadastro");
-
-
-        formulario.addEventListener("submit", function(event) {
-
-            event.preventDefault();
-
-
-            const senha =
-                document.getElementById("senha").value;
-
-            const confirmar =
-                document.getElementById("confirmar-senha").value;
-
-
-            if (senha !== confirmar) {
-
-                alert("As senhas não são iguais.");
-
-                return;
-
-            }
-
-
-            if (senha.length < 6) {
-
-                alert(
-                    "A senha precisa ter pelo menos 6 caracteres."
-                );
-
-                return;
-
-            }
-
-
-            alert(
-                "Conta criada com sucesso! Bem-vindo à ROYAL SUITS."
-            );
-
-
-            window.location.href = "login.html";
-
-        });
+        /* O envio do cadastro é feito por js/rs-cadastro.js (API). */
 
     </script>
 
-    <script src="extras.js"></script>
+    <script src="js/rs-api.js"></script>
+<script src="js/rs-cadastro.js"></script>
+<script src="extras.js"></script>
 </body>
 
 </html>

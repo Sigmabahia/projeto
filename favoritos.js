@@ -42,6 +42,8 @@ function removerFavorito(nome) {
 
     salvarFavoritos(lista);
 
+    if (window.rsSyncFavorito) window.rsSyncFavorito(nome, false);
+
     renderizarFavoritos();
 }
 
@@ -102,3 +104,55 @@ function renderizarFavoritos() {
 }
 
 document.addEventListener("DOMContentLoaded", renderizarFavoritos);
+
+/* =================================
+   SINCRONIZAÇÃO COM O SERVIDOR
+   (mantém favoritos entre dispositivos quando logado)
+================================= */
+
+async function sincronizarFavoritosDoServidor() {
+
+    if (!window.RS || !window.RS.logado()) return;
+
+    try {
+
+        const remotos = await window.RS.favoritos();
+        const locais = obterFavoritos();
+
+        remotos.forEach(produto => {
+            if (!locais.some(item => item.nome === produto.nome)) {
+                locais.push({
+                    nome: produto.nome,
+                    preco: produto.preco,
+                    imagem: produto.imagem,
+                    productId: produto.productId
+                });
+            }
+        });
+
+        salvarFavoritos(locais);
+        renderizarFavoritos();
+
+    } catch (erro) {
+        console.warn("Favoritos remotos indisponíveis:", erro.message);
+    }
+}
+
+window.rsSyncFavorito = async function (nome, adicionar) {
+
+    if (!window.RS || !window.RS.logado()) return;
+
+    try {
+        if (adicionar) {
+            await window.RS.favoritar(nome);
+        } else {
+            const remotos = await window.RS.favoritos();
+            const item = remotos.find(produto => produto.nome === nome);
+            if (item) await window.RS.desfavoritar(item.productId);
+        }
+    } catch (erro) {
+        console.warn("Não foi possível sincronizar o favorito:", erro.message);
+    }
+};
+
+document.addEventListener("DOMContentLoaded", sincronizarFavoritosDoServidor);
