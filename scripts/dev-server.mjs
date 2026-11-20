@@ -73,4 +73,4 @@ const server = http.createServer(async (req, res) => {
 });
 
 const porta = Number(process.env.PORT || 8888);
-server.listen(porta, () => console.log(`Royal Suits dev em http://localhost:${porta}`));
+server.listen(porta, "0.0.0.0", () => console.log(`Royal Suits dev em http://localhost:${porta}`));
