@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recupere o acesso à sua conta Royal Suits informando o e-mail cadastrado.">
+    <title>Recuperar Senha | Royal Suits</title>
+    <meta name="theme-color" content="#0b1f3b">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="legal.css">
+    <link rel="stylesheet" href="extras.css">
+    <style>
+        .recuperar-form{background:#fff;border:1px solid #e6dfd1;border-radius:10px;padding:30px 28px;max-width:460px}
+        .recuperar-form label{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#6b6558;margin-bottom:8px}
+        .recuperar-form input{width:100%;padding:14px 16px;border:1px solid #ddd5c5;border-radius:6px;font-family:Montserrat,Arial,sans-serif;font-size:14px;outline:none}
+        .recuperar-form input:focus{border-color:#d4af37}
+        .recuperar-form button{width:100%;margin-top:18px;padding:15px;border:0;border-radius:6px;background:#0b1f3b;color:#d4af37;font-family:Montserrat,Arial,sans-serif;font-size:12.5px;letter-spacing:1.5px;font-weight:600;cursor:pointer}
+        .recuperar-form button:hover{background:#0f4c81}
+        .recuperar-form .msg{font-size:13px;margin-top:14px;color:#2e7d4f;display:none}
+        .recuperar-form .msg.mostrar{display:block}
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header class="legal-header">
+    <a href="paginainicial.html" class="legal-logo">ROYAL <span>SUITS</span></a>
+    <a href="paginainicial.html" class="legal-voltar">← Voltar ao site</a>
+</header>
+
+<main class="legal-main">
+    <p class="etiqueta">Minha conta</p>
+    <h1>Recuperar senha</h1>
+    <p class="legal-atualizado">Informe o e-mail cadastrado e enviaremos as instruções para criar uma nova senha.</p>
+
+    <form class="recuperar-form" id="form-recuperar" novalidate>
+        <label for="email-recuperar">E-mail cadastrado</label>
+        <input type="email" id="email-recuperar" name="email" placeholder="seuemail@exemplo.com" required autocomplete="email">
+        <button type="submit">ENVIAR INSTRUÇÕES</button>
+        <p class="msg" id="msg-recuperar">Se este e-mail estiver cadastrado, você receberá as instruções em alguns minutos.</p>
+    </form>
+
+    <p style="margin-top:24px;font-size:13.5px">
+        Lembrou a senha? <a href="login.html">Voltar para o login</a><br>
+        Ainda não tem conta? <a href="criarconta.html">Criar conta</a>
+    </p>
+</main>
+
+<footer class="legal-footer">
+    <p>© 2026 Royal Suits. Todos os direitos reservados.</p>
+    <p style="margin-top:8px">
+        <a href="politica-de-privacidade.html">Privacidade</a>
+        <a href="termos-de-uso.html">Termos de Uso</a>
+        <a href="trocas-e-devolucoes.html">Trocas e Devoluções</a>
+    </p>
+</footer>
+
+<script src="extras.js"></script>
+<script>
+document.getElementById("form-recuperar").addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    var email = document.getElementById("email-recuperar").value.trim();
+    var msg = document.getElementById("msg-recuperar");
+
+    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+        if (window.rsToast) window.rsToast("Informe um e-mail válido.");
+        return;
+    }
+
+    msg.classList.add("mostrar");
+    this.reset();
+});
+</script>
+</body>
+</html>
