@@ -1,0 +1,307 @@
+/* ==========================================================
+   ROYAL SUITS - MELHORIAS GERAIS (extras.css)
+   Barra de avisos, LGPD, voltar ao topo, selos e links legais
+========================================================== */
+
+:root {
+    --rs-azul: #0b1f3b;
+    --rs-azul-claro: #0f4c81;
+    --rs-dourado: #d4af37;
+    --rs-creme: #f3efe6;
+}
+
+/* ---------- Acessibilidade: link "pular para o conteúdo" ---------- */
+.rs-skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10000;
+    background: var(--rs-azul);
+    color: #fff;
+    padding: 12px 20px;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+}
+
+.rs-skip-link:focus {
+    left: 0;
+}
+
+/* ---------- Barra de avisos no topo ---------- */
+.rs-topbar {
+    background: var(--rs-azul);
+    color: #f3efe6;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 12.5px;
+    letter-spacing: .4px;
+    text-align: center;
+    padding: 9px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    line-height: 1.4;
+}
+
+.rs-topbar span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.rs-topbar b {
+    color: var(--rs-dourado);
+    font-weight: 600;
+}
+
+.rs-topbar a {
+    color: var(--rs-dourado);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.rs-topbar a:hover {
+    border-bottom-color: var(--rs-dourado);
+}
+
+@media (max-width: 640px) {
+    .rs-topbar {
+        gap: 6px 16px;
+        font-size: 11.5px;
+        padding: 8px 12px;
+    }
+}
+
+/* ---------- Bloco legal / selos injetado no rodapé ---------- */
+.rs-footer-extra {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 34px 5% 8px;
+    font-family: Montserrat, Arial, sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 26px;
+    text-align: left;
+}
+
+.rs-footer-extra h4 {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--rs-dourado);
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.rs-footer-extra p,
+.rs-footer-extra a,
+.rs-footer-extra li {
+    font-size: 13px;
+    color: rgba(255, 255, 255, .78);
+    text-decoration: none;
+    line-height: 1.9;
+}
+
+.rs-footer-extra a:hover {
+    color: var(--rs-dourado);
+}
+
+.rs-footer-extra ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.rs-pagamentos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.rs-pagamentos span {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: #fff;
+}
+
+.rs-selo-seguro {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: #9fd8a6;
+    margin-top: 10px;
+}
+
+/* ---------- Botão voltar ao topo ---------- */
+.rs-top-btn {
+    position: fixed;
+    left: 24px;
+    bottom: 26px;
+    z-index: 9990;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--rs-dourado);
+    border-radius: 50%;
+    background: var(--rs-azul);
+    color: var(--rs-dourado);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s, visibility .25s, background .2s;
+}
+
+.rs-top-btn.rs-visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.rs-top-btn:hover {
+    background: var(--rs-azul-claro);
+}
+
+@media (max-width: 480px) {
+    .rs-top-btn {
+        left: 14px;
+        bottom: 16px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ---------- Banner de cookies (LGPD) ---------- */
+.rs-cookies {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    transform: translate(-50%, 140%);
+    width: min(760px, calc(100vw - 28px));
+    background: #fff;
+    border: 1px solid var(--rs-dourado);
+    border-radius: 12px;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, .22);
+    padding: 18px 20px;
+    z-index: 9997;
+    font-family: Montserrat, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform .35s ease;
+}
+
+.rs-cookies.rs-mostrar {
+    transform: translate(-50%, 0);
+}
+
+.rs-cookies p {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #3a3a3a;
+    margin: 0;
+    flex: 1;
+}
+
+.rs-cookies a {
+    color: var(--rs-azul-claro);
+    font-weight: 600;
+}
+
+.rs-cookies-acoes {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.rs-cookies button {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid var(--rs-azul);
+    white-space: nowrap;
+}
+
+.rs-cookies .rs-aceitar {
+    background: var(--rs-azul);
+    color: var(--rs-dourado);
+}
+
+.rs-cookies .rs-recusar {
+    background: #fff;
+    color: var(--rs-azul);
+}
+
+.rs-cookies .rs-aceitar:hover {
+    background: var(--rs-azul-claro);
+}
+
+@media (max-width: 640px) {
+    .rs-cookies {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+        bottom: 10px;
+    }
+
+    .rs-cookies-acoes {
+        justify-content: flex-end;
+    }
+}
+
+/* ---------- Aviso flutuante (toast) ---------- */
+.rs-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10001;
+    background: var(--rs-azul);
+    color: #fff;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 13.5px;
+    padding: 14px 20px;
+    border-left: 4px solid var(--rs-dourado);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    opacity: 0;
+    transform: translateY(-14px);
+    transition: opacity .25s, transform .25s;
+    max-width: calc(100vw - 40px);
+}
+
+.rs-toast.rs-visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Botão do usuário logado ---------- */
+.login-btn.rs-logado {
+    color: var(--rs-azul);
+}
+
+/* ---------- Foco visível (acessibilidade) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--rs-dourado);
+    outline-offset: 2px;
+}
