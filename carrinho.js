@@ -1,170 +1,278 @@
-/* =================================
-   CARRINHO - ROYAL SUITS
-================================= */
+/* ==========================================================
+   CARRINHO — ROYAL SUITS (carrinho.js)
+   Usa o núcleo compartilhado loja.js
+========================================================== */
 
-function obterCarrinho() {
-    try {
-        return JSON.parse(localStorage.getItem("carrinho")) || [];
-    } catch (erro) {
-        return [];
-    }
-}
+(function () {
+    "use strict";
 
-function salvarCarrinho(lista) {
-    localStorage.setItem("carrinho", JSON.stringify(lista));
-}
+    var L = window.Loja;
 
-function formatarPreco(valor) {
-    return "R$ " + Number(valor).toFixed(2).replace(".", ",");
-}
-
-function atualizarContador() {
-
-    const contador = document.getElementById("contador-carrinho");
-
-    if (!contador) return;
-
-    const total = obterCarrinho().reduce(
-        (soma, produto) => soma + (Number(produto.quantidade) || 1),
-        0
-    );
-
-    contador.textContent = total;
-}
-
-function alterarQuantidade(nome, diferenca) {
-
-    const carrinho = obterCarrinho();
-    const produto = carrinho.find(item => item.nome === nome);
-
-    if (!produto) return;
-
-    produto.quantidade = (Number(produto.quantidade) || 1) + diferenca;
-
-    if (produto.quantidade < 1) {
-        produto.quantidade = 1;
-    }
-
-    salvarCarrinho(carrinho);
-
-    renderizarCarrinho();
-}
-
-function removerProduto(nome) {
-
-    const carrinho = obterCarrinho().filter(item => item.nome !== nome);
-
-    salvarCarrinho(carrinho);
-
-    renderizarCarrinho();
-}
-
-function renderizarCarrinho() {
-
-    const lista = document.getElementById("lista-produtos");
-    const vazio = document.getElementById("carrinho-vazio");
-    const quantidade = document.getElementById("quantidade-produtos");
-    const subtotal = document.getElementById("subtotal");
-    const total = document.getElementById("total");
-    const botaoFinalizar = document.getElementById("finalizar-btn");
-
-    if (!lista) return;
-
-    const carrinho = obterCarrinho();
-
-    lista.innerHTML = "";
-
-    if (carrinho.length === 0) {
-
-        if (vazio) vazio.style.display = "block";
-        if (quantidade) quantidade.textContent = "0 itens";
-        if (subtotal) subtotal.textContent = "R$ 0,00";
-        if (total) total.textContent = "R$ 0,00";
-        if (botaoFinalizar) botaoFinalizar.disabled = true;
-
-        atualizarContador();
+    if (!L) {
+        console.error("loja.js não carregado.");
         return;
-
     }
 
-    if (vazio) vazio.style.display = "none";
+    var estado = {
+        cep: localStorage.getItem("cepEntrega") || "",
+        frete: null
+    };
 
-    let valorTotal = 0;
-    let itens = 0;
+    function el(id) { return document.getElementById(id); }
 
-    carrinho.forEach(produto => {
+    function toast(msg) {
+        if (window.rsToast) window.rsToast(msg);
+        else alert(msg);
+    }
 
-        const qtd = Number(produto.quantidade) || 1;
-        const preco = Number(produto.preco) || 0;
+    /* ======================================================
+       RENDERIZAÇÃO DOS PRODUTOS
+    ====================================================== */
 
-        valorTotal += preco * qtd;
-        itens += qtd;
+    function renderizarCarrinho() {
+        var lista = el("lista-produtos");
+        var vazio = el("carrinho-vazio");
+        var quantidade = el("quantidade-produtos");
+        var botaoFinalizar = el("finalizar-btn");
 
-        const item = document.createElement("div");
-        item.className = "item-carrinho";
+        if (!lista) return;
 
-        const imagem = produto.imagem || "imagens/ternos/terno-azul-01.png";
+        var carrinho = L.obterCarrinho();
+        lista.innerHTML = "";
 
-        item.innerHTML = `
-            <div class="item-imagem">
-                <img src="${imagem}" alt="${produto.nome}">
-            </div>
-            <div class="item-info">
-                <h3>${produto.nome}</h3>
-                <p class="item-preco">${preco > 0 ? formatarPreco(preco) : "Sob consulta"}</p>
-                <div class="quantidade">
-                    <button type="button" class="menos">−</button>
-                    <span>${qtd}</span>
-                    <button type="button" class="mais">+</button>
-                </div>
-            </div>
-            <div class="item-acoes">
-                <button type="button" class="remover">REMOVER</button>
-            </div>
-        `;
+        if (!carrinho.length) {
+            if (vazio) vazio.style.display = "block";
+            if (quantidade) quantidade.textContent = "0 itens";
+            if (botaoFinalizar) botaoFinalizar.disabled = true;
 
-        item.querySelector(".menos").addEventListener("click", function () {
-            alterarQuantidade(produto.nome, -1);
+            var opcoesVazias = el("opcoes-frete");
+            if (opcoesVazias) opcoesVazias.innerHTML = "";
+
+            atualizarTotais();
+            L.atualizarContador();
+            return;
+        }
+
+        if (vazio) vazio.style.display = "none";
+
+        carrinho.forEach(function (produto) {
+            var qtd = Number(produto.quantidade) || 1;
+            var preco = Number(produto.preco) || 0;
+
+            var item = document.createElement("div");
+            item.className = "item-carrinho";
+
+            item.innerHTML = '' +
+                '<div class="item-imagem">' +
+                    '<img src="' + L.escaparHtml(produto.imagem || "imagens/ternos/terno-azul-01.png") + '" alt="' + L.escaparHtml(produto.nome) + '">' +
+                '</div>' +
+                '<div class="item-info">' +
+                    '<h3>' + L.escaparHtml(produto.nome) + '</h3>' +
+                    '<p class="item-preco">' + (preco > 0 ? L.formatarPreco(preco) : "Sob consulta") + '</p>' +
+                    '<div class="quantidade">' +
+                        '<button type="button" class="menos" aria-label="Diminuir quantidade">−</button>' +
+                        '<span>' + qtd + '</span>' +
+                        '<button type="button" class="mais" aria-label="Aumentar quantidade">+</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="item-acoes">' +
+                    '<button type="button" class="remover">REMOVER</button>' +
+                '</div>';
+
+            item.querySelector(".menos").addEventListener("click", function () {
+                L.alterarQuantidade(produto.nome, -1);
+                renderizarCarrinho();
+            });
+
+            item.querySelector(".mais").addEventListener("click", function () {
+                L.alterarQuantidade(produto.nome, 1);
+                renderizarCarrinho();
+            });
+
+            item.querySelector(".remover").addEventListener("click", function () {
+                L.removerDoCarrinho(produto.nome);
+                renderizarCarrinho();
+                toast(produto.nome + " removido do carrinho.");
+            });
+
+            lista.appendChild(item);
         });
 
-        item.querySelector(".mais").addEventListener("click", function () {
-            alterarQuantidade(produto.nome, 1);
+        var itens = L.totalItens();
+        if (quantidade) quantidade.textContent = itens + (itens === 1 ? " item" : " itens");
+        if (botaoFinalizar) botaoFinalizar.disabled = false;
+
+        atualizarTotais();
+        L.atualizarContador();
+    }
+
+    /* ======================================================
+       TOTAIS
+    ====================================================== */
+
+    function atualizarTotais() {
+        var subtotal = L.subtotalCarrinho();
+        var frete = estado.frete ? Number(estado.frete.preco) : 0;
+        var total = subtotal + frete;
+
+        var campSubtotal = el("subtotal");
+        var campFrete = el("frete");
+        var campTotal = el("total");
+
+        if (campSubtotal) campSubtotal.textContent = L.formatarPreco(subtotal);
+
+        if (campFrete) {
+            if (!estado.frete) campFrete.textContent = "A calcular";
+            else if (frete === 0) campFrete.textContent = "Grátis";
+            else campFrete.textContent = L.formatarPreco(frete);
+        }
+
+        if (campTotal) campTotal.textContent = L.formatarPreco(total);
+
+        // Se o subtotal mudou, o frete grátis pode ter mudado
+        if (estado.frete && estado.cep) {
+            var opcoes = L.calcularFrete(estado.cep, subtotal);
+            var mesmaOpcao = opcoes.filter(function (o) { return o.id === estado.frete.id; })[0];
+            if (mesmaOpcao && mesmaOpcao.preco !== estado.frete.preco) {
+                estado.frete = mesmaOpcao;
+                renderizarOpcoesFrete(opcoes);
+                if (campFrete) campFrete.textContent = mesmaOpcao.preco > 0 ? L.formatarPreco(mesmaOpcao.preco) : "Grátis";
+                if (campTotal) campTotal.textContent = L.formatarPreco(subtotal + mesmaOpcao.preco);
+            }
+        }
+    }
+
+    /* ======================================================
+       FRETE
+    ====================================================== */
+
+    function renderizarOpcoesFrete(opcoes) {
+        var container = el("opcoes-frete");
+        if (!container) return;
+
+        container.innerHTML = opcoes.map(function (opcao) {
+            var selecionado = estado.frete && estado.frete.id === opcao.id;
+            var precoTexto = opcao.preco > 0 ? L.formatarPreco(opcao.preco) : "Grátis";
+            var prazo = opcao.id === "retirada"
+                ? "1 a 2 dias úteis"
+                : opcao.prazoMin + " a " + opcao.prazoMax + " dias úteis";
+
+            return '' +
+                '<label class="opcao-frete' + (selecionado ? " selecionada" : "") + '" data-id="' + opcao.id + '">' +
+                    '<input type="radio" name="frete-carrinho" value="' + opcao.id + '"' + (selecionado ? " checked" : "") + '>' +
+                    '<span class="opcao-frete-nome">' + opcao.nome + '<small>' + prazo + '</small></span>' +
+                    '<strong class="' + (opcao.preco === 0 ? "gratis" : "") + '">' + precoTexto + '</strong>' +
+                '</label>';
+        }).join("");
+
+        L.$$(".opcao-frete", container).forEach(function (rotulo) {
+            rotulo.addEventListener("click", function () {
+                var id = rotulo.dataset.id;
+                var opcao = opcoes.filter(function (o) { return o.id === id; })[0];
+                if (!opcao) return;
+
+                L.$$(".opcao-frete", container).forEach(function (r) { r.classList.remove("selecionada"); });
+                rotulo.classList.add("selecionada");
+                rotulo.querySelector("input").checked = true;
+
+                estado.frete = opcao;
+                salvarEstadoFrete();
+                atualizarTotais();
+            });
         });
+    }
 
-        item.querySelector(".remover").addEventListener("click", function () {
-            removerProduto(produto.nome);
-        });
+    function salvarEstadoFrete() {
+        try {
+            localStorage.setItem("cepEntrega", estado.cep);
+            localStorage.setItem("freteSelecionado", JSON.stringify(estado.frete));
+        } catch (e) {}
+    }
 
-        lista.appendChild(item);
+    function calcularFrete() {
+        var input = el("cep-frete");
+        var botao = el("btn-calcular-frete");
+        var cep = input.value;
 
+        if (!L.validarCEP(cep)) {
+            toast("Digite um CEP válido com 8 números.");
+            input.focus();
+            return;
+        }
+
+        botao.disabled = true;
+        botao.textContent = "…";
+
+        estado.cep = L.apenasNumeros(cep);
+
+        var opcoes = L.calcularFrete(estado.cep, L.subtotalCarrinho());
+        estado.frete = opcoes[0];
+        renderizarOpcoesFrete(opcoes);
+        salvarEstadoFrete();
+        atualizarTotais();
+
+        botao.disabled = false;
+        botao.textContent = "CALCULAR";
+
+        L.buscarCEP(estado.cep)
+            .then(function (endereco) {
+                toast("Frete para " + endereco.cidade + "/" + endereco.uf + " calculado.");
+            })
+            .catch(function () {
+                toast("Frete calculado pela região do CEP.");
+            });
+    }
+
+    /* ======================================================
+       INICIALIZAÇÃO
+    ====================================================== */
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        renderizarCarrinho();
+
+        var inputCep = el("cep-frete");
+        var botao = el("btn-calcular-frete");
+
+        if (inputCep) {
+            L.aplicarMascara(inputCep, "cep");
+
+            if (estado.cep) {
+                inputCep.value = L.formatarCEP(estado.cep);
+                var opcoes = L.calcularFrete(estado.cep, L.subtotalCarrinho());
+                var salvo = null;
+                try {
+                    salvo = JSON.parse(localStorage.getItem("freteSelecionado"));
+                } catch (e) {}
+
+                estado.frete = (salvo && opcoes.filter(function (o) { return o.id === salvo.id; })[0]) || opcoes[0];
+                renderizarOpcoesFrete(opcoes);
+                atualizarTotais();
+            }
+
+            inputCep.addEventListener("keydown", function (evento) {
+                if (evento.key === "Enter") {
+                    evento.preventDefault();
+                    calcularFrete();
+                }
+            });
+        }
+
+        if (botao) botao.addEventListener("click", calcularFrete);
+
+        var botaoFinalizar = el("finalizar-btn");
+
+        if (botaoFinalizar) {
+            botaoFinalizar.addEventListener("click", function () {
+                if (!L.obterCarrinho().length) return;
+
+                if (estado.cep) salvarEstadoFrete();
+
+                window.location.href = "checkout.html";
+            });
+        }
+
+        document.addEventListener("carrinhoAtualizado", atualizarTotais);
     });
 
-    if (quantidade) quantidade.textContent = itens + (itens === 1 ? " item" : " itens");
-    if (subtotal) subtotal.textContent = formatarPreco(valorTotal);
-    if (total) total.textContent = formatarPreco(valorTotal);
-    if (botaoFinalizar) botaoFinalizar.disabled = false;
-
-    atualizarContador();
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    renderizarCarrinho();
-
-    const botaoFinalizar = document.getElementById("finalizar-btn");
-
-    if (botaoFinalizar) {
-
-        botaoFinalizar.addEventListener("click", function () {
-
-            alert("Pedido finalizado! Entraremos em contato para combinar os detalhes.");
-
-            salvarCarrinho([]);
-
-            renderizarCarrinho();
-
-        });
-
-    }
-
-});
+})();

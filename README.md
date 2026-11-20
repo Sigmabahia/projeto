@@ -9,7 +9,9 @@ Loja virtual de trajes e vestidos de gala para formaturas, casamentos e eventos 
 | `paginainicial.html` | Página inicial com carrossel, categorias, modelos e newsletter |
 | `formaturas.html` | Coleção de formaturas |
 | `casamentos.html` | Coleção de casamentos |
-| `carrinho.html` | Carrinho de compras |
+| `carrinho.html` | Carrinho de compras com calculadora de frete |
+| `checkout.html` | Checkout em 3 etapas |
+| `meus-pedidos.html` | Histórico de pedidos |
 | `favoritos.html` | Lista de favoritos |
 | `login.html` / `criarconta.html` / `recuperar-senha.html` | Área do cliente |
 | `contato.html` | Contato e dúvidas frequentes |
@@ -37,3 +39,71 @@ Depois acesse `http://localhost:8080/paginainicial.html`.
 
 Os dados de contato (WhatsApp, e-mail, telefone, CNPJ) ficam no topo do arquivo `extras.js`,
 no objeto `CONFIG`. Atualize-os com as informações reais antes de publicar.
+
+---
+
+## Loja completa: frete, pagamento e checkout
+
+Esta branch (`melhorias-loja-checkout`) adiciona o fluxo de compra ponta a ponta.
+
+### Novas páginas
+
+| Arquivo | Descrição |
+| --- | --- |
+| `checkout.html` | Checkout em 3 etapas (dados → entrega → pagamento) com resumo lateral fixo |
+| `meus-pedidos.html` | Histórico de pedidos salvos no navegador, com PIX, recompra e WhatsApp |
+
+### Núcleo compartilhado — `loja.js`
+
+Todo o comércio eletrônico vive em `window.Loja`, usado por `carrinho.js`, `checkout.js` e `meus-pedidos.js`:
+
+- **Carrinho** — `adicionarAoCarrinho`, `alterarQuantidade`, `removerDoCarrinho`, `subtotalCarrinho` (persistido em `localStorage`).
+- **Frete** — `calcularFrete(cep, subtotal)` devolve PAC, SEDEX e Retirada com preço e prazo em dias úteis.
+- **Endereço** — `buscarCEP(cep)` consulta a API pública **ViaCEP** e devolve rua, bairro, cidade e UF.
+- **Validações** — CPF/CNPJ (dígito verificador), cartão de crédito (Luhn), bandeira, validade, e-mail, telefone e CEP.
+- **PIX** — `gerarPixCopiaECola(valor)` monta o BR Code EMV oficial (CRC16-CCITT), pronto para leitura de qualquer banco.
+- **Parcelas** — `calcularParcelas(total)` aplica 3x sem juros e 2,49% a.m. nas demais.
+- **Pedidos** — `salvarPedido` / `obterPedidos` (máx. 50 pedidos por navegador).
+
+### Como o frete é calculado
+
+A tabela fica em `Loja.CONFIG.frete.regioes`, indexada pelo **primeiro dígito do CEP** (0 a 9).
+Cada região define preço e prazo de PAC e SEDEX. O prazo é somado em **dias úteis** a partir da data do pedido.
+Frete grátis para compras acima de `Loja.CONFIG.frete.gratisAcimaDe` (R$ 500) e retirada na loja sempre gratuita.
+Ajuste os valores conforme a sua tabela real de transportadora.
+
+### Como configurar o pagamento de verdade
+
+Abra `loja.js` e edite `CONFIG.pagamento`:
+
+```js
+pagamento: {
+  pixChave: "sua-chave-pix@seudominio.com.br", // chave real da loja (e-mail, CNPJ, telefone ou aleatória)
+  pixNome: "ROYAL SUITS",                       // nome do recebedor (máx. 25 caracteres)
+  pixCidade: "SAO PAULO",                       // cidade do recebedor
+  gatewayUrl: "",                               // URL do seu backend/gateway (Mercado Pago, Pagar.me, Asaas...)
+  parcelasSemJuros: 3,
+  jurosMes: 2.49,
+  descontoPix: 5                                // % de desconto no PIX
+}
+```
+
+- **PIX** — já funciona sem backend. Com a `pixChave` real, o QR Code e o "copia e cola" são pagáveis em qualquer app de banco.
+- **Cartão e boleto** — o site valida os dados e monta o pedido, mas a cobrança precisa de um gateway.
+  Preencha `gatewayUrl` com um endpoint que receba `POST` JSON e responda `{ "url": "https://..." }`.
+  O checkout redireciona o cliente para essa URL automaticamente. Sem gateway, o pedido é registrado como "aguardando pagamento".
+- **Nunca** coloque chaves secretas (`access_token`, `client_secret`) no front-end — elas devem ficar no seu servidor.
+
+### Publicar o site
+
+O site é 100% estático, então roda em qualquer hospedagem:
+
+- **Netlify / Vercel / Cloudflare Pages** — arraste a pasta do projeto; use `paginainicial.html` como página inicial ou renomeie/crie um `index.html`.
+- **GitHub Pages** — ative em *Settings → Pages* apontando para a branch publicada.
+- **Hospedagem tradicional (cPanel)** — envie os arquivos por FTP para `public_html`.
+
+### Recursos extras incluídos
+
+Busca de produtos no cabeçalho (com `Ctrl + K`), botão flutuante de WhatsApp, animações de entrada,
+cabeçalho fixo ao rolar, dados estruturados JSON-LD (`ClothingStore`), máscaras de formulário,
+estados de carregamento, breadcrumbs, página 404, `robots.txt` e `sitemap.xml`.

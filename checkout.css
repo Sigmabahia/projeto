@@ -1,0 +1,1045 @@
+/* ==========================================================
+   ROYAL SUITS — CHECKOUT (checkout.css)
+========================================================== */
+
+:root {
+    --azul: #0b1f3b;
+    --azul-claro: #0f4c81;
+    --dourado: #d4af37;
+    --creme: #f3efe6;
+    --branco: #ffffff;
+    --linha: #e3dbc9;
+    --texto-suave: #6b7280;
+    --verde: #1f7a4d;
+    --vermelho: #b3261e;
+    --sombra: 0 10px 30px rgba(11, 31, 59, .07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--creme);
+    color: var(--azul);
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+/* ==========================================================
+   CABEÇALHO
+========================================================== */
+
+.ck-header {
+    background: var(--branco);
+    border-bottom: 1px solid var(--linha);
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.ck-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.ck-logo span {
+    color: var(--dourado);
+}
+
+.ck-logo small {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--azul-claro);
+    font-weight: 500;
+}
+
+.ck-seguro {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    letter-spacing: .5px;
+    color: var(--texto-suave);
+}
+
+.ck-seguro b {
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.ck-voltar {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--azul-claro);
+    border-bottom: 1px solid transparent;
+    transition: .2s;
+}
+
+.ck-voltar:hover {
+    border-color: var(--dourado);
+    color: var(--azul);
+}
+
+/* ==========================================================
+   ETAPAS (STEPPER)
+========================================================== */
+
+.ck-stepper {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 34px 5% 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    counter-reset: etapa;
+}
+
+.ck-etapa {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    position: relative;
+    text-align: center;
+}
+
+.ck-etapa:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background: var(--linha);
+    z-index: 0;
+}
+
+.ck-etapa.concluida:not(:last-child)::after {
+    background: var(--dourado);
+}
+
+.ck-etapa-numero {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid var(--linha);
+    background: var(--branco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    position: relative;
+    z-index: 1;
+    transition: .25s;
+}
+
+.ck-etapa.ativa .ck-etapa-numero {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: var(--creme);
+}
+
+.ck-etapa.concluida .ck-etapa-numero {
+    background: var(--dourado);
+    border-color: var(--dourado);
+    color: var(--azul);
+}
+
+.ck-etapa-nome {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+}
+
+.ck-etapa.ativa .ck-etapa-nome,
+.ck-etapa.concluida .ck-etapa-nome {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+/* ==========================================================
+   ESTRUTURA
+========================================================== */
+
+.ck-main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 5% 70px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 370px;
+    gap: 34px;
+    align-items: start;
+}
+
+.ck-card {
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    padding: 32px;
+    box-shadow: var(--sombra);
+}
+
+.ck-card + .ck-card {
+    margin-top: 20px;
+}
+
+.ck-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.ck-card .ck-sub {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.ck-painel {
+    display: none;
+}
+
+.ck-painel.ativo {
+    display: block;
+    animation: ckEntrada .28s ease;
+}
+
+@keyframes ckEntrada {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================
+   FORMULÁRIOS
+========================================================== */
+
+.ck-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.ck-linha.tres {
+    grid-template-columns: 2fr 1fr 1fr;
+}
+
+.ck-linha.uma {
+    grid-template-columns: 1fr;
+}
+
+.ck-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+}
+
+.ck-campo label {
+    font-size: 9.5px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+    font-weight: 600;
+}
+
+.ck-campo label .obrig {
+    color: var(--dourado);
+}
+
+.ck-campo input,
+.ck-campo select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--linha);
+    background: #fdfcf9;
+    font-size: 13px;
+    color: var(--azul);
+    outline: none;
+    transition: border-color .2s, background .2s;
+    border-radius: 2px;
+}
+
+.ck-campo input:focus,
+.ck-campo select:focus {
+    border-color: var(--dourado);
+    background: var(--branco);
+}
+
+.ck-campo input::placeholder {
+    color: #a9a49a;
+}
+
+.ck-campo input:disabled {
+    background: #f2eee5;
+    color: #7d7a72;
+}
+
+.ck-campo.erro input,
+.ck-campo.erro select {
+    border-color: var(--vermelho);
+    background: #fdf4f3;
+}
+
+.ck-erro {
+    font-size: 10.5px;
+    color: var(--vermelho);
+    display: none;
+}
+
+.ck-campo.erro .ck-erro {
+    display: block;
+}
+
+.ck-dica {
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    line-height: 1.5;
+}
+
+/* CEP com botão */
+.ck-cep-grupo {
+    display: flex;
+    gap: 8px;
+}
+
+.ck-cep-grupo input {
+    flex: 1;
+}
+
+.ck-btn-cep {
+    border: 1px solid var(--azul);
+    background: var(--azul);
+    color: var(--creme);
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    padding: 0 18px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: .2s;
+    border-radius: 2px;
+}
+
+.ck-btn-cep:hover {
+    background: var(--dourado);
+    border-color: var(--dourado);
+    color: var(--azul);
+}
+
+.ck-btn-cep:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+/* ==========================================================
+   FRETE
+========================================================== */
+
+.ck-fretes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.ck-frete {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid var(--linha);
+    padding: 15px 16px;
+    cursor: pointer;
+    transition: .2s;
+    background: #fdfcf9;
+    border-radius: 2px;
+}
+
+.ck-frete:hover {
+    border-color: var(--dourado);
+}
+
+.ck-frete.selecionado {
+    border-color: var(--azul);
+    background: #fff;
+    box-shadow: inset 3px 0 0 var(--dourado);
+}
+
+.ck-frete input {
+    accent-color: var(--azul);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.ck-frete-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ck-frete-info strong {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.ck-frete-info small {
+    display: block;
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    margin-top: 3px;
+    line-height: 1.5;
+}
+
+.ck-frete-preco {
+    font-size: 12.5px;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.ck-frete-preco.gratis {
+    color: var(--verde);
+}
+
+.ck-aviso {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #fbf6e7;
+    border-left: 3px solid var(--dourado);
+    font-size: 11.5px;
+    line-height: 1.6;
+    color: #5b4d20;
+}
+
+.ck-aviso.erro {
+    background: #fdf4f3;
+    border-left-color: var(--vermelho);
+    color: #7a201b;
+}
+
+/* ==========================================================
+   PAGAMENTO
+========================================================== */
+
+.ck-pag-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.ck-pag-tab {
+    border: 1px solid var(--linha);
+    background: #fdfcf9;
+    padding: 16px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: .2s;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.ck-pag-tab span.icone {
+    font-size: 19px;
+    line-height: 1;
+}
+
+.ck-pag-tab span.nome {
+    font-size: 10px;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.ck-pag-tab small {
+    font-size: 9.5px;
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.ck-pag-tab:hover {
+    border-color: var(--dourado);
+}
+
+.ck-pag-tab.ativo {
+    border-color: var(--azul);
+    background: var(--branco);
+    box-shadow: inset 0 -3px 0 var(--dourado);
+}
+
+.ck-pag-conteudo {
+    display: none;
+}
+
+.ck-pag-conteudo.ativo {
+    display: block;
+    animation: ckEntrada .25s ease;
+}
+
+/* PIX */
+.ck-pix {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+}
+
+.ck-pix-qr {
+    width: 190px;
+    height: 190px;
+    border: 1px solid var(--linha);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.ck-pix-qr img,
+.ck-pix-qr canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.ck-pix-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.ck-pix-info p {
+    font-size: 11.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.ck-pix-codigo {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.ck-pix-codigo input {
+    flex: 1;
+    min-width: 0;
+    font-size: 10.5px;
+    padding: 11px 12px;
+    border: 1px dashed var(--linha);
+    background: #fdfcf9;
+    color: #555;
+}
+
+.ck-btn-copiar {
+    border: 1px solid var(--azul);
+    background: transparent;
+    color: var(--azul);
+    font-size: 9.5px;
+    letter-spacing: 1px;
+    padding: 0 16px;
+    cursor: pointer;
+    transition: .2s;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.ck-btn-copiar:hover {
+    background: var(--azul);
+    color: var(--creme);
+}
+
+/* Cartão */
+.ck-cartao-visual {
+    background: linear-gradient(135deg, #0b1f3b, #0f4c81);
+    color: var(--creme);
+    padding: 20px 22px;
+    border-radius: 8px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 118px;
+    box-shadow: 0 8px 24px rgba(11, 31, 59, .22);
+}
+
+.ck-cartao-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.ck-cartao-numero {
+    font-size: 16px;
+    letter-spacing: 2.5px;
+    font-family: 'Courier New', monospace;
+}
+
+.ck-cartao-rodape {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.ck-bandeira {
+    color: var(--dourado);
+    font-weight: 600;
+}
+
+/* Boleto */
+.ck-boleto {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 4px 0;
+}
+
+.ck-boleto-icone {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.ck-boleto h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.ck-boleto p {
+    font-size: 11.5px;
+    color: var(--texto-suave);
+    line-height: 1.7;
+}
+
+/* ==========================================================
+   RESUMO
+========================================================== */
+
+.ck-resumo {
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 100px;
+}
+
+.ck-resumo-topo {
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--linha);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.ck-resumo-topo h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.ck-resumo-topo span {
+    font-size: 10.5px;
+    color: var(--texto-suave);
+}
+
+.ck-resumo-itens {
+    padding: 18px 24px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ck-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.ck-item-img {
+    width: 52px;
+    height: 66px;
+    background: var(--creme);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ck-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ck-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ck-item-info strong {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.ck-item-info small {
+    font-size: 10px;
+    color: var(--texto-suave);
+}
+
+.ck-item-preco {
+    font-size: 11.5px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ck-resumo-totais {
+    padding: 18px 24px 22px;
+    border-top: 1px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.ck-total-linha {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+    color: var(--texto-suave);
+}
+
+.ck-total-linha strong {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.ck-total-linha.desconto strong {
+    color: var(--verde);
+}
+
+.ck-total-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 14px;
+    margin-top: 4px;
+    border-top: 1px solid var(--linha);
+}
+
+.ck-total-final span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+}
+
+.ck-total-final strong {
+    font-size: 22px;
+    color: var(--dourado);
+    font-weight: 700;
+}
+
+.ck-parcelas {
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    text-align: right;
+    margin-top: -4px;
+}
+
+.ck-selos {
+    padding: 0 24px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.ck-selo {
+    font-size: 8.5px;
+    letter-spacing: .6px;
+    border: 1px solid var(--linha);
+    padding: 5px 8px;
+    color: #6b7280;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+/* ==========================================================
+   BOTÕES
+========================================================== */
+
+.ck-acoes {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ck-btn {
+    border: none;
+    background: var(--azul);
+    color: var(--creme);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 17px 30px;
+    cursor: pointer;
+    transition: .25s;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.ck-btn:hover {
+    background: var(--dourado);
+    color: var(--azul);
+}
+
+.ck-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.ck-btn.secundario {
+    background: transparent;
+    color: var(--azul-claro);
+    border: 1px solid var(--linha);
+    padding: 16px 24px;
+}
+
+.ck-btn.secundario:hover {
+    border-color: var(--azul);
+    background: transparent;
+    color: var(--azul);
+}
+
+.ck-btn.bloco {
+    width: 100%;
+    text-align: center;
+}
+
+.ck-btn.grande {
+    padding: 19px 30px;
+    font-size: 10.5px;
+}
+
+.ck-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.ck-btn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    margin: -7.5px 0 0 -7.5px;
+    border: 2px solid rgba(243, 239, 230, .35);
+    border-top-color: var(--creme);
+    border-radius: 50%;
+    animation: girar .7s linear infinite;
+}
+
+@keyframes girar {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================================
+   CONFIRMAÇÃO
+========================================================== */
+
+.ck-confirmacao {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 50px 5% 80px;
+    text-align: center;
+}
+
+.ck-confirmacao .icone {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: #fff;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px;
+}
+
+.ck-confirmacao h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.ck-confirmacao .pedido-num {
+    display: inline-block;
+    background: var(--branco);
+    border: 1px dashed var(--dourado);
+    padding: 9px 18px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+}
+
+.ck-confirmacao p {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--texto-suave);
+    margin-bottom: 14px;
+}
+
+.ck-confirmacao .ck-card {
+    text-align: left;
+    margin-top: 26px;
+}
+
+.ck-confirmacao .ck-acoes {
+    justify-content: center;
+}
+
+.ck-pix-box {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.ck-pix-box .ck-pix-qr {
+    margin: 0 auto 16px;
+}
+
+/* ==========================================================
+   RODAPÉ
+========================================================== */
+
+.ck-footer {
+    border-top: 1px solid var(--linha);
+    padding: 26px 5%;
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--texto-suave);
+    line-height: 1.8;
+    background: var(--branco);
+}
+
+.ck-footer a {
+    color: var(--azul-claro);
+    border-bottom: 1px solid transparent;
+}
+
+.ck-footer a:hover {
+    border-color: var(--dourado);
+}
+
+/* ==========================================================
+   RESPONSIVO
+========================================================== */
+
+@media (max-width: 980px) {
+    .ck-main {
+        grid-template-columns: 1fr;
+    }
+
+    .ck-resumo {
+        position: static;
+        order: -1;
+    }
+
+    .ck-resumo-itens {
+        max-height: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .ck-card {
+        padding: 24px 20px;
+    }
+
+    .ck-linha,
+    .ck-linha.tres {
+        grid-template-columns: 1fr;
+    }
+
+    .ck-pix {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .ck-pix-codigo {
+        flex-direction: column;
+    }
+
+    .ck-btn-copiar {
+        padding: 12px;
+    }
+
+    .ck-pag-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .ck-pag-tab {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 14px 16px;
+        text-align: left;
+    }
+
+    .ck-etapa-nome {
+        font-size: 8.5px;
+        letter-spacing: .8px;
+    }
+
+    .ck-stepper {
+        padding-top: 22px;
+    }
+
+    .ck-acoes .ck-btn {
+        width: 100%;
+    }
+
+    .ck-seguro {
+        display: none;
+    }
+}
