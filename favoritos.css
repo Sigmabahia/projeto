@@ -39,6 +39,10 @@ body {
     letter-spacing: 4px;
 }
 
+.logo a span {
+    color: #d4af37;
+}
+
 .logo small {
     font-size: 9px;
     letter-spacing: 2px;
