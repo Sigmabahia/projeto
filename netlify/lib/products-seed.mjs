@@ -411,50 +411,6 @@ export const PRODUTOS_SEED = [
       "52",
       "54"
     ]
-  },
-  {
-    "nome": "Elegance Collection",
-    "slug": "elegance-collection",
-    "descricao": "Um modelo sofisticado desenvolvido para ocasiões em que cada detalhe faz diferença.",
-    "preco": 1099,
-    "precoSobConsulta": false,
-    "imagem": "https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg",
-    "colecao": "formaturas",
-    "tipo": "terno",
-    "publico": "masculino",
-    "categoria": "terno",
-    "destaque": false,
-    "novidade": true,
-    "ativo": true,
-    "estoque": 10,
-    "tamanhos": [
-      "46",
-      "48",
-      "50",
-      "52",
-      "54"
-    ]
-  },
-  {
-    "nome": "Maison Classic",
-    "slug": "maison-classic",
-    "descricao": "Design clássico e sofisticado para quem procura elegância sem abrir mão da personalidade.",
-    "preco": 949,
-    "precoSobConsulta": false,
-    "imagem": "https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg",
-    "colecao": "formaturas",
-    "tipo": "vestido",
-    "publico": "feminino",
-    "categoria": "vestido",
-    "destaque": false,
-    "novidade": false,
-    "ativo": true,
-    "estoque": 10,
-    "tamanhos": [
-      "P",
-      "M",
-      "G",
-      "GG"
-    ]
   }
+
 ];

@@ -47,7 +47,7 @@ let r = await call("GET", "/health");
 check("GET /health", r.status === 200 && r.data.ok);
 
 r = await call("GET", "/products");
-check("GET /products retorna seed", r.status === 200 && r.data.produtos.length >= 20, `(${r.data.produtos?.length})`);
+check("GET /products retorna seed", r.status === 200 && r.data.produtos.length >= 18, `(${r.data.produtos?.length})`);
 const produto = r.data.produtos.find((p) => p.preco > 0);
 check("Produto com preço encontrado", Boolean(produto), JSON.stringify(r.data.produtos?.[0]));
 

@@ -2,29 +2,70 @@
   publish = "."
   functions = "netlify/functions"
 
+[build.environment]
+  # Netlify Blobs (v8) exige Node 18+. Fixar a versão evita surpresa de runtime.
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--no-audit --no-fund"
+
 [functions]
   node_bundler = "esbuild"
 
 # ---------------------------------------------------------------
 # API: /api/* -> Netlify Function única (router)
+# A rota pública é declarada em netlify/functions/api.mjs (config.path).
 # ---------------------------------------------------------------
-[[redirects]]
-  from = "/api"
-  to = "/.netlify/functions/api"
-  status = 200
-  force = true
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-  force = true
-
-# Não expõe o código-fonte das funções publicamente
+# ---------------------------------------------------------------
+# Bloqueia arquivos de código-fonte e configuração que ficariam
+# públicos porque o publish é a raiz do repositório.
+# ---------------------------------------------------------------
 [[redirects]]
   from = "/netlify/*"
   to = "/404.html"
   status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/package-lock.json"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.env*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/DEPLOY.md"
+  to = "/404.html"
+  status = 404
+  force = true
 
 # ---------------------------------------------------------------
 # Cabeçalhos de segurança
@@ -44,3 +85,25 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Headers = "Content-Type, Authorization, X-Session-Id"
     Access-Control-Allow-Methods = "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+
+# HTML sempre revalidado, para o cliente ver a versão nova a cada deploy
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Estáticos com cache longo
+[[headers]]
+  for = "/imagens/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "netlify dev",
     "seed": "node scripts/seed-local.mjs",
-    "test": "node scripts/test-api.mjs"
+    "test": "node scripts/test-api.mjs",
+    "verificar": "node scripts/verificar-deploy.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "^8.1.0"

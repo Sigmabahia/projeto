@@ -12,6 +12,16 @@ import { get, put, setIndex, getIndex } from "./db.mjs";
 const SECRET = process.env.JWT_SECRET || "royal-suits-dev-secret-mude-em-producao";
 const TOKEN_TTL_DAYS = 7;
 
+/* Em produção, um JWT_SECRET ausente permitiria forjar tokens de admin.
+   Não derrubamos a API (o site continua navegável), mas avisamos alto
+   no log da função para o problema aparecer no painel da Netlify. */
+if (!process.env.JWT_SECRET && process.env.NETLIFY) {
+  console.error(
+    "[auth] JWT_SECRET não configurado. Defina a variável em " +
+      "Site configuration > Environment variables e faça um novo deploy."
+  );
+}
+
 /* ------------------------- SENHAS ------------------------- */
 
 export function hashPassword(password) {
