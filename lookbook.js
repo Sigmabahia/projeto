@@ -1,5 +1,5 @@
 /* ==========================================================
-   ROYAL SUITS — TRY THE LOOK (lookbook.js)
+   ROYAL SUITS — CARROSSEL DE LOOKS (lookbook.js)
    Carrossel de looks embutido em ternos.html e vestidos.html.
    Os dados de cada peça vêm dos data-attributes do <article>.
 ========================================================== */
@@ -54,7 +54,7 @@
         if (!raw) return [];
         return raw.split(",").map(function (item) {
             var parts = item.split(":");
-            return [parts[0].trim(), (parts[1] || "#cccccc").trim()];
+            return [parts[0].trim(), (parts[1] || "#d4af37").trim()];
         });
     }
 
@@ -64,9 +64,9 @@
         return {
             category: d.category || "ROYAL SUITS / LOOK",
             model: d.model || "Royal Suits",
-            material: d.material || "A informar",
-            composition: d.composition || "A informar",
-            fit: d.fit || "A informar",
+            material: d.material || "Tecido premium",
+            composition: d.composition || "Detalhes com a equipe Royal Suits.",
+            fit: d.fit || "Modelagem clássica",
             features: d.features || "Consulte a equipe Royal Suits para mais detalhes.",
             care: d.care || "Siga as instruções da etiqueta.",
             sizes: (d.sizes || "PP,P,M,G,GG").split(",").map(function (s) { return s.trim(); }),

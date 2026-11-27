@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
-  :root{--navy:#0b1f3b;--gold:#d4af37;--bege:#f7f4ec;--cinza:#6b6b6b;--borda:#e5dfd1}
+  :root{--navy:#0b1f3b;--gold:#d4af37;--bege:#f3efe6;--cinza:#0f4c81;--borda:#f3efe6}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bege);color:var(--navy);min-height:100vh}
   header{background:var(--navy);color:#fff;padding:18px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -37,13 +37,13 @@
   .tab.ativo{background:var(--navy);color:#fff;border-color:var(--navy)}
   table{width:100%;border-collapse:collapse;font-size:13px}
   th{text-align:left;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);border-bottom:1px solid var(--borda);padding:10px 8px}
-  td{padding:12px 8px;border-bottom:1px solid #f1ece0;vertical-align:top}
-  tr:hover td{background:#fbf9f3}
-  .pill{display:inline-block;padding:4px 9px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:#eef2f8;color:var(--navy);border-radius:2px}
-  .pill.pago{background:#e6f4ea;color:#1a7a3c}
-  .pill.cancel{background:#fdecea;color:#b3261e}
+  td{padding:12px 8px;border-bottom:1px solid #f3efe6;vertical-align:top}
+  tr:hover td{background:#f3efe6}
+  .pill{display:inline-block;padding:4px 9px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:#f3efe6;color:var(--navy);border-radius:2px}
+  .pill.pago{background:#f3efe6;color:#0f4c81}
+  .pill.cancel{background:#f3efe6;color:#0b1f3b}
   .msg{font-size:12px;color:var(--cinza);margin-top:6px}
-  .erro{color:#b3261e;font-size:13px;margin-top:10px}
+  .erro{color:#0b1f3b;font-size:13px;margin-top:10px}
   .vazio{font-size:13px;color:var(--cinza);padding:18px 0}
   .linha{display:flex;gap:10px;flex-wrap:wrap}
   .linha>*{flex:1 1 160px}
@@ -274,7 +274,7 @@
       return;
     }
     lista.innerHTML = dados.mensagens.map(function (m) {
-      return '<div style="border-bottom:1px solid #f1ece0;padding:14px 0">' +
+      return '<div style="border-bottom:1px solid #f3efe6;padding:14px 0">' +
         "<strong>" + esc(m.nome) + "</strong> · <span class=\"msg\">" + esc(m.email) + " " + esc(m.telefone || "") + "</span>" +
         '<div class="msg">' + data(m.createdAt) + " · " + esc(m.assunto) + "</div>" +
         "<p style=\"margin-top:8px;font-size:13px;line-height:1.6\">" + esc(m.mensagem) + "</p>" +
