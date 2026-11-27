@@ -918,7 +918,7 @@ footer {
 .calculo-frete {
     margin-bottom: 22px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #e3dbc9;
+    border-bottom: 1px solid #f3efe6;
 }
 
 .calculo-frete > label {
@@ -940,8 +940,8 @@ footer {
     flex: 1;
     min-width: 0;
     padding: 12px 13px;
-    border: 1px solid #e3dbc9;
-    background: #fdfcf9;
+    border: 1px solid #f3efe6;
+    background: #fff;
     font-size: 12px;
     color: #0b1f3b;
     outline: none;
@@ -983,7 +983,7 @@ footer {
     margin-top: 8px;
     font-size: 9.5px;
     color: #0f4c81;
-    border-bottom: 1px dotted #b9b2a2;
+    border-bottom: 1px dotted #d4af37;
 }
 
 .calculo-frete-ajuda:hover {
@@ -1002,8 +1002,8 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #e3dbc9;
-    background: #fdfcf9;
+    border: 1px solid #f3efe6;
+    background: #fff;
     padding: 11px 12px;
     cursor: pointer;
     transition: .2s;
@@ -1041,7 +1041,7 @@ footer {
 .opcao-frete-nome small {
     font-size: 9px;
     font-weight: 400;
-    color: #6b7280;
+    color: #0f4c81;
 }
 
 .opcao-frete strong {
@@ -1050,7 +1050,7 @@ footer {
 }
 
 .opcao-frete strong.gratis {
-    color: #1f7a4d;
+    color: #0f4c81;
 }
 
 /* Link continuar comprando */
@@ -1070,5 +1070,5 @@ footer {
 
 .continuar-comprando:hover {
     color: #0b1f3b;
-    border-color: #e3dbc9;
+    border-color: #f3efe6;
 }

@@ -8,10 +8,10 @@
     --dourado: #d4af37;
     --creme: #f3efe6;
     --branco: #ffffff;
-    --linha: #e3dbc9;
-    --texto-suave: #6b7280;
-    --verde: #1f7a4d;
-    --vermelho: #b3261e;
+    --linha: #f3efe6;
+    --texto-suave: #0f4c81;
+    --verde: #0f4c81;
+    --vermelho: #0b1f3b;
     --sombra: 0 10px 30px rgba(11, 31, 59, .07);
 }
 
@@ -282,7 +282,7 @@ textarea {
     width: 100%;
     padding: 13px 14px;
     border: 1px solid var(--linha);
-    background: #fdfcf9;
+    background: #fff;
     font-size: 13px;
     color: var(--azul);
     outline: none;
@@ -297,18 +297,18 @@ textarea {
 }
 
 .ck-campo input::placeholder {
-    color: #a9a49a;
+    color: #0f4c81;
 }
 
 .ck-campo input:disabled {
-    background: #f2eee5;
-    color: #7d7a72;
+    background: #f3efe6;
+    color: #0f4c81;
 }
 
 .ck-campo.erro input,
 .ck-campo.erro select {
     border-color: var(--vermelho);
-    background: #fdf4f3;
+    background: #f3efe6;
 }
 
 .ck-erro {
@@ -380,7 +380,7 @@ textarea {
     padding: 15px 16px;
     cursor: pointer;
     transition: .2s;
-    background: #fdfcf9;
+    background: #fff;
     border-radius: 2px;
 }
 
@@ -434,17 +434,17 @@ textarea {
 .ck-aviso {
     margin-top: 14px;
     padding: 12px 14px;
-    background: #fbf6e7;
+    background: #f3efe6;
     border-left: 3px solid var(--dourado);
     font-size: 11.5px;
     line-height: 1.6;
-    color: #5b4d20;
+    color: #d4af37;
 }
 
 .ck-aviso.erro {
-    background: #fdf4f3;
+    background: #f3efe6;
     border-left-color: var(--vermelho);
-    color: #7a201b;
+    color: #0b1f3b;
 }
 
 /* ==========================================================
@@ -460,7 +460,7 @@ textarea {
 
 .ck-pag-tab {
     border: 1px solid var(--linha);
-    background: #fdfcf9;
+    background: #fff;
     padding: 16px 10px;
     cursor: pointer;
     text-align: center;
@@ -561,8 +561,8 @@ textarea {
     font-size: 10.5px;
     padding: 11px 12px;
     border: 1px dashed var(--linha);
-    background: #fdfcf9;
-    color: #555;
+    background: #fff;
+    color: #0f4c81;
 }
 
 .ck-btn-copiar {
@@ -796,7 +796,7 @@ textarea {
     letter-spacing: .6px;
     border: 1px solid var(--linha);
     padding: 5px 8px;
-    color: #6b7280;
+    color: #0f4c81;
     text-transform: uppercase;
     border-radius: 2px;
 }

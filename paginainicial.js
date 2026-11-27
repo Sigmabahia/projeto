@@ -96,6 +96,62 @@ function irParaSlide(indice) {
 }
 
 
+
+/* =================================
+   CONSULTAR MODELO
+================================= */
+
+function consultarModelo(nome) {
+
+    const botaoChat = document.getElementById("rs-chat-button");
+
+    if (botaoChat) botaoChat.click();
+
+    if (window.rsToast) {
+        window.rsToast("Fale com a equipe pelo chat ou WhatsApp para consultar " + nome + ".");
+    }
+}
+
+
+/* =================================
+   FILTROS DA VITRINE
+================================= */
+
+function aplicarFiltro(rotulo) {
+
+    const termo = String(rotulo || "").toLowerCase();
+
+    document.querySelectorAll(".produtos-grid .produto-card").forEach(function (card) {
+
+        const categoria = (card.getAttribute("data-categoria") || "").toLowerCase();
+        const colecao = (card.getAttribute("data-colecao") || "").toLowerCase();
+
+        let mostrar = termo === "todos" ||
+            categoria === termo ||
+            colecao === termo ||
+            (termo === "masculino" && categoria === "ternos");
+
+        card.style.display = mostrar ? "" : "none";
+    });
+}
+
+function ativarFiltros() {
+
+    const botoes = document.querySelectorAll(".filtros .filtro");
+
+    botoes.forEach(function (botao) {
+
+        botao.addEventListener("click", function () {
+
+            botoes.forEach(function (outro) { outro.classList.remove("ativo"); });
+
+            botao.classList.add("ativo");
+
+            aplicarFiltro(botao.textContent.trim());
+        });
+    });
+}
+
 /* =================================
    INICIALIZAÇÃO
 ================================= */
@@ -105,5 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
     atualizarContadorCarrinho();
 
     mostrarSlide(0);
+
+    ativarFiltros();
 
 });

@@ -14,28 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="extras.css">
 
-<style>
-/* CHATBOT ROYAL SUITS */
-#rs-chat-button{position:fixed;right:25px;bottom:25px;z-index:9998;width:64px;height:64px;border:0;border-radius:50%;background:#0b1f3b;color:#d4af37;font-size:27px;cursor:pointer;box-shadow:0 5px 22px #0004;transition:.2s}
-#rs-chat-button:hover{transform:scale(1.06);background:#0f4c81}
-#rs-chat-window{position:fixed;right:25px;bottom:102px;z-index:9999;width:min(370px,calc(100vw - 30px));height:500px;max-height:calc(100vh - 130px);background:#fff;border:1px solid #d4af37;border-radius:16px;box-shadow:0 12px 40px #0003;display:none;overflow:hidden;font-family:Montserrat,Arial,sans-serif}
-#rs-chat-window.rs-open{display:flex;flex-direction:column}
-.rs-chat-head{background:#0b1f3b;color:#fff;padding:17px 18px;display:flex;align-items:center;justify-content:space-between}
-.rs-chat-brand{font-family:'Cormorant Garamond',serif;font-size:23px;letter-spacing:1px}
-.rs-chat-brand span{color:#d4af37}
-.rs-chat-status{font-size:11px;color:#d4af37;margin-top:3px}
-#rs-chat-close{background:none;border:0;color:#fff;font-size:25px;cursor:pointer}
-#rs-chat-messages{padding:16px;flex:1;overflow-y:auto;background:#f3efe6;display:flex;flex-direction:column;gap:11px}
-.rs-chat-msg{max-width:85%;padding:11px 13px;border-radius:13px;font-size:13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
-.rs-chat-msg.bot{align-self:flex-start;background:#f3efe6;color:#0b1f3b;border-bottom-left-radius:3px}
-.rs-chat-msg.user{align-self:flex-end;background:#0b1f3b;color:#fff;border-bottom-right-radius:3px}
-.rs-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid #f3efe6;background:#fff}
-#rs-chat-input{min-width:0;flex:1;border:1px solid #f3efe6;border-radius:22px;padding:12px 14px;font:13px Montserrat,Arial,sans-serif;outline:none}
-#rs-chat-input:focus{border-color:#d4af37}
-#rs-chat-send{border:0;border-radius:22px;background:#0b1f3b;color:#d4af37;padding:0 17px;font-weight:600;cursor:pointer}
-#rs-chat-send:disabled{opacity:.5;cursor:wait}
-@media(max-width:480px){#rs-chat-button{right:16px;bottom:16px}#rs-chat-window{right:10px;bottom:90px;width:calc(100vw - 20px);height:min(500px,calc(100vh - 110px))}}
-</style>
 
     <meta name="theme-color" content="#0b1f3b">
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -233,7 +211,7 @@
 
             <a href="formaturas.html" class="categoria">
                 <div class="categoria-overlay"></div>
-                <img src="https://i.pinimg.com/1200x/2a/36/ed/2a36ed71b29135011f66acbcebc9e3cc.jpg" alt="Moda para formaturas">
+                <img src="imagens/produtos/vestido-carmelia.jpg" alt="Moda para formaturas">
 
                 <div class="categoria-content">
                     <p>COLEÇÃO</p>
@@ -244,7 +222,7 @@
 
             <a href="casamentos.html" class="categoria">
                 <div class="categoria-overlay"></div>
-                <img src="https://i.pinimg.com/736x/eb/c5/6b/ebc56ba714e397ee7e45f84fb5ddbec1.jpg" alt="Moda para casamentos">
+                <img src="imagens/produtos/vestido-elegance.jpg" alt="Moda para casamentos">
 
                 <div class="categoria-content">
                     <p>COLEÇÃO</p>
@@ -292,7 +270,7 @@
 
             <!-- PRODUTO 1 -->
 
-            <div class="produto-card">
+            <div class="produto-card" data-categoria="vestidos" data-colecao="formatura">
 
                 <div class="produto-imagem">
 
@@ -300,10 +278,10 @@
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg" alt="Vestido Carmélia Marsala">
+                    <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido Carmélia Marsala">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg')">
+                        <button onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -327,7 +305,7 @@
                         <p class="preco">R$ 899,00</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Vestido Carmélia', 899, 'https://i.pinimg.com/1200x/12/61/c1/1261c188e669fe84f3b0f5ce031c96fd.jpg')">
+                            onclick="adicionarCarrinho('Vestido Carmélia', 899, 'imagens/produtos/vestido-carmelia.jpg')">
                             Comprar
                         </button>
 
@@ -339,7 +317,7 @@
 
             <!-- PRODUTO 2 -->
 
-            <div class="produto-card">
+            <div class="produto-card" data-categoria="vestidos" data-colecao="casamento">
 
                 <div class="produto-imagem">
 
@@ -347,10 +325,10 @@
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg" alt="Modelo de gala">
+                    <img src="imagens/produtos/vestido-elegance.jpg" alt="Vestido Elegance">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Elegance Collection', 1099, 'https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg')">
+                        <button onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/vestido-elegance.jpg')">
                             ADICIONAR AO CARRINHO
                         </button>
                     </div>
@@ -359,21 +337,21 @@
 
                 <div class="produto-info">
 
-                    <p class="categoria-produto">GALA • CASAMENTO</p>
+                    <p class="categoria-produto">VESTIDO • CASAMENTO</p>
 
-                    <h3>Elegance Collection</h3>
+                    <h3>Vestido Elegance</h3>
 
                     <p class="descricao">
-                        Um modelo sofisticado desenvolvido para
-                        ocasiões em que cada detalhe faz diferença.
+                        Vestido longo com caimento fluido, decote
+                        delicado e acabamento de ateliê.
                     </p>
 
                     <div class="produto-bottom">
 
-                        <p class="preco">R$ 1.099,00</p>
+                        <p class="preco">R$ 750,00</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Elegance Collection', 1099, 'https://i.pinimg.com/1200x/9a/f3/bf/9af3bf62b9f0721274aa94d88fa82f3a.jpg')">
+                            onclick="adicionarCarrinho('Vestido Elegance', 750, 'imagens/produtos/vestido-elegance.jpg')">
                             Comprar
                         </button>
 
@@ -385,17 +363,17 @@
 
             <!-- PRODUTO 3 -->
 
-            <div class="produto-card">
+            <div class="produto-card" data-categoria="ternos" data-colecao="casamento">
 
                 <div class="produto-imagem">
 
                     <button class="favorito">♡</button>
 
-                    <img src="https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg" alt="Vestido de festa">
+                    <img src="imagens/ternos/terno-azul-marinho-01.png" alt="Terno Marinho Clássico">
 
                     <div class="produto-hover">
-                        <button onclick="adicionarCarrinho('Maison Classic', 949, 'https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg')">
-                            ADICIONAR AO CARRINHO
+                        <button onclick="consultarModelo('Terno Marinho Clássico')">
+                            CONSULTAR MODELO
                         </button>
                     </div>
 
@@ -403,22 +381,22 @@
 
                 <div class="produto-info">
 
-                    <p class="categoria-produto">VESTIDO • FESTA</p>
+                    <p class="categoria-produto">TERNO • CASAMENTO</p>
 
-                    <h3>Maison Classic</h3>
+                    <h3>Terno Marinho Clássico</h3>
 
                     <p class="descricao">
-                        Design clássico e sofisticado para quem
-                        procura elegância sem abrir mão da personalidade.
+                        Terno em azul-marinho com corte clássico,
+                        ideal para noivos e padrinhos.
                     </p>
 
                     <div class="produto-bottom">
 
-                        <p class="preco">R$ 949,00</p>
+                        <p class="preco">Sob consulta</p>
 
                         <button class="comprar-btn"
-                            onclick="adicionarCarrinho('Maison Classic', 949, 'https://i.pinimg.com/1200x/a8/72/bb/a872bb75d2ef4f58832526d33d58b8e2.jpg')">
-                            Comprar
+                            onclick="consultarModelo('Terno Marinho Clássico')">
+                            Consultar
                         </button>
 
                     </div>
@@ -441,11 +419,11 @@
 
     <section class="banner">
 
-        <img src="https://i.pinimg.com/736x/7a/d1/a2/7ad1a25aab287c4954ac05fb7a9e880a.jpg" alt="Coleção Maison Gala">
+        <img src="imagens/produtos/hero-gala.jpg" alt="Coleção Royal Suits">
 
         <div class="banner-content">
 
-            <p>MAISON GALA</p>
+            <p>ALTA COSTURA</p>
 
             <h2>
                 Seu grande dia<br>
@@ -531,87 +509,8 @@
 
 
 
-<!-- ASSISTENTE VIRTUAL ROYAL SUITS -->
-<button id="rs-chat-button" type="button" aria-label="Abrir atendimento virtual" title="Atendimento virtual">✦</button>
-<section id="rs-chat-window" aria-label="Chat de atendimento">
-  <header class="rs-chat-head">
-    <div>
-      <div class="rs-chat-brand">ROYAL <span>SUITS</span></div>
-      <div class="rs-chat-status">● Assistente virtual • Atendimento online</div>
-    </div>
-    <button id="rs-chat-close" type="button" aria-label="Fechar chat">×</button>
-  </header>
-  <div id="rs-chat-messages" aria-live="polite">
-    <div class="rs-chat-msg bot">Olá! Seja bem-vindo(a) à Royal Suits! ✨\nPosso ajudar você a encontrar roupas para formaturas e casamentos, consultar modelos e tirar dúvidas. O que procura?</div>
-  </div>
-  <form class="rs-chat-form" id="rs-chat-form">
-    <input id="rs-chat-input" type="text" placeholder="Digite sua mensagem..." autocomplete="off" aria-label="Sua mensagem" required>
-    <button id="rs-chat-send" type="submit">Enviar</button>
-  </form>
-</section>
-<script>
-(() => {
-  const openBtn = document.getElementById('rs-chat-button');
-  const closeBtn = document.getElementById('rs-chat-close');
-  const windowChat = document.getElementById('rs-chat-window');
-  const form = document.getElementById('rs-chat-form');
-  const input = document.getElementById('rs-chat-input');
-  const messages = document.getElementById('rs-chat-messages');
-  const sendBtn = document.getElementById('rs-chat-send');
-  const historico = [];
 
-  openBtn.addEventListener('click', () => {
-    windowChat.classList.add('rs-open');
-    input.focus();
-  });
-  closeBtn.addEventListener('click', () => windowChat.classList.remove('rs-open'));
-
-  function addMessage(text, type) {
-    const item = document.createElement('div');
-    item.className = 'rs-chat-msg ' + type;
-    item.textContent = text;
-    messages.appendChild(item);
-    messages.scrollTop = messages.scrollHeight;
-    return item;
-  }
-
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const mensagem = input.value.trim();
-    if (!mensagem) return;
-
-    addMessage(mensagem, 'user');
-    historico.push({ role: 'user', content: mensagem });
-    input.value = '';
-    input.disabled = true;
-    sendBtn.disabled = true;
-    sendBtn.textContent = '...';
-    const loading = addMessage('Estou pensando...', 'bot');
-
-    try {
-      const resposta = await fetch('/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ mensagem, historico: historico.slice(-10, -1) })
-      });
-      const dados = await resposta.json();
-      if (!resposta.ok) throw new Error(dados.erro || dados.error || 'Não foi possível obter uma resposta.');
-      const texto = dados.resposta || dados.reply || 'Desculpe, não consegui responder agora.';
-      loading.textContent = texto;
-      historico.push({ role: 'assistant', content: texto });
-    } catch (erro) {
-      loading.innerHTML = 'Nosso assistente está offline agora, mas você pode falar com a equipe pelo <a href="https://wa.me/5511912345678" target="_blank" rel="noopener" style="color:#d4af37;text-decoration:underline">WhatsApp</a> — respondemos em poucos minutos.';
-      console.error('Erro no chatbot:', erro);
-    } finally {
-      input.disabled = false;
-      sendBtn.disabled = false;
-      sendBtn.textContent = 'Enviar';
-      input.focus();
-    }
-  });
-})();
-</script>
-
+    <script src="js/rs-chat.js"></script>
     <script src="extras.js"></script>
 </body>
 </html>

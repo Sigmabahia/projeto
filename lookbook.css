@@ -1,5 +1,5 @@
 /* =========================================
-   ROYAL SUITS — TRY THE LOOK (lookbook.css)
+   ROYAL SUITS — CARROSSEL DE LOOKS (lookbook.css)
    Componente de carrossel embutido em ternos.html
    e vestidos.html. Todos os seletores são
    escopados em #rs-lookbook.
@@ -153,7 +153,7 @@
     pointer-events: none;
     transform-origin: 50% 12%;
     animation: lbFloatLook 5.2s ease-in-out infinite;
-    filter: drop-shadow(0 22px 18px rgba(0, 0, 0, .10));
+    filter: drop-shadow(0 22px 18px rgba(11,31,59,.10));
 }
 
 #rs-lookbook .lb-look:nth-child(2n) img {
@@ -205,11 +205,11 @@
 @keyframes lbFloatFeatured {
     0%, 100% {
         transform: translate3d(0, 2px, 0) rotate(-.7deg);
-        filter: drop-shadow(0 22px 18px rgba(0, 0, 0, .10));
+        filter: drop-shadow(0 22px 18px rgba(11,31,59,.10));
     }
     50% {
         transform: translate3d(0, -15px, 0) rotate(.7deg);
-        filter: drop-shadow(0 34px 22px rgba(0, 0, 0, .13));
+        filter: drop-shadow(0 34px 22px rgba(11,31,59,.13));
     }
 }
 
@@ -266,7 +266,7 @@
     width: 17px;
     height: 17px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, .15);
+    border: 1px solid rgba(11,31,59,.15);
     cursor: pointer;
     position: relative;
     padding: 0;
@@ -377,7 +377,7 @@
 #rs-lookbook .lb-modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(20, 20, 19, .48);
+    background: rgba(11,31,59,.48);
     display: none;
     align-items: center;
     justify-content: center;
@@ -399,12 +399,12 @@
     display: grid;
     grid-template-columns: .9fr 1.1fr;
     position: relative;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, .2);
+    box-shadow: 0 24px 80px rgba(11,31,59,.2);
 }
 
 #rs-lookbook .lb-modal-visual {
     min-height: 420px;
-    background: #e8e2d5;
+    background: #f3efe6;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -527,7 +527,7 @@
     width: 23px;
     height: 23px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, .18);
+    border: 1px solid rgba(11,31,59,.18);
     cursor: pointer;
     position: relative;
     padding: 0;
@@ -583,14 +583,14 @@
 }
 
 #rs-lookbook .lb-recommend-open:hover {
-    background: #e8e2d5;
+    background: #f3efe6;
 }
 
 #rs-lookbook .lb-recommend-panel {
     display: none;
     margin-top: 8px;
     padding: 17px;
-    background: #e8e2d5;
+    background: #f3efe6;
     border: 1px solid var(--line);
 }
 
@@ -676,7 +676,7 @@
     width: 92px;
     height: 116px;
     object-fit: contain;
-    background: #e8e2d5;
+    background: #f3efe6;
 }
 
 #rs-lookbook .lb-tryon-preview strong {

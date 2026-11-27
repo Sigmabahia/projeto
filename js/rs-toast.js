@@ -24,8 +24,8 @@
             + 'max-width:100%;}'
             + '.rs-toast.rs-toast-visivel{opacity:1;transform:translateY(0);}'
             + '.rs-toast .rs-toast-icone{flex:0 0 auto;color:#d4af37;font-size:16px;line-height:1;}'
-            + '.rs-toast.rs-toast-erro{border-left-color:#c0392b;}'
-            + '.rs-toast.rs-toast-erro .rs-toast-icone{color:#ff8a7a;}'
+            + '.rs-toast.rs-toast-erro{background:#0f4c81;border-left-color:#d4af37;}'
+            + '.rs-toast.rs-toast-erro .rs-toast-icone{color:#d4af37;}'
             + '@media(max-width:600px){#rs-toast-container{top:10px;}'
             + '.rs-toast{font-size:12.5px;padding:12px 16px;}}';
 

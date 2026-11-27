@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!msg) return;
     msg.textContent = texto;
     msg.style.display = "block";
-    msg.style.color = erro ? "#b3261e" : "#1a7a3c";
+    msg.style.color = erro ? "#0b1f3b" : "#0f4c81";
   }
 
   form.addEventListener("submit", async function (evento) {
