@@ -1,0 +1,830 @@
+/* =========================================
+   ROYAL SUITS — TRY THE LOOK (lookbook.css)
+   Componente de carrossel embutido em ternos.html
+   e vestidos.html. Todos os seletores são
+   escopados em #rs-lookbook.
+========================================= */
+
+#rs-lookbook {
+    --ink: #0b1f3b;
+    --muted: #0f4c81;
+    --line: rgba(212, 175, 55, .35);
+    --paper: #f3efe6;
+    --accent: #2f86c7;
+    --blue-dark: #0b1f3b;
+    --blue-medium: #0f4c81;
+    --blue-light: #2f86c7;
+    --gold: #d4af37;
+    --cream: #f3efe6;
+
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Montserrat', Inter, Arial, sans-serif;
+    padding: clamp(22px, 4vw, 48px) clamp(18px, 5vw, 64px) 28px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin: 0 0 clamp(30px, 5vw, 60px);
+}
+
+#rs-lookbook *,
+#rs-lookbook *:before,
+#rs-lookbook *:after {
+    box-sizing: border-box;
+}
+
+/* ---------- TOPLINE ---------- */
+
+#rs-lookbook .lb-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 17px;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    gap: 14px;
+}
+
+#rs-lookbook .lb-brand {
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: .22em;
+}
+
+/* ---------- INTRO ---------- */
+
+#rs-lookbook .lb-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin: clamp(26px, 4vh, 46px) 0 12px;
+}
+
+#rs-lookbook .lb-intro h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(30px, 4.4vw, 54px);
+    font-weight: 400;
+    letter-spacing: -.04em;
+    margin: 0;
+    color: var(--ink);
+    line-height: 1.05;
+}
+
+#rs-lookbook .lb-intro h2 span {
+    color: var(--gold);
+    font-style: italic;
+}
+
+#rs-lookbook .lb-intro p {
+    max-width: 280px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 0 5px;
+}
+
+/* ---------- STAGE ---------- */
+
+#rs-lookbook .lb-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    gap: 24px;
+    align-items: center;
+    min-height: min(62vh, 560px);
+    border-bottom: 1px solid var(--line);
+}
+
+#rs-lookbook .lb-viewport {
+    height: min(58vh, 520px);
+    min-height: 340px;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+    user-select: none;
+}
+
+#rs-lookbook .lb-viewport.lb-dragging {
+    cursor: grabbing;
+}
+
+#rs-lookbook .lb-track {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2.4vw, 34px);
+    transition: transform .75s cubic-bezier(.2, .75, .2, 1);
+    will-change: transform;
+}
+
+#rs-lookbook .lb-look {
+    position: relative;
+    flex: 0 0 clamp(180px, 22vw, 280px);
+    height: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .38;
+    transform: scale(.78);
+    filter: blur(1.2px);
+    transition: opacity .65s, transform .75s, filter .65s;
+    cursor: pointer;
+    outline: none;
+}
+
+#rs-lookbook .lb-look.lb-active {
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+    cursor: default;
+    z-index: 2;
+}
+
+#rs-lookbook .lb-look img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+    transform-origin: 50% 12%;
+    animation: lbFloatLook 5.2s ease-in-out infinite;
+    filter: drop-shadow(0 22px 18px rgba(0, 0, 0, .10));
+}
+
+#rs-lookbook .lb-look:nth-child(2n) img {
+    animation-delay: -1.7s;
+}
+
+#rs-lookbook .lb-look:nth-child(3n) img {
+    animation-delay: -3.1s;
+}
+
+#rs-lookbook .lb-look.lb-active img {
+    animation: lbFloatFeatured 4.4s ease-in-out infinite;
+    will-change: transform, filter;
+}
+
+#rs-lookbook .lb-look.lb-active:before {
+    content: "";
+    position: absolute;
+    inset: 12% 12% 8%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(47, 134, 199, .16), transparent 68%);
+    filter: blur(18px);
+    z-index: -1;
+}
+
+#rs-lookbook .lb-look-label {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+#rs-lookbook .lb-look.lb-active .lb-look-label {
+    opacity: 1;
+}
+
+@keyframes lbFloatLook {
+    0%, 100% { transform: translate3d(0, 5px, 0) rotate(-1deg); }
+    50% { transform: translate3d(0, -9px, 0) rotate(1deg); }
+}
+
+@keyframes lbFloatFeatured {
+    0%, 100% {
+        transform: translate3d(0, 2px, 0) rotate(-.7deg);
+        filter: drop-shadow(0 22px 18px rgba(0, 0, 0, .10));
+    }
+    50% {
+        transform: translate3d(0, -15px, 0) rotate(.7deg);
+        filter: drop-shadow(0 34px 22px rgba(0, 0, 0, .13));
+    }
+}
+
+/* ---------- INFO ---------- */
+
+#rs-lookbook .lb-info {
+    align-self: stretch;
+    border-left: 1px solid var(--line);
+    padding: 25px 0 25px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+#rs-lookbook .lb-eyebrow {
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+#rs-lookbook .lb-info h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin: 0 0 9px;
+    color: var(--ink);
+}
+
+#rs-lookbook .lb-description {
+    font-size: 11px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0 0 22px;
+}
+
+#rs-lookbook .lb-price {
+    font-size: 14px;
+    margin-bottom: 22px;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+#rs-lookbook .lb-swatches {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+#rs-lookbook .lb-swatch {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, .15);
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+
+#rs-lookbook .lb-swatch[aria-pressed="true"]:after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+}
+
+#rs-lookbook .lb-details {
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--cream);
+    padding: 13px 14px;
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#rs-lookbook .lb-details:hover {
+    background: var(--blue-medium);
+    border-color: var(--blue-medium);
+    color: var(--cream);
+}
+
+#rs-lookbook .lb-hint {
+    font-size: 9px;
+    color: var(--blue-medium);
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* ---------- CONTROLES ---------- */
+
+#rs-lookbook .lb-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+}
+
+#rs-lookbook .lb-counter {
+    font-size: 10px;
+    letter-spacing: .16em;
+    color: var(--muted);
+}
+
+#rs-lookbook .lb-counter strong {
+    font-weight: 500;
+    color: var(--ink);
+}
+
+#rs-lookbook .lb-controls {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+#rs-lookbook .lb-arrow {
+    width: 39px;
+    height: 39px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    font-size: 17px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: .25s;
+}
+
+#rs-lookbook .lb-arrow:hover {
+    background: var(--blue-medium);
+    color: var(--cream);
+    border-color: var(--blue-medium);
+}
+
+#rs-lookbook .lb-dots {
+    display: flex;
+    gap: 6px;
+    margin: 0 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#rs-lookbook .lb-dot {
+    width: 5px;
+    height: 5px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(15, 76, 129, .25);
+    padding: 0;
+    cursor: pointer;
+}
+
+#rs-lookbook .lb-dot.lb-active {
+    background: var(--gold);
+    transform: scale(1.35);
+}
+
+/* ---------- MODAL ---------- */
+
+#rs-lookbook .lb-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 20, 19, .48);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 9000;
+    backdrop-filter: blur(5px);
+}
+
+#rs-lookbook .lb-modal-backdrop.lb-open {
+    display: flex;
+    animation: lbFadeIn .25s ease;
+}
+
+#rs-lookbook .lb-product-modal {
+    width: min(780px, 100%);
+    max-height: min(88vh, 760px);
+    overflow: auto;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .2);
+}
+
+#rs-lookbook .lb-modal-visual {
+    min-height: 420px;
+    background: #e8e2d5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+#rs-lookbook .lb-modal-visual img {
+    width: 100%;
+    height: 100%;
+    max-height: 580px;
+    object-fit: contain;
+    animation: lbFloatLook 5s ease-in-out infinite;
+}
+
+#rs-lookbook .lb-modal-content {
+    padding: clamp(24px, 4vw, 40px);
+    overflow: auto;
+}
+
+#rs-lookbook .lb-modal-close {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    border: 0;
+    background: rgba(243, 239, 230, .9);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    color: var(--ink);
+}
+
+#rs-lookbook .lb-modal-kicker {
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: var(--muted);
+    text-transform: uppercase;
+}
+
+#rs-lookbook .lb-modal-content h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(23px, 3vw, 32px);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin: 12px 0 8px;
+    color: var(--ink);
+}
+
+#rs-lookbook .lb-modal-price {
+    font-size: 17px;
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+#rs-lookbook .lb-modal-description {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--blue-medium);
+    margin: 0 0 23px;
+}
+
+#rs-lookbook .lb-spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 18px;
+    border-top: 1px solid var(--line);
+    padding: 20px 0;
+}
+
+#rs-lookbook .lb-spec small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--blue-medium);
+    margin-bottom: 6px;
+}
+
+#rs-lookbook .lb-spec span {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#rs-lookbook .lb-option-title {
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 12px 0 10px;
+    color: var(--blue-medium);
+}
+
+#rs-lookbook .lb-size-options,
+#rs-lookbook .lb-color-options {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+#rs-lookbook .lb-size-option {
+    min-width: 38px;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    background: transparent;
+    font-size: 10px;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+#rs-lookbook .lb-size-option.lb-selected {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--cream);
+}
+
+#rs-lookbook .lb-color-option {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, .18);
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+}
+
+#rs-lookbook .lb-color-option.lb-selected:after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+}
+
+#rs-lookbook .lb-modal-note {
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--blue-medium);
+    margin-top: 22px;
+}
+
+#rs-lookbook .lb-modal-action {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+#rs-lookbook .lb-modal-action:hover {
+    background: transparent;
+    color: var(--ink);
+}
+
+/* ---------- RECOMENDADOR DE TAMANHO ---------- */
+
+#rs-lookbook .lb-recommend-open {
+    width: 100%;
+    margin: 4px 0 8px;
+    padding: 12px 14px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--ink);
+    font-size: 9px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#rs-lookbook .lb-recommend-open:hover {
+    background: #e8e2d5;
+}
+
+#rs-lookbook .lb-recommend-panel {
+    display: none;
+    margin-top: 8px;
+    padding: 17px;
+    background: #e8e2d5;
+    border: 1px solid var(--line);
+}
+
+#rs-lookbook .lb-recommend-panel.lb-open {
+    display: block;
+    animation: lbFadeIn .25s ease;
+}
+
+#rs-lookbook .lb-recommend-panel h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 7px;
+}
+
+#rs-lookbook .lb-recommend-panel p {
+    font-size: 10px;
+    line-height: 1.6;
+    color: var(--blue-medium);
+    margin: 0 0 13px;
+}
+
+#rs-lookbook .lb-recommend-panel label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue-medium);
+    margin: 12px 0 7px;
+}
+
+#rs-lookbook .lb-recommend-panel select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid rgba(15, 76, 129, .25);
+    background: var(--cream);
+    color: var(--ink);
+    font: inherit;
+    font-size: 11px;
+}
+
+#rs-lookbook .lb-recommend-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 14px;
+    border: 0;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#rs-lookbook .lb-recommend-result {
+    display: none;
+    margin-top: 15px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(15, 76, 129, .25);
+}
+
+#rs-lookbook .lb-recommend-result.lb-show {
+    display: block;
+}
+
+#rs-lookbook .lb-result-size {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px;
+    margin: 5px 0 7px;
+    color: var(--ink);
+}
+
+#rs-lookbook .lb-tryon-preview {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+    padding: 10px;
+    background: var(--cream);
+}
+
+#rs-lookbook .lb-tryon-preview img {
+    width: 92px;
+    height: 116px;
+    object-fit: contain;
+    background: #e8e2d5;
+}
+
+#rs-lookbook .lb-tryon-preview strong {
+    font-size: 10px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#rs-lookbook .lb-tryon-preview span {
+    font-size: 9px;
+    line-height: 1.5;
+    color: var(--blue-medium);
+}
+
+#rs-lookbook .lb-recommend-disclaimer {
+    font-size: 9px !important;
+    color: var(--blue-medium) !important;
+    margin: 12px 0 0 !important;
+}
+
+@keyframes lbFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ---------- RESPONSIVO ---------- */
+
+@media(max-width: 900px) {
+    #rs-lookbook .lb-stage {
+        grid-template-columns: minmax(0, 1fr) 180px;
+    }
+}
+
+@media(max-width: 760px) {
+    #rs-lookbook {
+        padding: 18px 16px 22px;
+    }
+
+    #rs-lookbook .lb-topline .lb-collection {
+        display: none;
+    }
+
+    #rs-lookbook .lb-intro {
+        display: block;
+        margin: 30px 0 5px;
+    }
+
+    #rs-lookbook .lb-intro p {
+        margin-top: 10px;
+    }
+
+    #rs-lookbook .lb-stage {
+        display: block;
+        min-height: 0;
+    }
+
+    #rs-lookbook .lb-viewport {
+        height: 54vh;
+        min-height: 330px;
+    }
+
+    #rs-lookbook .lb-track {
+        gap: 12px;
+    }
+
+    #rs-lookbook .lb-look {
+        flex-basis: 68vw;
+        height: 92%;
+    }
+
+    #rs-lookbook .lb-info {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding: 22px 2px 20px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 14px;
+    }
+
+    #rs-lookbook .lb-info .lb-eyebrow,
+    #rs-lookbook .lb-info h3,
+    #rs-lookbook .lb-info .lb-description,
+    #rs-lookbook .lb-info .lb-price,
+    #rs-lookbook .lb-info .lb-swatches {
+        grid-column: 1;
+    }
+
+    #rs-lookbook .lb-info .lb-details {
+        grid-column: 2;
+        grid-row: 2 / 6;
+        align-self: center;
+        max-width: 130px;
+    }
+
+    #rs-lookbook .lb-info .lb-hint {
+        display: none;
+    }
+
+    #rs-lookbook .lb-bottom {
+        padding-top: 14px;
+    }
+
+    #rs-lookbook .lb-dots {
+        margin: 0 3px;
+    }
+
+    #rs-lookbook .lb-product-modal {
+        display: block;
+        max-height: 90vh;
+    }
+
+    #rs-lookbook .lb-modal-visual {
+        min-height: 220px;
+        height: 30vh;
+    }
+
+    #rs-lookbook .lb-modal-visual img {
+        max-height: 260px;
+    }
+
+    #rs-lookbook .lb-modal-content {
+        padding: 24px;
+    }
+
+    #rs-lookbook .lb-spec-grid {
+        gap: 13px;
+    }
+
+    #rs-lookbook .lb-recommend-panel {
+        padding: 14px;
+    }
+
+    #rs-lookbook .lb-tryon-preview {
+        grid-template-columns: 78px 1fr;
+    }
+
+    #rs-lookbook .lb-tryon-preview img {
+        width: 78px;
+        height: 100px;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    #rs-lookbook *,
+    #rs-lookbook *:before,
+    #rs-lookbook *:after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

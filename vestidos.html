@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="formaturas.css">
     <link rel="stylesheet" href="extras.css">
+    <link rel="stylesheet" href="lookbook.css">
 
   
     <meta name="theme-color" content="#0b1f3b">
@@ -99,6 +100,238 @@
         </p>
 
     </section>
+
+
+    <!-- TRY THE LOOK — CARROSSEL -->
+
+<section class="rs-lookbook" id="rs-lookbook" aria-label="Carrossel de looks">
+
+    <div class="lb-topline">
+        <span class="lb-brand">ROYAL SUITS / STUDIO</span>
+        <span class="lb-collection">TRY THE LOOK — LOOKBOOK</span>
+        <span>COLEÇÃO VESTIDOS</span>
+    </div>
+
+    <header class="lb-intro">
+        <h2>Experimente o <span>look</span></h2>
+        <p>Explore a coleção. Escolha um look e descubra cada detalhe da peça.</p>
+    </header>
+
+    <section class="lb-stage" aria-label="Carrossel de peças">
+
+        <div class="lb-viewport">
+            <div class="lb-track">
+
+                <article class="lb-look" tabindex="0"
+                    data-title="Vestido Carmélia"
+                    data-description="Vestido longo na cor marsala, com brilho, corpete estruturado, pedrarias, alças médias e elegante fenda lateral."
+                    data-price="R$ 899,00"
+                    data-category="VESTIDO • FORMATURA"
+                    data-model="Vestido Carmélia"
+                    data-material="Cetim com pedrarias"
+                    data-composition="Poliéster e elastano (composição a confirmar)"
+                    data-fit="Ajustado ao corpo"
+                    data-features="Vestido longo na cor marsala, com brilho, corpete estruturado, pedrarias, alças médias e elegante fenda lateral."
+                    data-care="Lavar a seco. Passar em temperatura baixa."
+                    data-sizes="PP,P,M,G,GG"
+                    data-colors="Marsala:#7b2233,Preto:#1a1a1a,Vinho:#5c1f2b">
+                    <img src="imagens/produtos/vestido-carmelia.jpg" alt="Vestido Carmélia">
+                    <span class="lb-look-label">Vestido Carmélia</span>
+                </article>
+
+                <article class="lb-look" tabindex="0"
+                    data-title="Vestido Elegance"
+                    data-description="Um modelo sofisticado desenvolvido para ocasiões em que cada detalhe faz diferença."
+                    data-price="R$ 750,00"
+                    data-category="VESTIDO • FORMATURA"
+                    data-model="Vestido Elegance"
+                    data-material="Cetim com pedrarias"
+                    data-composition="Poliéster e elastano (composição a confirmar)"
+                    data-fit="Ajustado ao corpo"
+                    data-features="Um modelo sofisticado desenvolvido para ocasiões em que cada detalhe faz diferença."
+                    data-care="Lavar a seco. Passar em temperatura baixa."
+                    data-sizes="PP,P,M,G,GG"
+                    data-colors="Champagne:#cbb59a,Preto:#1a1a1a,Vinho:#5c1f2b">
+                    <img src="imagens/produtos/vestido-elegance.jpg" alt="Vestido Elegance">
+                    <span class="lb-look-label">Vestido Elegance</span>
+                </article>
+
+                <article class="lb-look" tabindex="0"
+                    data-title="Vestido Clássico"
+                    data-description="Um visual elegante para celebrar momentos únicos."
+                    data-price="Sob consulta"
+                    data-category="VESTIDO • CASAMENTO"
+                    data-model="Vestido Clássico"
+                    data-material="Cetim com pedrarias"
+                    data-composition="Poliéster e elastano (composição a confirmar)"
+                    data-fit="Ajustado ao corpo"
+                    data-features="Um visual elegante para celebrar momentos únicos."
+                    data-care="Lavar a seco. Passar em temperatura baixa."
+                    data-sizes="PP,P,M,G,GG"
+                    data-colors="Nude:#c9a99a,Preto:#1a1a1a,Vinho:#5c1f2b">
+                    <img src="imagens/produtos/vestido-classico.jpg" alt="Vestido Clássico">
+                    <span class="lb-look-label">Vestido Clássico</span>
+                </article>
+
+            </div>
+        </div>
+
+        <aside class="lb-info" aria-live="polite">
+
+            <span class="lb-eyebrow">NESTE LOOK</span>
+
+            <h3>Vestido Carmélia</h3>
+
+            <p class="lb-description">Vestido longo na cor marsala, com brilho, corpete estruturado, pedrarias, alças médias e elegante fenda lateral.</p>
+
+            <div class="lb-price">R$ 899,00</div>
+
+            <div class="lb-swatches" aria-label="Escolha uma cor"></div>
+
+            <button class="lb-details" type="button">
+                Ver detalhes ↗
+            </button>
+
+            <p class="lb-hint">
+                Arraste para os lados ou use as setas para explorar.
+            </p>
+
+        </aside>
+
+    </section>
+
+    <div class="lb-bottom">
+
+        <div class="lb-counter">
+            <strong>01</strong>
+            <span>/</span>
+            <span>03</span>
+        </div>
+
+        <div class="lb-controls">
+            <div class="lb-dots"></div>
+
+            <button class="lb-arrow lb-prev" type="button" aria-label="Look anterior">
+                ←
+            </button>
+
+            <button class="lb-arrow lb-next" type="button" aria-label="Próximo look">
+                →
+            </button>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE PRODUTO -->
+
+    <div class="lb-modal-backdrop" aria-hidden="true">
+
+        <section class="lb-product-modal" role="dialog" aria-modal="true" aria-labelledby="lb-modal-title">
+
+            <button class="lb-modal-close" type="button" aria-label="Fechar">×</button>
+
+            <div class="lb-modal-visual">
+                <img src="" alt="">
+            </div>
+
+            <div class="lb-modal-content">
+
+                <span class="lb-modal-kicker">DETALHES DO PRODUTO</span>
+
+                <h2 id="lb-modal-title">Produto</h2>
+
+                <div class="lb-modal-price"></div>
+
+                <p class="lb-modal-description"></p>
+
+                <div class="lb-spec-grid"></div>
+
+                <!-- RECOMENDADOR DE TAMANHO -->
+
+                <button class="lb-recommend-open" type="button">
+                    Encontrar meu tamanho ↗
+                </button>
+
+                <section class="lb-recommend-panel" aria-label="Recomendação de tamanho">
+
+                    <h3>Descubra seu tamanho</h3>
+
+                    <p>
+                        Informe o tamanho que costuma usar e como prefere o caimento.
+                        A sugestão considera os tamanhos cadastrados para esta peça.
+                    </p>
+
+                    <label for="lb-usual-size">Qual tamanho você costuma usar?</label>
+
+                    <select class="lb-usual-size" id="lb-usual-size">
+                        <option value="">Selecione</option>
+                    </select>
+
+                    <label for="lb-fit-preference">Como prefere o caimento?</label>
+
+                    <select class="lb-fit-preference" id="lb-fit-preference">
+                        <option value="regular">Regular / confortável</option>
+                        <option value="solto">Mais soltinho</option>
+                        <option value="justo">Mais ajustado</option>
+                    </select>
+
+                    <button class="lb-recommend-submit" type="button">
+                        Ver minha recomendação
+                    </button>
+
+                    <div class="lb-recommend-result" aria-live="polite">
+
+                        <span class="lb-modal-kicker">SUGESTÃO PARA ESTE PRODUTO</span>
+
+                        <div class="lb-result-size">M</div>
+
+                        <p class="lb-recommend-text">Sugestão baseada no tamanho informado.</p>
+
+                        <div class="lb-tryon-preview">
+
+                            <img src="" alt="Prévia ilustrativa do produto">
+
+                            <div>
+                                <strong>Prévia do look</strong>
+                                <span class="lb-preview-text">Veja a peça selecionada com o tamanho sugerido.</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <p class="lb-recommend-disclaimer">
+                        A recomendação é uma estimativa inicial, não uma garantia de ajuste.
+                        Consulte a tabela de medidas e as medidas reais da peça antes de comprar.
+                    </p>
+
+                </section>
+
+                <div class="lb-option-title">Escolha o tamanho</div>
+
+                <div class="lb-size-options"></div>
+
+                <div class="lb-option-title">Escolha a cor</div>
+
+                <div class="lb-color-options"></div>
+
+                <p class="lb-modal-note">
+                    Peça sob consulta: confirme disponibilidade de tamanhos e cores com a equipe Royal Suits.
+                </p>
+
+                <button class="lb-modal-action" type="button">
+                    Confirmar seleção
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <div class="lb-toast" role="status"></div>
+
+</section>
 
 
     <!-- FILTROS -->
@@ -285,6 +518,7 @@
     <!-- JAVASCRIPT -->
 
     <script src="js/rs-toast.js"></script>
+    <script src="lookbook.js"></script>
     <script src="js/rs-api.js"></script>
 <script src="catalogo.js"></script>
 
