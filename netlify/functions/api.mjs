@@ -981,6 +981,13 @@ const routes = [
   ["DELETE", /^\/admin\/coupons\/(?<codigo>[^/]+)$/, adminCouponDelete],
 ];
 
+/* Rota pública da função (Netlify Functions v2).
+   Com isto, /api e /api/qualquer-coisa chegam direto aqui, sem depender
+   de redirect e sem expor /.netlify/functions/api. */
+export const config = {
+  path: ["/api", "/api/*"],
+};
+
 export default async function handler(request) {
   if (request.method === "OPTIONS") return preflight();
 

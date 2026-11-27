@@ -1,57 +1,62 @@
-# Royal Suits — Backend Netlify (deploy e operação)
+# Royal Suits — deploy na Netlify
 
-Este projeto é uma loja estática (HTML/CSS/JS) + **backend serverless** rodando em
-**Netlify Functions** com banco de dados em **Netlify Blobs**. Não há servidor para
-administrar, nem banco externo para contratar: tudo roda na própria Netlify.
+Loja estática (HTML/CSS/JS) + backend serverless em **Netlify Functions** com banco em
+**Netlify Blobs**. Não existe servidor para administrar nem banco externo para contratar.
 
 ```
 .
-├── netlify.toml                 # build, headers, redirects /api/* → função
+├── netlify.toml                 # build, headers, redirects, bloqueio de fontes
 ├── netlify/
-│   ├── functions/api.mjs        # router único de toda a API REST
+│   ├── functions/api.mjs        # router único da API (rota pública /api/*)
 │   └── lib/
-│       ├── db.mjs               # Netlify Blobs (+ driver de memória p/ testes)
+│       ├── db.mjs               # Netlify Blobs (+ driver de memória para testes)
 │       ├── auth.mjs             # scrypt + JWT HS256, papéis cliente/admin
-│       ├── http.mjs             # helpers de resposta/validação
+│       ├── http.mjs             # respostas e validação
 │       ├── pix.mjs              # BR Code EMV + CRC16
-│       ├── frete.mjs            # cotação por CEP, cupons, desconto PIX
+│       ├── frete.mjs            # frete por CEP, cupons, desconto PIX
 │       ├── mail.mjs             # e-mails via Resend (opcional)
-│       └── products-seed.mjs    # 20 produtos reais do site
-├── js/rs-api.js                 # cliente JS usado por todas as páginas
+│       └── products-seed.mjs    # catálogo inicial (18 peças)
+├── js/rs-api.js                 # cliente da API usado pelas páginas
+├── js/rs-chat.js                # chatbot (roda no navegador, sem backend)
 ├── admin.html                   # painel administrativo
-└── scripts/                     # dev-server, testes, seed
+└── scripts/
+    ├── verificar-deploy.mjs     # confere o site publicado
+    ├── dev-server.mjs           # site + API local sem Netlify CLI
+    ├── seed-local.mjs           # popula catálogo e cupons
+    └── test-api.mjs             # 50 asserções da API
 ```
 
 ---
 
-## 1. Deploy na Netlify (5 minutos)
+## 1. Primeiro deploy (5 minutos)
 
-### 1.1 Enviar o código para o GitHub
+### 1.1 Conectar o repositório
 
-```bash
-git checkout -b feature/backend-netlify
-git add .
-git commit -m "feat: backend completo em Netlify Functions + Blobs"
-git push origin feature/backend-netlify
-```
-
-### 1.2 Conectar o repositório
-
-1. Acesse <https://app.netlify.com> → **Add new site → Import an existing project**.
-2. Escolha o repositório `Sigmabahia/projeto` e a branch `main`.
-3. Configurações de build (já vêm do `netlify.toml`, confirme):
-   - **Build command:** *(vazio)*
+1. <https://app.netlify.com> → **Add new site → Import an existing project**.
+2. Escolha `Sigmabahia/projeto` e a branch `main`.
+3. Confirme o que já vem do `netlify.toml`:
+   - **Build command:** vazio
    - **Publish directory:** `.`
    - **Functions directory:** `netlify/functions`
-4. Clique em **Deploy site**.
+4. **Deploy site**.
 
-> O `netlify.toml` já define `node_bundler = "esbuild"` e o redirect
-> `/api/* → /.netlify/functions/api/:splat`, então `/api/products` funciona
-> exatamente como uma API normal.
+O `netlify.toml` já define tudo: Node 20, bundler esbuild, cabeçalhos de segurança,
+cache e o bloqueio de `/netlify/*`, `/scripts/*`, `/package.json`, `/.env*` e afins
+(necessário porque o publish é a raiz do repositório).
 
-### 1.3 Variáveis de ambiente (obrigatório)
+A rota pública da API é declarada dentro da própria função:
 
-Em **Site configuration → Environment variables**, adicione:
+```js
+// netlify/functions/api.mjs
+export const config = { path: ["/api", "/api/*"] };
+```
+
+Com isso `/api/health`, `/api/products` e todas as demais rotas chegam na função sem
+depender de redirect e sem expor `/.netlify/functions/api`.
+
+### 1.2 Variáveis de ambiente (obrigatório)
+
+**Site configuration → Environment variables → Add a variable.**
 
 | Variável | Exemplo | Obrigatória |
 |---|---|---|
@@ -70,18 +75,28 @@ Em **Site configuration → Environment variables**, adicione:
 | `EMAIL_FROM` | `Royal Suits <contato@...>` | opcional |
 | `EMAIL_NOTIFICACAO` | `contato@...` | opcional |
 
-Depois de salvar, faça **Deploys → Trigger deploy → Clear cache and deploy site**
-para que as funções recebam as variáveis.
+Gerar os segredos de uma vez:
 
-> **Netlify Blobs** não precisa de configuração: a função usa
-> `getStore({ name: "royal-suits", consistency: "strong" })` e a Netlify injeta as
-> credenciais automaticamente em runtime. Em produção os dados persistem entre
-> deploys e ficam isolados por site.
+```bash
+echo "JWT_SECRET=$(openssl rand -hex 48)"
+echo "ADMIN_BOOTSTRAP_TOKEN=$(openssl rand -hex 24)"
+```
 
-### 1.4 Criar o administrador real
+Depois de salvar: **Deploys → Trigger deploy → Clear cache and deploy site**.
+As variáveis só entram em vigor em um deploy novo.
 
-O login de admin "virtual" (via `ADMIN_EMAIL`/`ADMIN_PASSWORD`) já funciona, mas
-para ter um usuário real no banco (com histórico, sem depender das envs):
+> **JWT_SECRET sem configurar** faz a API usar um segredo de desenvolvimento e
+> registrar um erro no log da função. O site continua navegável, mas qualquer pessoa
+> poderia forjar um token de admin. Configure antes de abrir a loja ao público.
+
+> **Netlify Blobs** não precisa de configuração: `getStore({ name, consistency: "strong" })`
+> recebe as credenciais automaticamente em runtime. Os dados persistem entre deploys e
+> ficam isolados por site.
+
+### 1.3 Criar o administrador real
+
+O login via `ADMIN_EMAIL`/`ADMIN_PASSWORD` já funciona, mas o usuário real no banco
+(com histórico, sem depender das variáveis) é criado assim:
 
 ```bash
 curl -X POST https://SEU-SITE.netlify.app/api/admin/bootstrap \
@@ -90,149 +105,107 @@ curl -X POST https://SEU-SITE.netlify.app/api/admin/bootstrap \
   -d '{"nome":"Administrador","email":"admin@royalsuits.com.br","senha":"SuaSenhaForte123"}'
 ```
 
-Acesse o painel em `https://SEU-SITE.netlify.app/admin.html`.
+Painel: `https://SEU-SITE.netlify.app/admin.html`.
+
+### 1.4 Conferir se ficou tudo certo
+
+```bash
+node scripts/verificar-deploy.mjs https://SEU-SITE.netlify.app
+```
+
+O script testa páginas, `/api/health`, `/api/products`, cotação de frete, 404 da API,
+bloqueio dos arquivos de código e cabeçalhos. Saída esperada: `TUDO CERTO: 16/16`.
 
 ### 1.5 Domínio próprio (opcional)
 
 **Domain management → Add a domain** → `royalsuits.com.br`. A Netlify emite o
-certificado HTTPS automaticamente. Atualize `SITE_URL` depois.
+certificado HTTPS sozinha. Depois atualize `SITE_URL`.
 
 ---
 
 ## 2. Rodar localmente
 
+Com a CLI da Netlify (mais fiel ao produção, inclusive Blobs e redirects):
+
 ```bash
 npm install
-npm run dev          # netlify dev — sobe o site + functions em http://localhost:8888
-npm test             # 50 asserções da API usando banco em memória
+npm run dev            # http://localhost:8888
 ```
 
-Sem a CLI da Netlify também é possível testar:
+Sem a CLI:
 
 ```bash
-PORT=8899 node scripts/dev-server.mjs   # servidor estático + /api com banco em memória
+PORT=8899 node scripts/dev-server.mjs   # site + /api com banco em memória
 ```
 
-Credenciais de desenvolvimento (definidas em `scripts/dev-server.mjs`):
-`admin@royalsuits.com.br` / `admin123456`.
+Testes e dados:
 
-`npm run seed` popula 20 produtos e 2 cupons (`BEMVINDO10`, `ROYAL50`).
+```bash
+npm test               # 50 asserções da API (banco em memória)
+npm run seed           # popula 18 produtos e 2 cupons (BEMVINDO10, ROYAL50)
+```
+
+Credenciais de desenvolvimento: `admin@royalsuits.com.br` / `admin123456`.
 
 ---
 
-## 3. API REST
+## 3. Depois de cada alteração
+
+1. `git push` na branch → a Netlify gera um **Deploy Preview** com URL própria.
+2. Teste o preview: `node scripts/verificar-deploy.mjs https://deploy-preview-XX--seu-site.netlify.app`.
+3. Merge na `main` publica em produção.
+4. Se mexeu em função ou variável: **Clear cache and deploy site**.
+
+Cache: HTML é sempre revalidado, CSS e JS ficam 1 hora, imagens ficam 1 ano
+(imutáveis). Se trocar uma imagem mantendo o mesmo nome, renomeie o arquivo para
+o navegador baixar a versão nova.
+
+---
+
+## 4. Problemas comuns
+
+| Sintoma | Causa provável | Solução |
+|---|---|---|
+| `/api/*` devolve 404 | função não foi detectada ou o deploy é antigo | confira **Functions** no painel; se `api` não aparece, veja o log de build; faça deploy sem cache |
+| `{"errorType":"Runtime.ImportModuleError"}` | dependência faltando | `@netlify/blobs` precisa estar em `dependencies` (está) e o build precisa rodar `npm install` (padrão) |
+| Login funciona e some no request seguinte | `JWT_SECRET` mudou entre deploys | fixe o valor e faça um deploy novo |
+| Dados somem | store diferente ou site recriado | Blobs é por site; recriar o site começa um banco vazio |
+| `Erro interno` em qualquer rota | exceção na função | **Functions → api → Logs** mostra o stack trace |
+| Página antiga após deploy | cache do navegador | HTML é revalidado; force recarregar com Ctrl+Shift+R |
+| Fonte do backend acessível | redirect de bloqueio removido | mantenha os `[[redirects]]` com `force = true` no `netlify.toml` |
+| Produtos antigos aparecendo | banco já populado em deploy anterior | apague os itens em **admin.html → Produtos**; o seed só roda com o banco vazio |
+
+---
+
+## 5. Estrutura da API
 
 Base: `https://SEU-SITE.netlify.app/api`
 
-Autenticação: `Authorization: Bearer <token>` (JWT de 7 dias).
-Convidado: header `X-Session-Id: <uuid>` (o site já gera e guarda em `localStorage`).
+```
+POST   /auth/register          POST /auth/login          GET  /auth/me
+PATCH  /auth/profile           POST /auth/forgot-password
+POST   /auth/reset-password
 
-### Autenticação
-| Método | Rota | Descrição |
-|---|---|---|
-| POST | `/auth/register` | cria conta `{nome,email,senha,telefone,cpf}` |
-| POST | `/auth/login` | retorna `{token,usuario}` |
-| GET | `/auth/me` | perfil do usuário logado |
-| PATCH | `/auth/me` | atualiza nome/telefone/cpf/endereço |
-| POST | `/auth/forgot-password` | gera token de recuperação (e-mail se configurado) |
-| POST | `/auth/reset-password` | `{token,novaSenha}` |
+GET    /products               GET  /products/:slug
 
-### Catálogo
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/products` | filtros `?colecao=&tipo=&publico=&q=&limit=&offset=&sort=` |
-| GET | `/products/:slug` | detalhe do produto |
+GET    /cart                   POST /cart/items
+PATCH  /cart/items/:id         DELETE /cart/items/:id    DELETE /cart
+GET    /favorites              POST /favorites           DELETE /favorites/:id
 
-### Carrinho e favoritos
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/cart` | carrinho do dono (usuário ou convidado) |
-| POST | `/cart` | `{productId,quantidade,tamanho,cor}` |
-| PATCH | `/cart/:productId` | altera quantidade |
-| DELETE | `/cart/:productId` | remove item |
-| DELETE | `/cart` | esvazia |
-| GET | `/favorites` | lista de favoritos |
-| POST | `/favorites` | `{productId}` ou `{nome}` |
-| DELETE | `/favorites/:productId` | remove |
+POST   /shipping/quote         POST /coupons/validate
+POST   /orders                 GET  /orders              GET  /orders/:numero
+POST   /orders/:numero/cancel
 
-### Frete, cupom e pedidos
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/shipping/quote?cep=01310100&subtotal=900` | PAC, SEDEX e retirada |
-| POST | `/coupons/validate` | `{codigo,subtotal}` |
-| POST | `/orders` | cria pedido (recalcula preços/frete no servidor) |
-| GET | `/orders` | pedidos do usuário logado |
-| GET | `/orders/:numero` | detalhe (dono ou admin) |
-| POST | `/orders/:numero/cancel` | cancela se ainda não enviado |
+POST   /contact                POST /newsletter
 
-O pedido PIX retorna `pagamento.pix.copiaECola` (BR Code EMV válido) e
-`pagamento.pix.txid`. O total é sempre recalculado no servidor: o cliente nunca
-define preço.
+POST   /admin/bootstrap        GET  /admin/stats         GET  /admin/orders
+PATCH  /admin/orders/:numero/status
+GET    /admin/messages         PATCH /admin/messages/:id
+GET    /admin/newsletter
+POST   /admin/products         PATCH /admin/products/:id DELETE /admin/products/:id
+GET    /admin/coupons          POST /admin/coupons       DELETE /admin/coupons/:codigo
 
-### Contato e newsletter
-| Método | Rota | Descrição |
-|---|---|---|
-| POST | `/contact` | `{nome,email,telefone,assunto,mensagem}` |
-| POST | `/newsletter` | `{email}` (idempotente) |
-
-### Administração (requer `role: admin`)
-| Método | Rota | Descrição |
-|---|---|---|
-| GET | `/admin/stats` | receita, pedidos, ticket médio, clientes, mensagens |
-| GET | `/admin/orders?status=` | todos os pedidos |
-| PATCH | `/admin/orders/:numero/status` | `{status}` |
-| GET | `/admin/messages` | mensagens de contato |
-| PATCH | `/admin/messages/:id` | marca como lida/respondida |
-| GET | `/admin/newsletter` | inscritos |
-| POST | `/admin/products` | cria produto |
-| PATCH | `/admin/products/:id` | atualiza produto |
-| DELETE | `/admin/products/:id` | desativa produto |
-| GET/POST | `/admin/coupons` | lista/cria cupom |
-| DELETE | `/admin/coupons/:codigo` | remove cupom |
-| POST | `/admin/bootstrap` | cria admin real (header `x-bootstrap-token`) |
-
----
-
-## 4. Como o frontend usa a API
-
-`js/rs-api.js` expõe `window.RS`:
-
-```js
-await RS.login(email, senha);        // guarda token + usuário
-await RS.register({ nome, email, senha });
-await RS.criarPedido(pedido);        // checkout
-await RS.meusPedidos();              // meus-pedidos.html
-await RS.cotarFrete(cep, subtotal);  // checkout
-await RS.validarCupom(codigo, subtotal);
-await RS.contato({ nome, email, mensagem });
-await RS.newsletter(email);
+GET    /health
 ```
 
-Se a API estiver indisponível, cada página cai de volta para o comportamento
-antigo em `localStorage` — o site nunca quebra, apenas perde a sincronização.
-
----
-
-## 5. Segurança
-
-- Senhas com **scrypt** (`scrypt$salt$hash`), nunca em texto puro.
-- JWT **HS256** assinado com `JWT_SECRET`, expiração de 7 dias.
-- Rotas `/admin/*` exigem `role === "admin"`; o token é verificado no servidor.
-- Preços, frete e descontos são **recalculados no servidor** a cada pedido.
-- Headers de segurança no `netlify.toml` (X-Frame-Options, nosniff, referrer).
-- `admin.html` tem `noindex,nofollow` e está fora do `sitemap.xml`.
-
-> Troque `JWT_SECRET` e `ADMIN_PASSWORD` antes de ir ao ar. Nunca comite o `.env`.
-
----
-
-## 6. Checklist de go-live
-
-- [ ] `JWT_SECRET` gerado e configurado
-- [ ] `ADMIN_EMAIL` / `ADMIN_PASSWORD` fortes
-- [ ] `PIX_CHAVE` com a chave real da loja
-- [ ] Deploy com cache limpo após salvar as variáveis
-- [ ] `/api/products` retorna os 20 produtos
-- [ ] Cadastro → login → pedido PIX testado em produção
-- [ ] `admin.html` abrindo com a conta admin
-- [ ] Domínio + HTTPS ativos
+Autenticação: `Authorization: Bearer <token>`; sessão de visitante: `X-Session-Id`.
